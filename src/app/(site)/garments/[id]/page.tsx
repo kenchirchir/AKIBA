@@ -1,68 +1,150 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronLeft, Heart, Shirt } from "lucide-react";
+import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { Placeholder } from "@/components/layout/placeholder";
+import { BackButton } from "@/components/story/back-button";
+import { MakerCard } from "@/components/story/maker-card";
+import { PhotoCarousel } from "@/components/story/photo-carousel";
+import { SaveButton } from "@/components/story/save-button";
+import { StoryText } from "@/components/story/story-text";
+import { StoryTracker } from "@/components/story/story-tracker";
 import { buttonClasses } from "@/components/ui/button";
-import { IconButton, iconButtonClasses } from "@/components/ui/icon-button";
+import {
+  audienceSlugs,
+  findCategory,
+  findSubcategory,
+  materialSlugs,
+} from "@/lib/catalogue";
+import { getGarmentStory } from "@/lib/garments";
+import { photoUrl } from "@/lib/photos";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("GarmentStory");
-  return { title: t("title") };
+export const revalidate = 60;
+
+const shareWidth = 1200;
+
+export async function generateStaticParams() {
+  return [];
+}
+
+function excerpt(text: string, length = 160) {
+  const flat = text.replace(/\s+/g, " ").trim();
+  return flat.length > length
+    ? `${flat.slice(0, length - 1).trimEnd()}…`
+    : flat;
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps<"/garments/[id]">): Promise<Metadata> {
+  const { id } = await params;
+  const garment = await getGarmentStory(id);
+  if (!garment) return {};
+
+  const cover = garment.photos[0];
+  const description = excerpt(garment.story);
+  const width = cover ? Math.min(shareWidth, cover.width) : 0;
+
+  return {
+    title: garment.name,
+    description,
+    openGraph: {
+      type: "article",
+      title: garment.name,
+      description,
+      images:
+        cover && width > 0
+          ? [
+              {
+                url: photoUrl(cover.publicId, shareWidth),
+                width,
+                height: Math.round((width * cover.height) / cover.width),
+              },
+            ]
+          : undefined,
+    },
+  };
 }
 
 export default async function GarmentStoryPage({
   params,
 }: PageProps<"/garments/[id]">) {
   const { id } = await params;
+  const garment = await getGarmentStory(id);
+  if (!garment) notFound();
+
   const t = await getTranslations("GarmentStory");
-  const common = await getTranslations("Common");
+  const catalogue = await getTranslations("Catalogue");
+  const category = findCategory(garment.category);
+  const subcategory = findSubcategory(
+    category,
+    garment.subcategory ?? undefined,
+  );
+  const material = materialSlugs.find((slug) => slug === garment.material);
+  const audience = audienceSlugs.find((slug) => slug === garment.audience);
+
+  const facts: [string, string][] = [];
+  if (material) facts.push([t("material"), catalogue(`materials.${material}`)]);
+  if (subcategory) {
+    facts.push([t("category"), catalogue(`subcategories.${subcategory}`)]);
+  } else if (category) {
+    facts.push([t("category"), catalogue(`categories.${category.slug}`)]);
+  }
+  if (audience) facts.push([t("madeFor"), catalogue(`audiences.${audience}`)]);
 
   return (
-    <main className="flex-1 lg:py-10">
-      <div className="lg:mx-auto lg:grid lg:max-w-[1320px] lg:grid-cols-2 lg:items-start lg:gap-12 lg:px-10">
-        <div className="relative flex aspect-[390/368] items-center justify-center bg-brand-100 text-teal lg:aspect-[4/5] lg:rounded-card">
-          <Shirt strokeWidth={1} className="size-16 lg:size-24" />
-          <Link
-            href="/"
-            aria-label={common("back")}
-            className={iconButtonClasses({
-              variant: "white",
-              size: "lg",
-              className: "absolute top-4 left-4",
-            })}
-          >
-            <ChevronLeft />
-          </Link>
-          <IconButton
-            label={t("save")}
-            variant="white"
-            size="lg"
+    <main className="flex-1 md:py-8 lg:py-10">
+      <StoryTracker garmentId={garment.id} />
+      <div className="md:mx-auto md:grid md:max-w-[1320px] md:grid-cols-2 md:items-start md:gap-8 md:px-8 lg:gap-12 lg:px-10">
+        <div className="relative">
+          <PhotoCarousel name={garment.name} photos={garment.photos} />
+          <BackButton className="absolute top-4 left-4" />
+          <SaveButton
+            garmentId={garment.id}
             className="absolute top-4 right-4"
+          />
+        </div>
+        <article className="flex flex-col gap-6 px-5 pt-6 pb-12 md:px-0 md:pt-0">
+          <header className="flex flex-col gap-3">
+            <div>
+              <h1 className="text-title lg:text-[36px] lg:leading-tight">
+                {garment.name}
+              </h1>
+              <p className="mt-1 text-[26px] leading-tight font-semibold text-teal">
+                {t("price", { price: garment.price_rwf })}
+              </p>
+            </div>
+            {facts.length > 0 && (
+              <dl className="flex flex-wrap gap-x-4 gap-y-1 text-caption text-secondary">
+                {facts.map(([label, value]) => (
+                  <div key={label} className="flex gap-1">
+                    <dt>{label}:</dt>
+                    <dd className="text-ink">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            <p className="text-caption text-secondary">{t("guidePrice")}</p>
+          </header>
+          <MakerCard tailor={garment.tailors} />
+          <section className="flex flex-col gap-2">
+            <h2 className="text-section">{t("story")}</h2>
+            <StoryText text={garment.story} />
+          </section>
+          {garment.description && (
+            <section className="flex flex-col gap-2">
+              <h2 className="text-section">{t("description")}</h2>
+              <p className="text-body whitespace-pre-line text-ink-soft">
+                {garment.description}
+              </p>
+            </section>
+          )}
+          <Link
+            href={`/garments/${garment.id}/request-sent`}
+            className={buttonClasses({ size: "lg", fullWidth: true })}
           >
-            <Heart />
-          </IconButton>
-        </div>
-        <div className="flex flex-col gap-5 px-5 pt-6 pb-12 md:px-8 lg:px-0 lg:pt-2">
-          <h1 className="text-title lg:text-[36px]">{t("title")}</h1>
-          <Placeholder milestone={7} description={t("placeholder")}>
-            <Link
-              href={`/garments/${id}/request-sent`}
-              className={buttonClasses({ fullWidth: true })}
-            >
-              {t("request")}
-            </Link>
-            <Link
-              href="/tailors/sample-tailor"
-              className={buttonClasses({
-                variant: "secondary",
-                fullWidth: true,
-              })}
-            >
-              {t("meetTailor")}
-            </Link>
-          </Placeholder>
-        </div>
+            {t("request")}
+          </Link>
+        </article>
       </div>
     </main>
   );

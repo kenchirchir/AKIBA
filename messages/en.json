@@ -120,7 +120,23 @@
     "resultsFor": "Results for “{query}”",
     "showcase": "AKIBA is a showcase, not a shop: request a garment, agree a fitting, and pay the tailor directly.",
     "price": "{price, number} RF",
-    "empty": "No garments match yet. Try another category or area."
+    "empty": "No garments match yet. Try another category or area.",
+    "detailsLabel": "Show price and tailor",
+    "showDetails": "Show price & tailor",
+    "hideDetails": "Hide details",
+    "showMore": "Show more garments",
+    "seeAll": "See all garments",
+    "showAll": "Show all garments",
+    "guidePrices": "Guide prices · final price agreed with the tailor",
+    "filters": "Filters",
+    "updating": "Updating…",
+    "tailoringType": "Type of tailoring",
+    "allTypes": "All types",
+    "experience": "Tailor experience",
+    "anyExperience": "Any experience",
+    "material": "Material",
+    "anyMaterial": "Any material",
+    "clearFilters": "Clear all filters"
   },
   "Errors": {
     "title": "Something went wrong",
@@ -160,14 +176,32 @@
   "Saved": {
     "title": "Saved",
     "subtitle": "Saved on this phone · no account needed",
-    "placeholder": "Garments and tailors you save with the heart appear here."
+    "tabs": "Saved items",
+    "garments": "Garments",
+    "tailors": "Tailors",
+    "loading": "Loading your saved garments",
+    "emptyTitle": "Nothing saved yet",
+    "emptyBody": "Tap the heart on a garment to keep it here. Saved garments stay on this phone, no account needed.",
+    "discover": "Discover garments",
+    "note": "Saved items stay in this browser. Ready to order? Open a garment and tap <strong>Request this garment</strong>.",
+    "tailorsSoon": "Tailors you save from their profile page will appear here."
   },
   "GarmentStory": {
     "title": "Garment story",
     "save": "Save garment",
-    "placeholder": "Photos, the guide price, the tailor who made it and the story behind the garment.",
+    "price": "RWF {price, number}",
+    "guidePrice": "Guide price · final price is agreed with the tailor at your fitting",
+    "material": "Material",
+    "category": "Category",
+    "madeFor": "Made for",
+    "story": "The story",
+    "readMore": "Read full story",
+    "readLess": "Show less",
+    "description": "Description",
     "request": "Request this garment",
-    "meetTailor": "Meet the tailor"
+    "photoAlt": "{name}, photo {number} of {total}",
+    "showPhoto": "Show photo {number}",
+    "noPhoto": "No photo yet"
   },
   "RequestSent": {
     "title": "Request sent",

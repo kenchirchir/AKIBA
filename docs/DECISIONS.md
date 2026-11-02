@@ -93,6 +93,26 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Photo clean-up.** A photo removed before publishing is deleted from Cloudinary straight away, and photos taken out of a saved or deleted garment are deleted once the change is saved. The server does this after the page has moved on, so the tailor never waits for Cloudinary. Photos from a form that is left without publishing stay on Cloudinary for now. Photo links are public but have random names, and a garment only appears on AKIBA once it is approved.
 - **`npm run check:security`** now has 38 checks, including photos, the review trigger and story views. It removes its test data, including its test views, when it finishes.
 
+## 2026-11-02: Discover and garment stories
+
+- **The feed follows the 2 November journey map.** On phones and tablets it starts as a grid of photos, and a "Show price & tailor" switch adds the name, price, tailor and area under each photo. Laptops always show these details, as in the 31 October laptop design. The switch needs no JavaScript and is not remembered between pages.
+- **Filters (FR5).** Laptops get the filter column from the 31 October laptop design: district, sector, type of tailoring, tailor experience and material, without the "Minimum offer" filter (D4). Phones keep the menu from the journey map: search, district, sector and the category lists.
+- **Search.** Every word typed must match the garment's name, description, story, material or category, or the shop or owner name. A tailor's specialities are not searched, because that returned every garment of a tailor who lists, say, Bridal, even a linen suit. The type-of-tailoring filter covers them on laptops.
+- **The feed shows 24 garments at a time**, with "Show more garments" up to 240. The Welcome page links to the full feed.
+- **The story page (FR6)** follows the journey map: photos (swiped on phones, one under another on tablets and laptops), the guide price, material, category and "made for", the maker card that opens the tailor's profile (Milestone 8), the story with "Read full story", the description, and "Request this garment" (built in Milestone 9). There is no discount badge (D4). The design's "Made in 5 days" is not shown, because garments have no such field; tailors write it in the description, which the upload form suggests. From 768px the page has two columns, so the story is not pushed below a full-screen photo.
+- **Sharing.** A story link shared on WhatsApp or social media shows the garment's name, the start of its story and its cover photo.
+- **Story pages are cached** and rebuilt at most once a minute, so they open quickly on slow connections. Editing or deleting a garment clears its page straight away.
+- **Saving (FR7, D2, D3).** The heart on a story page saves the garment in the browser on that phone, with no account. The Saved page shows the saved garments that are still on AKIBA. Saving tailors comes with their profile pages in Milestone 8.
+- **Usage logs (FR10).** The server records a story view when a story opens (the same visitor opening it again within 30 minutes is not counted again), the seconds the story was on screen when the buyer leaves or switches app (the total reading time is the sum of these), and every save and unsave. Visitors are identified only by a random number kept in a cookie for a year, with no name or phone number. Tailors opening their own garments, search engines and test tools are not counted. The terms and privacy notice must mention this cookie before the pilot.
+- **Speed (NFR2)**, measured with Lighthouse on a production build of a story page with two photos:
+
+  | Connection                                  | Text and story appear | Main photo | Page ready |
+  | ------------------------------------------- | --------------------- | ---------- | ---------- |
+  | Chrome's 3G preset (1.5 Mbps, slow phone)   | 1.7 s                 | 2.6 s      | 2.5 s      |
+  | Lighthouse's stricter "Regular 3G" estimate | 1.6 s                 | 6.5 s      | 6.6 s      |
+
+  The stricter estimate adds the test computer's own slow link to Cloudinary (0.8 s before the first byte) and a local server that, unlike Vercel, does not share one connection for all files, so it overstates the live site. It will be measured again on the live site with real garments in Milestone 13. Photos after the first only start loading once the first is on screen, so they do not slow it down.
+
 ## Open questions
 
 - Participant codes linking usage logs to the surveys. Needed in Milestone 11.

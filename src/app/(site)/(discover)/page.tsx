@@ -19,7 +19,7 @@ export default async function WelcomePage() {
   const t = await getTranslations("Welcome");
   const feed = await getTranslations("Feed");
   const common = await getTranslations("Common");
-  const garments = await getFeedGarments({ limit: 8 });
+  const { garments, hasMore } = await getFeedGarments({ limit: 8 });
 
   return (
     <main className="flex-1">
@@ -104,7 +104,22 @@ export default async function WelcomePage() {
             subtitle={`${feed("allGarments")} · ${common("kigali")}`}
             description={feed("showcase")}
           />
-          <GarmentGrid garments={garments} />
+          <GarmentGrid
+            garments={garments}
+            more={
+              hasMore && (
+                <Link
+                  href="/garments"
+                  className={buttonClasses({
+                    variant: "secondary",
+                    size: "md",
+                  })}
+                >
+                  {feed("seeAll")}
+                </Link>
+              )
+            }
+          />
         </Container>
       </section>
     </main>

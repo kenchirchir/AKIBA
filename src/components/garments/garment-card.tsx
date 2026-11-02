@@ -3,8 +3,11 @@ import { MapPin, Shirt } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Avatar } from "@/components/ui/avatar";
 import { CloudImage } from "@/components/ui/cloud-image";
+import { cn } from "@/lib/cn";
 import type { FeedGarment } from "@/lib/garments";
 import { findDistrict, findSector } from "@/lib/kigali";
+
+const detail = "max-lg:group-has-[[data-details]:not(:checked)]/feed:hidden";
 
 export function GarmentCard({ garment }: { garment: FeedGarment }) {
   const t = useTranslations("Feed");
@@ -31,18 +34,28 @@ export function GarmentCard({ garment }: { garment: FeedGarment }) {
           <Shirt strokeWidth={1} className="size-10" />
         )}
       </span>
-      <span className="mt-3 text-[15px] leading-snug text-ink">
+      <span className="mt-3 text-[15px] leading-snug text-ink max-lg:group-has-[[data-details]:not(:checked)]/feed:sr-only">
         {garment.name}
       </span>
-      <span className="mt-1 text-[15px] font-semibold text-ink">
+      <span className={cn("mt-1 text-[15px] font-semibold text-ink", detail)}>
         {t("price", { price: garment.price_rwf })}
       </span>
-      <span className="mt-3 flex items-center gap-2 border-t border-line-soft pt-3 text-label font-normal text-ink">
+      <span
+        className={cn(
+          "mt-3 flex items-center gap-2 border-t border-line-soft pt-3 text-label font-normal text-ink",
+          detail,
+        )}
+      >
         <Avatar name={garment.tailors.shop_name} size="xs" />
         <span className="truncate">{garment.tailors.shop_name}</span>
       </span>
       {area && (
-        <span className="mt-2 flex items-center gap-1 text-micro text-teal">
+        <span
+          className={cn(
+            "mt-2 flex items-center gap-1 text-micro text-teal",
+            detail,
+          )}
+        >
           <MapPin className="size-3 shrink-0" />
           <span className="truncate">{area}</span>
         </span>

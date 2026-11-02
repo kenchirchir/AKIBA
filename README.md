@@ -61,21 +61,26 @@ AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase 
 
 ## Project structure
 
-| Folder                  | What is inside                                                                                                       |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `src/app`               | Pages and layouts. Folders in brackets, such as `(site)`, group pages that share a layout without changing their URL |
-| `src/components/ui`     | Reusable design-system components                                                                                    |
-| `src/components/layout` | The rail, menus, headers and other page building blocks                                                              |
-| `src/components/auth`   | The sign-up, SMS code, log-in and PIN reset forms                                                                    |
-| `src/components/shop`   | The garment form, the photo picker that uploads to Cloudinary, and the My shop cards                                 |
-| `src/lib`               | Shared helpers and data: garment categories and Kigali districts and sectors                                         |
-| `src/lib/auth`          | Tailor accounts: phone numbers, PIN rules, lockout and the server actions behind each form                           |
-| `src/lib/shop`          | A tailor's own garments: reading them, and the server actions that save, edit and delete them                        |
-| `src/lib/cloudinary.ts` | Signs photo uploads and deletes photos on Cloudinary. Runs on the server only                                        |
-| `src/proxy.ts`          | Keeps tailors signed in and sends visitors away from the `/shop` pages                                               |
-| `src/assets`            | Images that are bundled with the app                                                                                 |
-| `messages/en.json`      | Every piece of text shown on screen                                                                                  |
-| `docs`                  | Roadmap and decision log                                                                                             |
+| Folder                    | What is inside                                                                                                       |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `src/app`                 | Pages and layouts. Folders in brackets, such as `(site)`, group pages that share a layout without changing their URL |
+| `src/components/ui`       | Reusable design-system components                                                                                    |
+| `src/components/layout`   | The rail, menus, headers and other page building blocks                                                              |
+| `src/components/auth`     | The sign-up, SMS code, log-in and PIN reset forms                                                                    |
+| `src/components/shop`     | The garment form, the photo picker that uploads to Cloudinary, and the My shop cards                                 |
+| `src/components/garments` | The garment cards, the feed grid with its "Show price & tailor" switch, and the laptop filters                       |
+| `src/components/story`    | The garment story page: photos, the save heart, the maker card and the reading-time tracker                          |
+| `src/components/saved`    | The Saved page list, which reads the garments saved on the phone                                                     |
+| `src/lib`                 | Shared helpers and data: garment categories and Kigali districts and sectors                                         |
+| `src/lib/auth`            | Tailor accounts: phone numbers, PIN rules, lockout and the server actions behind each form                           |
+| `src/lib/shop`            | A tailor's own garments: reading them, and the server actions that save, edit and delete them                        |
+| `src/lib/cloudinary.ts`   | Signs photo uploads and deletes photos on Cloudinary. Runs on the server only                                        |
+| `src/lib/discover`        | The buyer side: search words, garments saved on the phone, and usage events                                          |
+| `src/app/api/events`      | Records story views, reading time and saves in the usage logs. Runs on the server only                               |
+| `src/proxy.ts`            | Keeps tailors signed in and sends visitors away from the `/shop` pages                                               |
+| `src/assets`              | Images that are bundled with the app                                                                                 |
+| `messages/en.json`        | Every piece of text shown on screen                                                                                  |
+| `docs`                    | Roadmap and decision log                                                                                             |
 
 ## Figma Design system
 

@@ -37,8 +37,15 @@ function savePhotos(supabase: Supabase, garmentId: string, photos: Photo[]) {
   );
 }
 
-function backToShop(notice: "uploaded" | "saved" | "deleted"): never {
+function backToShop(
+  notice: "uploaded" | "saved" | "deleted",
+  garmentId?: string,
+): never {
   revalidatePath("/shop", "layout");
+  if (garmentId) {
+    revalidatePath(`/garments/${garmentId}`);
+    revalidatePath("/");
+  }
   redirect(`/shop?${notice}=1`, RedirectType.replace);
 }
 
@@ -128,7 +135,7 @@ export async function saveGarment(
       .map((photo) => photo.public_id)
       .filter((publicId) => !kept.has(publicId));
     after(() => destroyPhotos(removed));
-    backToShop("saved");
+    backToShop("saved", id);
   }
 
   const { data: created, error } = await supabase
@@ -171,5 +178,5 @@ export async function deleteGarment(
 
   const removed = garment.garment_photos.map((photo) => photo.public_id);
   after(() => destroyPhotos(removed));
-  backToShop("deleted");
+  backToShop("deleted", id);
 }
