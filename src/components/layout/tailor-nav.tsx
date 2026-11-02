@@ -7,10 +7,10 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/cn";
 
 const links = [
-  { href: "/shop", key: "myShop", exact: true },
-  { href: "/shop/upload", key: "upload", exact: false },
-  { href: "/shop/requests", key: "requests", exact: false },
-  { href: "/shop/profile", key: "profile", exact: false },
+  { href: "/shop", key: "myShop", section: "/shop/garments" },
+  { href: "/shop/upload", key: "upload", section: "/shop/upload" },
+  { href: "/shop/requests", key: "requests", section: "/shop/requests" },
+  { href: "/shop/profile", key: "profile", section: "/shop/profile" },
 ] as const;
 
 export function TailorNav({ newRequests }: { newRequests: number }) {
@@ -20,9 +20,8 @@ export function TailorNav({ newRequests }: { newRequests: number }) {
   return (
     <nav aria-label={t("label")} className="mt-8 flex flex-col gap-1">
       {links.map((link) => {
-        const active = link.exact
-          ? pathname === link.href
-          : pathname.startsWith(link.href);
+        const active =
+          pathname === link.href || pathname.startsWith(link.section);
 
         return (
           <Link

@@ -25,6 +25,7 @@ const sampleGarment = {
   price_rwf: 1000,
 };
 const testPhones = ["+250780000901", "+250780000902"];
+const testCode = "security-check";
 
 const blocked = ({ data, error }) => Boolean(error) || data.length === 0;
 const denied = ({ error }) => error?.code === "42501";
@@ -112,6 +113,10 @@ const visitorChecks = [
       ),
   ],
   [
+    "Visitors cannot count story views",
+    async () => denied(await visitor.rpc("my_garment_views")),
+  ],
+  [
     "Visitors cannot send requests straight to the database",
     async () => {
       const { error } = await visitor.from("requests").insert({
@@ -148,7 +153,30 @@ function testGarment(tailorId) {
   };
 }
 
+function testPhoto(garmentId, position) {
+  return {
+    garment_id: garmentId,
+    public_id: `akiba/garments/security-check/${garmentId}-${position}`,
+    width: 1200,
+    height: 1600,
+    position,
+  };
+}
+
+function testView(garmentId) {
+  return {
+    event_type: "story_view",
+    garment_id: garmentId,
+    participant_code: testCode,
+  };
+}
+
 async function removeTestUsers(admin) {
+  await admin
+    .from("analytics_events")
+    .delete()
+    .eq("participant_code", testCode);
+
   const { data, error } = await admin.auth.admin.listUsers({ perPage: 1000 });
   if (error) throw error;
 
@@ -190,6 +218,13 @@ async function setUp(admin) {
     .single();
   if (shopError) throw shopError;
 
+  const { data: garmentB, error: garmentError } = await b.client
+    .from("garments")
+    .insert(testGarment(shopB.id))
+    .select("id")
+    .single();
+  if (garmentError) throw garmentError;
+
   const { error: requestError } = await admin.from("requests").insert({
     tailor_id: shopB.id,
     buyer_name: "Test buyer",
@@ -198,10 +233,10 @@ async function setUp(admin) {
   });
   if (requestError) throw requestError;
 
-  return { a, b, shopB: shopB.id };
+  return { admin, a, b, shopB: shopB.id, garmentB: garmentB.id };
 }
 
-function tailorChecks({ a, b, shopB }) {
+function tailorChecks({ admin, a, b, shopB, garmentB }) {
   const own = {};
 
   return [
@@ -314,6 +349,78 @@ function tailorChecks({ a, b, shopB }) {
             .select("id")
             .eq("id", pendingGarmentId),
         ),
+    ],
+    [
+      "Tailors can add photos to their own garments",
+      async () => {
+        const { error } = await a.client
+          .from("garment_photos")
+          .insert(testPhoto(own.garment.id, 0));
+        return !error;
+      },
+    ],
+    [
+      "Tailors cannot add photos to another tailor's garments",
+      async () =>
+        denied(
+          await a.client.from("garment_photos").insert(testPhoto(garmentB, 0)),
+        ),
+    ],
+    [
+      "Visitors cannot see photos of garments waiting for review",
+      async () =>
+        blocked(
+          await visitor
+            .from("garment_photos")
+            .select("id")
+            .eq("garment_id", own.garment.id),
+        ),
+    ],
+    [
+      "Changing the photos of a live garment sends it back for review",
+      async () => {
+        const { error: approveError } = await admin
+          .from("garments")
+          .update({
+            status: "approved",
+            published_at: new Date().toISOString(),
+          })
+          .eq("id", own.garment.id);
+        if (approveError) return false;
+
+        const { error: photoError } = await a.client
+          .from("garment_photos")
+          .insert(testPhoto(own.garment.id, 1));
+        if (photoError) return false;
+
+        const { data } = await admin
+          .from("garments")
+          .select("status, published_at")
+          .eq("id", own.garment.id)
+          .single();
+        return data?.status === "pending" && data.published_at === null;
+      },
+    ],
+    [
+      "Tailors only see story views of their own garments",
+      async () => {
+        const { error: viewError } = await admin
+          .from("analytics_events")
+          .insert([testView(own.garment.id), testView(garmentB)]);
+        if (viewError) return false;
+
+        const { data, error } = await a.client.rpc("my_garment_views");
+        return (
+          !error &&
+          data.length === 1 &&
+          data[0].garment_id === own.garment.id &&
+          data[0].views === 1
+        );
+      },
+    ],
+    [
+      "Tailors cannot read usage logs",
+      async () => blocked(await a.client.from("analytics_events").select("id")),
     ],
     [
       "Tailors can read requests sent to their shop",

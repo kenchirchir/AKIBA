@@ -5,6 +5,7 @@ const tones = {
   brand: "bg-brand-50 text-teal",
   success: "bg-success-50 text-success-ink",
   warning: "bg-warning-50 text-warning-ink",
+  danger: "bg-white text-danger",
   neutral: "bg-mist text-ink",
   outline: "border border-line bg-white text-ink",
   count: "bg-alert text-white",

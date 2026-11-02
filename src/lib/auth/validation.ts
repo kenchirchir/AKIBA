@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { tailoringTypeSlugs } from "@/lib/catalogue";
+import { fieldErrors } from "@/lib/form-errors";
 import { findDistrict, sectorSlug } from "@/lib/kigali";
 import { isAuthErrorKey, type AuthErrorKey } from "./errors";
 import { normalizeRwandaPhone } from "./phone";
@@ -105,13 +106,6 @@ export const newPinSchema = z
     path: ["confirm"],
   });
 
-export function fieldErrors(error: z.ZodError) {
-  const errors: Partial<Record<string, AuthErrorKey>> = {};
-
-  for (const issue of error.issues) {
-    const field = String(issue.path[0] ?? "form");
-    errors[field] ??= isAuthErrorKey(issue.message) ? issue.message : "generic";
-  }
-
-  return errors;
+export function authFieldErrors(error: z.ZodError) {
+  return fieldErrors<AuthErrorKey>(error, isAuthErrorKey, "generic");
 }

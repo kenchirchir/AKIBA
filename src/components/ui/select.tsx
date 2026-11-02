@@ -12,7 +12,7 @@ export function Select({
     <div className="relative">
       <select
         className={cn(
-          "h-[46px] appearance-none pr-11 pl-4 invalid:text-placeholder [&_option]:text-ink",
+          "h-[46px] appearance-none pr-11 pl-4 invalid:text-placeholder has-[option[value='']:checked]:text-placeholder [&_option]:text-ink",
           controlClasses,
           className,
         )}

@@ -30,10 +30,12 @@ export async function getFeedGarments(filters: FeedFilters = {}) {
   let request = supabase
     .from("garments")
     .select(
-      "id, name, price_rwf, tailors!inner(id, shop_name, district, sector)",
+      "id, name, price_rwf, tailors!inner(id, shop_name, district, sector), garment_photos(public_id)",
     )
     .eq("status", "approved")
     .order("published_at", { ascending: false, nullsFirst: false })
+    .order("position", { referencedTable: "garment_photos" })
+    .limit(1, { referencedTable: "garment_photos" })
     .limit(filters.limit ?? 24);
 
   if (filters.query) {

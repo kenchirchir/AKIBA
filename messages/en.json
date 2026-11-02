@@ -120,8 +120,7 @@
     "resultsFor": "Results for “{query}”",
     "showcase": "AKIBA is a showcase, not a shop: request a garment, agree a fitting, and pay the tailor directly.",
     "price": "{price, number} RF",
-    "empty": "No garments match yet. Try another category or area.",
-    "photoSoon": "Photos arrive in Milestone 6"
+    "empty": "No garments match yet. Try another category or area."
   },
   "Errors": {
     "title": "Something went wrong",
@@ -295,14 +294,88 @@
     "greeting": "Muraho, {name} · {shop}",
     "pendingTitle": "Waiting for verification",
     "pendingBody": "AKIBA is checking your details with your tailor association. Your garments become public once your shop is verified.",
-    "placeholder": "Your garment count, story views and the garments you have published.",
-    "upload": "Upload a garment",
-    "requests": "Requests",
-    "profile": "Profile"
+    "garments": "Garments",
+    "storyViews": "Story views",
+    "myGarments": "My garments",
+    "empty": "You haven’t uploaded any garments yet. Add your first one with its photos and the story behind it.",
+    "uploadFirst": "Upload your first garment",
+    "views": "{count, plural, one {# story view} other {# story views}}",
+    "status": {
+      "pending": "Waiting for review",
+      "rejected": "Not approved"
+    },
+    "notices": {
+      "uploaded": "Thank you! Your garment is waiting for review. Buyers will see it once AKIBA approves it.",
+      "saved": "Changes saved. AKIBA reviews them before they go live.",
+      "deleted": "The garment and its photos were deleted."
+    }
   },
   "Upload": {
-    "title": "Upload a garment",
-    "placeholder": "Up to 5 photos, garment name, category, material, description, the story behind it and price."
+    "title": "Upload a garment"
+  },
+  "EditGarment": {
+    "title": "Edit garment",
+    "pending": "Waiting for review. AKIBA checks every garment before buyers can see it.",
+    "rejected": "Not approved: {reason}",
+    "rejectedNoReason": "Not approved yet.",
+    "rejectedHelp": "Fix it and save to send it for review again.",
+    "approved": "Buyers can see this garment. If you save changes, it is hidden until AKIBA has reviewed them.",
+    "delete": "Delete garment",
+    "deleteTitle": "Delete this garment?",
+    "deleteBody": "Buyers will no longer see it, and its photos will be deleted. This can’t be undone.",
+    "deleteConfirm": "Yes, delete it",
+    "deleting": "Deleting…",
+    "keep": "Keep it"
+  },
+  "GarmentForm": {
+    "photos": "Photos",
+    "photosLimit": "(up to 5)",
+    "photosHint": "Up to 5 photos. They are shrunk automatically so pages load on slow connections.",
+    "addPhoto": "Add photo",
+    "cover": "Cover",
+    "photoAlt": "Photo {number} of the garment",
+    "removePhoto": "Remove photo {number}",
+    "uploading": "Uploading {percent}%",
+    "failed": "Didn’t upload",
+    "retry": "Try again",
+    "details": "Details",
+    "name": "Garment name",
+    "namePlaceholder": "e.g. Kitenge wrap dress",
+    "category": "Category",
+    "choose": "Choose",
+    "other": {
+      "tops": "Other tops",
+      "bottoms": "Other bottoms"
+    },
+    "material": "Material",
+    "audience": "Made for",
+    "description": "Description",
+    "descriptionPlaceholder": "Fit, sizes available, how long it takes to make…",
+    "story": "The story behind it",
+    "storyPlaceholder": "What inspired it? What does the fabric or style mean? How did you make it?",
+    "price": "Price",
+    "publish": "Publish to showcase",
+    "publishing": "Publishing…",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "uploadingPhotos": "Uploading photos…",
+    "waitForPhotos": "Wait for your photos to finish uploading, then try again.",
+    "fixPhotos": "A photo didn’t upload. Tap Try again on it, or remove it.",
+    "reviewNote": "AKIBA reviews every garment before it goes live.",
+    "errors": {
+      "photosRequired": "Add at least one photo of the garment.",
+      "photosTooMany": "You can add up to 5 photos.",
+      "nameRequired": "Give the garment a name.",
+      "nameTooLong": "Keep the name under 80 letters.",
+      "categoryRequired": "Choose a category.",
+      "audienceRequired": "Choose who the garment is made for.",
+      "descriptionTooLong": "Keep the description under 1,000 letters.",
+      "storyRequired": "Tell buyers the story behind the garment, in at least a sentence.",
+      "storyTooLong": "Keep the story under 3,000 letters.",
+      "priceInvalid": "Enter a price between 500 and 10,000,000 RWF.",
+      "notFound": "We couldn’t find this garment. It may have been deleted.",
+      "generic": "Something went wrong. Check your connection and try again."
+    }
   },
   "Requests": {
     "title": "Requests",

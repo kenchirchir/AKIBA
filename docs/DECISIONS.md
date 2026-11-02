@@ -79,6 +79,20 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **The demo tailor is gone.** The tailor menu and sidebar now show the signed-in tailor.
 - **`npm run check:security`** now also creates two temporary test tailors and checks 18 things a signed-in tailor can and cannot do, then deletes them. It needs `SUPABASE_SECRET_KEY` in `.env.local`.
 
+## 2026-11-02: Tailor shop
+
+- **Photos go straight from the phone to Cloudinary.** The browser shrinks each photo to at most 1600 pixels on its longest side, usually a few hundred KB instead of several MB, so it uploads quickly on mobile data (NFR2). Cloudinary also limits stored photos to 2000 pixels in case a phone cannot shrink one. Photos never pass through the AKIBA server.
+- **Every upload is signed by the server.** The server gives each photo a random name inside the tailor's own folder, `akiba/garments/<tailor id>/`, and signs it with `CLOUDINARY_API_SECRET`. Nobody can upload without an account, and a tailor cannot attach a photo from another tailor's folder.
+- **Photos upload while the tailor writes the story**, with a progress bar on each photo. If one fails, the tailor can try again or remove it. Publishing waits until every photo has uploaded.
+- **Between 1 and 5 photos**, and the first one is the cover. Buyers need to see the garment, so at least one photo is required.
+- **Small changes from the design.** The design shows one Category list and no audience. The Category list is grouped (Tops: Shirts, Blouses and so on), because the buyer menus filter by these sub-categories. A "Made for" choice (Women, Men, Everyone, Kids) was added, because the Men and Women collections need it. Material and description are optional; name, category, made for, story and price are required. On most phones Category and Material sit one above the other instead of side by side, because names such as "Bridal & occasion" were cut off; they sit side by side wherever they fit.
+- **Price** is a whole number of Rwandan francs between 500 and 10,000,000. Tailors may type `45,000` or `45000`.
+- **Every change goes back for review.** Editing a live garment hides it until the admin approves it again. This now also covers adding, removing or reordering its photos, through a database trigger added in this milestone. Before, a tailor could have swapped the photos of an approved garment without review. Tailors are warned before they save a live garment.
+- **Tailors can edit or delete their garments at any time** (NFR6). Deleting a garment also deletes its photos from Cloudinary. Buyer requests about a deleted garment stay in the tailor's inbox.
+- **Story views on My shop** come from a database function that only counts views of the signed-in tailor's own garments. Views are recorded from Milestone 7, so they show 0 until then.
+- **Photo clean-up.** A photo removed before publishing is deleted from Cloudinary straight away, and photos taken out of a saved or deleted garment are deleted once the change is saved. The server does this after the page has moved on, so the tailor never waits for Cloudinary. Photos from a form that is left without publishing stay on Cloudinary for now. Photo links are public but have random names, and a garment only appears on AKIBA once it is approved.
+- **`npm run check:security`** now has 38 checks, including photos, the review trigger and story views. It removes its test data, including its test views, when it finishes.
+
 ## Open questions
 
 - Participant codes linking usage logs to the surveys. Needed in Milestone 11.

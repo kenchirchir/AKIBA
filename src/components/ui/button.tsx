@@ -8,6 +8,7 @@ const variants = {
   secondary: "bg-mist font-medium text-ink hover:bg-line-soft",
   soft: "bg-brand-50 font-medium text-ink hover:bg-brand-100",
   ghost: "font-semibold text-teal hover:bg-brand-50",
+  danger: "bg-danger font-semibold text-white hover:bg-danger/90",
 };
 
 const sizes = {

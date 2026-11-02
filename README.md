@@ -10,8 +10,8 @@ A Mission Capstone research project by Kenneth Chirchir.
 
 - [Next.js](https://nextjs.org) 16 (App Router) with React 19 and TypeScript
 - [Tailwind CSS](https://tailwindcss.com) 4
-- [Supabase](https://supabase.com): PostgreSQL database and sign-in (from Milestone 4)
-- [Cloudinary](https://cloudinary.com): garment photos (from Milestone 6)
+- [Supabase](https://supabase.com): PostgreSQL database and sign-in
+- [Cloudinary](https://cloudinary.com): garment photos
 - [Vercel](https://vercel.com): hosting
 
 ## Getting started
@@ -34,6 +34,9 @@ Before running the app, fill in `.env.local`, then open <http://localhost:3000>.
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase: **Connect**, then **Next.js**                                                                                                  |
 | `SUPABASE_SECRET_KEY`                  | Supabase: **Project Settings**, **API Keys**, **Secret keys**. Server only: never share it or put it in code                             |
 | `AUTH_PIN_PEPPER`                      | A long random secret, made with `openssl rand -base64 32`. Use the same value everywhere and never change it once tailors have signed up |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`    | Cloudinary: **Settings**, **API Keys**, the cloud name at the top                                                                        |
+| `CLOUDINARY_API_KEY`                   | Cloudinary: **Settings**, **API Keys**                                                                                                   |
+| `CLOUDINARY_API_SECRET`                | Cloudinary: **Settings**, **API Keys**, next to the API key. Server only: never share it or put it in code                               |
 
 ## Scripts
 
@@ -64,8 +67,11 @@ AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase 
 | `src/components/ui`     | Reusable design-system components                                                                                    |
 | `src/components/layout` | The rail, menus, headers and other page building blocks                                                              |
 | `src/components/auth`   | The sign-up, SMS code, log-in and PIN reset forms                                                                    |
+| `src/components/shop`   | The garment form, the photo picker that uploads to Cloudinary, and the My shop cards                                 |
 | `src/lib`               | Shared helpers and data: garment categories and Kigali districts and sectors                                         |
 | `src/lib/auth`          | Tailor accounts: phone numbers, PIN rules, lockout and the server actions behind each form                           |
+| `src/lib/shop`          | A tailor's own garments: reading them, and the server actions that save, edit and delete them                        |
+| `src/lib/cloudinary.ts` | Signs photo uploads and deletes photos on Cloudinary. Runs on the server only                                        |
 | `src/proxy.ts`          | Keeps tailors signed in and sends visitors away from the `/shop` pages                                               |
 | `src/assets`            | Images that are bundled with the app                                                                                 |
 | `messages/en.json`      | Every piece of text shown on screen                                                                                  |

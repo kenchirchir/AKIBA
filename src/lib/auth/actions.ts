@@ -12,8 +12,8 @@ import { clearWrongPins, minutesLocked, recordWrongPin } from "./lockout";
 import { pendingReset, pendingSignUp, type PendingSignUp } from "./pending";
 import { pinToPassword } from "./pin";
 import {
+  authFieldErrors,
   codeSchema,
-  fieldErrors,
   loginSchema,
   newPinSchema,
   phoneSchema,
@@ -119,7 +119,7 @@ export async function signUp(
     terms: text(formData, "terms"),
   });
 
-  if (!parsed.success) return { errors: fieldErrors(parsed.error) };
+  if (!parsed.success) return { errors: authFieldErrors(parsed.error) };
 
   const { phone, pin, years, months } = parsed.data;
   const password = pinToPassword(phone, pin);
@@ -156,7 +156,7 @@ export async function verifyPhone(
   if (!pending) redirect("/join");
 
   const parsed = codeSchema.safeParse({ code: text(formData, "code") });
-  if (!parsed.success) return { errors: fieldErrors(parsed.error) };
+  if (!parsed.success) return { errors: authFieldErrors(parsed.error) };
 
   const supabase = await createServerSupabase({ remember: false });
   const { data, error } = await supabase.auth.verifyOtp({
@@ -198,7 +198,7 @@ export async function logIn(
     pin: text(formData, "pin"),
   });
 
-  if (!parsed.success) return { errors: fieldErrors(parsed.error) };
+  if (!parsed.success) return { errors: authFieldErrors(parsed.error) };
 
   const { phone, pin } = parsed.data;
   const remember = formData.get("remember") === "on";
@@ -250,7 +250,7 @@ export async function requestPinReset(
   formData: FormData,
 ): Promise<AuthFormState> {
   const parsed = phoneSchema.safeParse({ phone: text(formData, "phone") });
-  if (!parsed.success) return { errors: fieldErrors(parsed.error) };
+  if (!parsed.success) return { errors: authFieldErrors(parsed.error) };
 
   const { phone } = parsed.data;
   const supabase = await createServerSupabase();
@@ -291,7 +291,7 @@ export async function resetPin(
     confirm: text(formData, "confirm"),
   });
 
-  if (!parsed.success) return { errors: fieldErrors(parsed.error) };
+  if (!parsed.success) return { errors: authFieldErrors(parsed.error) };
 
   const supabase = await createServerSupabase();
   const { data, error } = await supabase.auth.verifyOtp({

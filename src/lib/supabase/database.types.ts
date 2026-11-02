@@ -407,6 +407,13 @@ export type Database = {
     }
     Functions: {
       is_admin: { Args: never; Returns: boolean }
+      my_garment_views: {
+        Args: never
+        Returns: {
+          garment_id: string
+          views: number
+        }[]
+      }
       owns_tailor: { Args: { target: string }; Returns: boolean }
     }
     Enums: {
