@@ -1,21 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import heroImage from "@/assets/welcome-hero.jpg";
+import { GarmentGrid } from "@/components/garments/garment-grid";
 import { Container } from "@/components/layout/container";
 import { FeedHeader } from "@/components/layout/feed-header";
 import { LogoBar } from "@/components/layout/logo-bar";
-import { SampleGarments } from "@/components/layout/sample-garments";
 import { Badge } from "@/components/ui/badge";
 import { buttonClasses } from "@/components/ui/button";
+import { getFeedGarments } from "@/lib/garments";
+
+export const revalidate = 60;
 
 const values = ["verified", "stories", "calls"] as const;
 
-export default function WelcomePage() {
-  const t = useTranslations("Welcome");
-  const feed = useTranslations("Feed");
-  const common = useTranslations("Common");
+export default async function WelcomePage() {
+  const t = await getTranslations("Welcome");
+  const feed = await getTranslations("Feed");
+  const common = await getTranslations("Common");
+  const garments = await getFeedGarments({ limit: 8 });
 
   return (
     <main className="flex-1">
@@ -100,7 +104,7 @@ export default function WelcomePage() {
             subtitle={`${feed("allGarments")} · ${common("kigali")}`}
             description={feed("showcase")}
           />
-          <SampleGarments />
+          <GarmentGrid garments={garments} />
         </Container>
       </section>
     </main>

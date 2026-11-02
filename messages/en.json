@@ -87,6 +87,30 @@
       "trousers": "Trousers",
       "skirts": "Skirts",
       "shorts": "Shorts"
+    },
+    "audiences": {
+      "women": "Women",
+      "men": "Men",
+      "unisex": "Everyone",
+      "kids": "Kids"
+    },
+    "materials": {
+      "kitenge-cotton": "Kitenge cotton",
+      "cotton": "Cotton",
+      "linen": "Linen",
+      "wool": "Wool",
+      "lace": "Lace",
+      "silk-blend": "Silk blend",
+      "denim": "Denim"
+    },
+    "tailoringTypes": {
+      "dressmaking": "Dressmaking",
+      "suit-tailoring": "Suit tailoring",
+      "traditional": "Traditional (Mushanana)",
+      "kitenge-ankara": "Kitenge / Ankara",
+      "bridal-occasion": "Bridal & occasion",
+      "shirts": "Shirts",
+      "kids": "Kids’ wear"
     }
   },
   "Feed": {
@@ -94,8 +118,14 @@
     "allGarments": "All garments",
     "resultsFor": "Results for “{query}”",
     "showcase": "AKIBA is a showcase, not a shop: request a garment, agree a fitting, and pay the tailor directly.",
-    "sampleNote": "Real garments from verified tailors appear here. Tap a sample to follow the buyer journey.",
-    "sampleGarment": "Sample garment {number}"
+    "price": "{price, number} RF",
+    "empty": "No garments match yet. Try another category or area.",
+    "photoSoon": "Photos arrive in Milestone 6"
+  },
+  "Errors": {
+    "title": "Something went wrong",
+    "body": "We couldn’t load this page. Check your connection and try again.",
+    "retry": "Try again"
   },
   "Welcome": {
     "title": "Clothes made in Kigali, by tailors you can meet.",

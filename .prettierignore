@@ -1,2 +1,5 @@
 AGENTS.md
 package-lock.json
+src/lib/supabase/database.types.ts
+supabase/.temp
+supabase/.branches

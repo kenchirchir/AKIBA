@@ -52,6 +52,16 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Logo: "Akiba"** with a capital A. Bold without a dot on the sign-in pages and headers, regular weight in the menus and the cyan block.
 - **Confirmed by Kenneth:** the Welcome photo may be used, and the Kigali sector list in `src/lib/kigali.ts` is correct.
 
+## 2026-11-02: Database
+
+- **Seven tables:** `profiles`, `tailors`, `tailor_verifications`, `garments`, `garment_photos`, `requests` and `analytics_events`. Each garment holds its own story, so there is no separate stories table. Following D1 to D3, there are no comment, appreciation, conversation or message tables.
+- **Every table has Row Level Security.** Visitors can only read verified tailors and their approved garments. Tailors can only change their own shop and garments, and column permissions stop them from changing their own status or approving their own garments. Editing an approved garment sends it back for review.
+- **Buyer requests are private.** Only the tailor a request was sent to can read it. The admin account cannot read requests, as promised in ethical consideration 8. Usage logs and verification records are only written and read by the server.
+- **The database checks categories, sub-categories, audiences and districts.** Materials and tailoring types are checked by the app.
+- **Sample data** in `supabase/seed.sql` is marked `is_sample` and must be deleted before the pilot.
+- **Public pages read the database with the publishable key**, without signing in. The Welcome page refreshes at most once a minute, so it loads quickly on slow connections.
+- **`npm run check:security`** repeats 12 checks of what a visitor can and cannot do. Checks for signed-in tailors are added in Milestone 5.
+
 ## Open questions
 
 - Participant codes linking usage logs to the surveys. Needed in Milestone 11.

@@ -22,10 +22,11 @@ You need Node.js 24 or newer, npm 11 or newer, and Git.
 git clone https://github.com/kenchirchir/AKIBA.git
 cd AKIBA
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
-Then open <http://localhost:3000>.
+Before running the app, fill in `.env.local` with your Supabase project URL and publishable key (in Supabase, click **Connect** and choose **Next.js**). Then open <http://localhost:3000>.
 
 ## Scripts
 
@@ -37,6 +38,16 @@ Then open <http://localhost:3000>.
 | `npm run lint`         | Checks the code for problems with ESLint         |
 | `npm run format`       | Formats every file with Prettier                 |
 | `npm run format:check` | Checks the formatting without changing any files |
+
+## Database
+
+AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase login` and `npx supabase link --project-ref <your-project-ref>`. The tables and security rules live in `supabase/migrations`, and the sample data in `supabase/seed.sql`.
+
+| Command                  | What it does                                                     |
+| ------------------------ | ---------------------------------------------------------------- |
+| `npm run db:push`        | Applies new migrations and the sample data to the linked project |
+| `npm run db:types`       | Regenerates `src/lib/supabase/database.types.ts` after a change  |
+| `npm run check:security` | Checks what a visitor can and cannot do in the database          |
 
 ## Project structure
 

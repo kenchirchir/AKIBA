@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { GarmentGrid } from "@/components/garments/garment-grid";
 import { Container } from "@/components/layout/container";
 import { FeedHeader } from "@/components/layout/feed-header";
 import { LogoBar } from "@/components/layout/logo-bar";
-import { SampleGarments } from "@/components/layout/sample-garments";
 import { findCategory, findCollection, findSubcategory } from "@/lib/catalogue";
-import { findDistrict, findSector } from "@/lib/kigali";
+import { getFeedGarments } from "@/lib/garments";
+import { findDistrict, findSector, sectorSlug } from "@/lib/kigali";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Feed");
@@ -42,6 +43,14 @@ export default async function GarmentsPage({
   const subtitle = query
     ? `${t("resultsFor", { query })} · ${where}`
     : `${what} · ${where}`;
+  const garments = await getFeedGarments({
+    query,
+    category: category?.slug,
+    subcategory,
+    collection,
+    district: district?.slug,
+    sector: sector ? sectorSlug(sector) : undefined,
+  });
 
   return (
     <main className="flex-1">
@@ -52,7 +61,7 @@ export default async function GarmentsPage({
           subtitle={subtitle}
           description={t("showcase")}
         />
-        <SampleGarments />
+        <GarmentGrid garments={garments} />
       </Container>
     </main>
   );

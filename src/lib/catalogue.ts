@@ -19,9 +19,34 @@ export const subcategorySlugs = [
   "shorts",
 ] as const;
 
+export const audienceSlugs = ["women", "men", "unisex", "kids"] as const;
+
+export const materialSlugs = [
+  "kitenge-cotton",
+  "cotton",
+  "linen",
+  "wool",
+  "lace",
+  "silk-blend",
+  "denim",
+] as const;
+
+export const tailoringTypeSlugs = [
+  "dressmaking",
+  "suit-tailoring",
+  "traditional",
+  "kitenge-ankara",
+  "bridal-occasion",
+  "shirts",
+  "kids",
+] as const;
+
 export type CollectionSlug = (typeof collectionSlugs)[number];
 export type CategorySlug = (typeof categorySlugs)[number];
 export type SubcategorySlug = (typeof subcategorySlugs)[number];
+export type AudienceSlug = (typeof audienceSlugs)[number];
+export type MaterialSlug = (typeof materialSlugs)[number];
+export type TailoringTypeSlug = (typeof tailoringTypeSlugs)[number];
 
 export type Category = {
   slug: CategorySlug;
