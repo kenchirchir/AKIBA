@@ -2,7 +2,7 @@
 
 **Clothes made in Kigali, by tailors you can meet.**
 
-AKIBA is a web platform that publishes the work of local tailors in Kigali together with the story behind each garment. Young buyers can see who made a garment and why it matters, then request it directly from the tailor. AKIBA is a showcase, not a shop: it takes no payments and no commission.
+AKIBA is a web platform that publishes the work of local tailors in Kigali together with the story behind each garment. Young buyers can see who made a garment and why it matters, then request it directly from the tailor. AKIBA is a showcase, not a shop it takes no payments and no commission.
 
 A Mission Capstone research project by Kenneth Chirchir.
 
