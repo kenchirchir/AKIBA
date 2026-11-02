@@ -63,7 +63,7 @@ AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase 
 
 ## Design system
 
-While the development server is running, open <http://localhost:3000/styleguide> to see every colour, text style and component used in AKIBA. The components live in `src/components/ui` and the design tokens in `src/app/globals.css`.
+The design system used to design this is on Figma here <https://www.figma.com/design/cjQuqZfaA0Sbdi9uoWSoxX/AKIBA-Webapp?t=dxiKMRC5Uq64kzL3-0>
 
 ## Project documents
 
