@@ -6,7 +6,7 @@ Each milestone is built, tested and pushed to GitHub before the next one starts.
 | --- | ---------------------------------------------------------- | ------------------------------------------------------------- | ----------- |
 | 1   | Development environment and project setup                  | The app runs locally and on a live Vercel URL                 | Done        |
 | 2   | Design system: colours, font, core components              | Components match the designs at phone width                   | Done        |
-| 3   | App layout, menus, Welcome page, placeholder pages         | Every journey can be clicked through                          | Not started |
+| 3   | App layout, menus, Welcome page, placeholder pages         | Every journey can be clicked through                          | Done        |
 | 4   | Database, security rules and sample data                   | Security tests pass and the feed shows sample garments        | Not started |
 | 5   | Tailor accounts: sign-up, SMS code, PIN login              | A new tailor can join, verify and log in                      | Not started |
 | 6   | Tailor shop: upload garments with photos and story         | A garment can be uploaded from a real phone                   | Not started |
@@ -16,5 +16,5 @@ Each milestone is built, tested and pushed to GitHub before the next one starts.
 | 10  | Tailor profile and settings                                | Changes show publicly; deleting an account removes everything | Not started |
 | 11  | Admin, verification and research data                      | Report numbers match test activity                            | Not started |
 | 12  | Automated tests, security and accessibility checks         | All tests pass                                                | Not started |
-| 13  | Laptop layouts and final design check                      | Every screen checked at four screen widths                    | Not started |
+| 13  | Final design check on phones, tablets and laptops          | Every screen checked at four screen widths                    | Not started |
 | 14  | Production deployment and documentation                    | Full journeys work on the live site                           | Not started |

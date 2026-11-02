@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -7,17 +9,26 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "AKIBA — Clothes made in Kigali",
-  description:
-    "Discover garments from verified local tailors in Kigali, read the story behind each piece, and request it.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Metadata");
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+  return {
+    title: { default: t("title"), template: t("titleTemplate") },
+    description: t("description"),
+  };
+}
+
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en" className={`${outfit.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-white font-sans text-ink">
-        {children}
+    <html
+      lang={locale}
+      data-scroll-behavior="smooth"
+      className={`${outfit.variable} h-full scroll-smooth antialiased`}
+    >
+      <body className="flex min-h-dvh flex-col bg-white font-sans text-ink">
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

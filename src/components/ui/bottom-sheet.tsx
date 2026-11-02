@@ -35,7 +35,7 @@ export function BottomSheet({
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
-      className="mx-auto mt-auto mb-0 max-h-[90dvh] w-full max-w-full overflow-y-auto rounded-t-sheet bg-white text-ink shadow-sheet backdrop:bg-ink/50 sm:mb-auto sm:max-w-md sm:rounded-sheet"
+      className="mx-auto mt-auto mb-0 max-h-[90dvh] w-full max-w-[480px] overflow-y-auto rounded-t-sheet bg-white text-ink shadow-sheet backdrop:bg-ink/50"
     >
       <div className="px-5 pt-2 pb-8">
         <div className="mx-auto h-1 w-10 rounded-full bg-line" />

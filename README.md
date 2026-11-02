@@ -38,6 +38,18 @@ Then open <http://localhost:3000>.
 | `npm run format`       | Formats every file with Prettier                 |
 | `npm run format:check` | Checks the formatting without changing any files |
 
+## Project structure
+
+| Folder                  | What is inside                                                                                                       |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `src/app`               | Pages and layouts. Folders in brackets, such as `(site)`, group pages that share a layout without changing their URL |
+| `src/components/ui`     | Reusable design-system components                                                                                    |
+| `src/components/layout` | The rail, menus, headers and other page building blocks                                                              |
+| `src/lib`               | Shared helpers and data: garment categories and Kigali districts and sectors                                         |
+| `src/assets`            | Images that are bundled with the app                                                                                 |
+| `messages/en.json`      | Every piece of text shown on screen                                                                                  |
+| `docs`                  | Roadmap and decision log                                                                                             |
+
 ## Design system
 
 While the development server is running, open <http://localhost:3000/styleguide> to see every colour, text style and component used in AKIBA. The components live in `src/components/ui` and the design tokens in `src/app/globals.css`.

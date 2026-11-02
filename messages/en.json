@@ -1,0 +1,204 @@
+{
+  "Metadata": {
+    "title": "AKIBA — Clothes made in Kigali",
+    "titleTemplate": "%s · AKIBA",
+    "description": "Discover garments from verified local tailors in Kigali, read the story behind each piece, and request it."
+  },
+  "Common": {
+    "home": "AKIBA home",
+    "back": "Back",
+    "saved": "Saved garments and tailors",
+    "kigali": "Kigali"
+  },
+  "Nav": {
+    "label": "Main",
+    "searchLabel": "Search garments or tailors",
+    "searchPlaceholder": "Search garments, tailors, fabric",
+    "discover": "Discover",
+    "tailors": "Tailors",
+    "saved": "Saved",
+    "tailorLogin": "Tailor login"
+  },
+  "Placeholder": {
+    "comingIn": "Built in Milestone {milestone}"
+  },
+  "Menu": {
+    "label": "Menu",
+    "open": "Open menu",
+    "close": "Close menu",
+    "browse": "Browse"
+  },
+  "BuyerMenu": {
+    "searchLabel": "Search garments or tailors",
+    "search": "Search",
+    "district": "District",
+    "allOfKigali": "All of Kigali",
+    "sector": "Sector",
+    "anySector": "Any sector",
+    "categories": "Garment categories",
+    "shopAll": "Shop all",
+    "allIn": "All {category}",
+    "meetTailors": "Meet the tailors",
+    "areYouTailor": "Are you a tailor?",
+    "showcase": "Showcase your garments",
+    "join": "Join AKIBA",
+    "login": "Log in"
+  },
+  "TailorMenu": {
+    "signedInAs": "Signed in as {shop}",
+    "pages": "Your shop",
+    "myShop": "My shop",
+    "garmentCount": "{count, plural, one {# garment} other {# garments}}",
+    "upload": "Upload",
+    "requests": "Requests",
+    "newRequests": "{count} new",
+    "profile": "Profile",
+    "publicPage": "My public page",
+    "logout": "Log out"
+  },
+  "TailorNav": {
+    "label": "Tailor pages",
+    "myShop": "My shop",
+    "upload": "Upload garment",
+    "requests": "Requests",
+    "profile": "Profile & shop location",
+    "publicPage": "My public page",
+    "logout": "Log out"
+  },
+  "Catalogue": {
+    "collections": {
+      "trending": "Trending",
+      "men": "Men",
+      "women": "Women"
+    },
+    "categories": {
+      "tops": "Tops",
+      "bottoms": "Bottoms",
+      "dresses": "Dresses",
+      "suits": "Suits",
+      "traditional-wear": "Traditional wear",
+      "bridal-occasion": "Bridal & occasion"
+    },
+    "subcategories": {
+      "shirts": "Shirts",
+      "blouses": "Blouses",
+      "kaftans-tunics": "Kaftans & tunics",
+      "crop-tops": "Crop tops",
+      "trousers": "Trousers",
+      "skirts": "Skirts",
+      "shorts": "Shorts"
+    }
+  },
+  "Feed": {
+    "title": "Tailor offers",
+    "allGarments": "All garments",
+    "resultsFor": "Results for “{query}”",
+    "showcase": "AKIBA is a showcase, not a shop: request a garment, agree a fitting, and pay the tailor directly.",
+    "sampleNote": "Real garments from verified tailors appear here. Tap a sample to follow the buyer journey.",
+    "sampleGarment": "Sample garment {number}"
+  },
+  "Welcome": {
+    "title": "Clothes made in Kigali, by tailors you can meet.",
+    "intro": "Discover garments from verified local tailors, read the story behind each piece, and request it.",
+    "imageAlt": "Two tailors fitting a red dress with lace trim on a mannequin",
+    "join": "I’m a tailor — join AKIBA",
+    "discover": "Discover garments",
+    "alreadyTailor": "Already a tailor here?",
+    "login": "Log in",
+    "pill": "Made in Kigali · verified local tailors",
+    "values": {
+      "verified": {
+        "title": "Verified makers",
+        "body": "Checked with tailor associations"
+      },
+      "stories": {
+        "title": "Real stories",
+        "body": "Who made it and why"
+      },
+      "calls": {
+        "title": "Direct calls",
+        "body": "The tailor calls you, no middleman"
+      }
+    }
+  },
+  "Tailors": {
+    "eyebrow": "Verified by tailor associations",
+    "title": "Tailors",
+    "placeholder": "Search verified tailors and filter them by district, type of tailoring and experience.",
+    "sampleTailor": "View a sample tailor"
+  },
+  "Saved": {
+    "title": "Saved",
+    "subtitle": "Saved on this phone · no account needed",
+    "placeholder": "Garments and tailors you save with the heart appear here."
+  },
+  "GarmentStory": {
+    "title": "Garment story",
+    "save": "Save garment",
+    "placeholder": "Photos, the guide price, the tailor who made it and the story behind the garment.",
+    "request": "Request this garment",
+    "meetTailor": "Meet the tailor"
+  },
+  "RequestSent": {
+    "title": "Request sent",
+    "placeholder": "Confirmation of the request, what happens next, and a button to call the tailor.",
+    "keepDiscovering": "Keep discovering"
+  },
+  "TailorProfile": {
+    "title": "Tailor profile",
+    "placeholder": "Verified badge, experience, specialities, shop location and the tailor’s garments.",
+    "seeGarments": "See garments"
+  },
+  "Join": {
+    "title": "Sign up",
+    "placeholder": "Full name, phone number, 5-digit PIN, district, sector, type of tailoring, experience and shop location.",
+    "continue": "Continue (demo)",
+    "haveAccount": "Have an account?",
+    "login": "Log in"
+  },
+  "Verify": {
+    "title": "Verify phone",
+    "placeholder": "Enter the 6-digit code sent by SMS to finish creating the account.",
+    "continue": "Continue (demo)"
+  },
+  "Login": {
+    "title": "Login",
+    "placeholder": "Phone number and 5-digit PIN.",
+    "continue": "Log in (demo)",
+    "forgotPin": "Forgot PIN?",
+    "reset": "Reset it here",
+    "noAccount": "Don’t have an account?",
+    "signUp": "Sign up"
+  },
+  "ResetPin": {
+    "title": "Reset PIN",
+    "placeholder": "We send a code by SMS, then you choose a new 5-digit PIN.",
+    "backToLogin": "Back to login"
+  },
+  "Shop": {
+    "title": "My shop",
+    "greeting": "Muraho, {name} · {shop}",
+    "placeholder": "Your garment count, story views and the garments you have published.",
+    "upload": "Upload a garment",
+    "requests": "Requests",
+    "profile": "Profile"
+  },
+  "Upload": {
+    "title": "Upload a garment",
+    "placeholder": "Up to 5 photos, garment name, category, material, description, the story behind it and price."
+  },
+  "Requests": {
+    "title": "Requests",
+    "placeholder": "Garment requests from buyers, with their phone number and a button to mark each one as ordered."
+  },
+  "Profile": {
+    "title": "Profile",
+    "placeholder": "Edit profile, SMS alerts, change PIN, language, help and terms.",
+    "logout": "Log out (demo)"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "body": "This page doesn’t exist or has moved.",
+    "home": "Back to AKIBA"
+  }
+}
