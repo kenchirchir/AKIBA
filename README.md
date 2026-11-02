@@ -61,7 +61,7 @@ AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase 
 | `messages/en.json`      | Every piece of text shown on screen                                                                                  |
 | `docs`                  | Roadmap and decision log                                                                                             |
 
-## Design system
+## Figma Design system
 
 The design system used to design this is on Figma here <https://www.figma.com/design/cjQuqZfaA0Sbdi9uoWSoxX/AKIBA-Webapp?t=dxiKMRC5Uq64kzL3-0>
 
