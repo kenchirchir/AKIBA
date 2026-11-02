@@ -4,8 +4,8 @@ Each milestone is built, tested and pushed to GitHub before the next one starts.
 
 | #   | Milestone                                                  | Done when                                                     | Status      |
 | --- | ---------------------------------------------------------- | ------------------------------------------------------------- | ----------- |
-| 1   | Development environment and project setup                  | The app runs locally and on a live Vercel URL                 | In progress |
-| 2   | Design system: colours, font, core components              | Components match the designs at phone width                   | Not started |
+| 1   | Development environment and project setup                  | The app runs locally and on a live Vercel URL                 | Done        |
+| 2   | Design system: colours, font, core components              | Components match the designs at phone width                   | Done        |
 | 3   | App layout, menus, Welcome page, placeholder pages         | Every journey can be clicked through                          | Not started |
 | 4   | Database, security rules and sample data                   | Security tests pass and the feed shows sample garments        | Not started |
 | 5   | Tailor accounts: sign-up, SMS code, PIN login              | A new tailor can join, verify and log in                      | Not started |

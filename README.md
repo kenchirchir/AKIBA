@@ -38,6 +38,10 @@ Then open <http://localhost:3000>.
 | `npm run format`       | Formats every file with Prettier                 |
 | `npm run format:check` | Checks the formatting without changing any files |
 
+## Design system
+
+While the development server is running, open <http://localhost:3000/styleguide> to see every colour, text style and component used in AKIBA. The components live in `src/components/ui` and the design tokens in `src/app/globals.css`.
+
 ## Project documents
 
 - [Development roadmap](docs/ROADMAP.md)

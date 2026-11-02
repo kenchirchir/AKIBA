@@ -34,11 +34,17 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Code style.** Prettier formats every file, and code files contain no comments.
 - **Git workflow.** One commit per milestone on `main`, pushed after testing.
 
+## 2026-11-02: Design system
+
+- **Font: Outfit.** Every exported design file uses Outfit. It is loaded with `next/font`, so it is served from the site itself.
+- **Navy text on cyan buttons.** `#0B1B3F` on `#09B4D3` gives a contrast of 6.8:1. White text would give 2.5:1, below the 4.5:1 minimum, and be hard to read in sunlight on low-cost phones (NFR5).
+- **Only AKIBA colours.** Tailwind's built-in colour palette is switched off, so only the named AKIBA colours can be used and the screens stay consistent.
+- **16px text in form fields.** The designs use 15px, but iPhones zoom into any field with text smaller than 16px when it is tapped.
+- **English only for now.** Kinyarwanda will be added later from Kenneth's translation sheet. From Milestone 3, all screen text is kept in one English file, so the translations can be added without rewriting pages.
+
 ## Open questions
 
-- Font: Outfit or Inter? Needed in Milestone 2.
-- Button text colour on cyan for readable contrast. Needed in Milestone 2.
-- Languages for the pilot, and who translates. Needed in Milestone 2.
+- Logo text: lowercase "akiba" (the HTML design files and menus) or "Akiba" (the 2 November journey maps)?
 - Participant codes linking usage logs to the surveys. Needed in Milestone 11.
 - SMS budget and provider. Needed by Milestone 9.
 - Date the pilot starts.
