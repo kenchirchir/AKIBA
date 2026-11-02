@@ -1,7 +1,9 @@
+import { randomUUID } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+const secretKey = process.env.SUPABASE_SECRET_KEY;
 
 if (!url || !key) {
   console.error(
@@ -10,9 +12,8 @@ if (!url || !key) {
   process.exit(1);
 }
 
-const visitor = createClient(url, key, {
-  auth: { persistSession: false, autoRefreshToken: false },
-});
+const options = { auth: { persistSession: false, autoRefreshToken: false } };
+const visitor = createClient(url, key, options);
 
 const pendingGarmentId = "00000000-0000-4000-8000-000000000209";
 const unverifiedTailorId = "00000000-0000-4000-8000-000000000105";
@@ -23,10 +24,12 @@ const sampleGarment = {
   story: "This garment must never be saved by a visitor.",
   price_rwf: 1000,
 };
+const testPhones = ["+250780000901", "+250780000902"];
 
 const blocked = ({ data, error }) => Boolean(error) || data.length === 0;
+const denied = ({ error }) => error?.code === "42501";
 
-const checks = [
+const visitorChecks = [
   [
     "Visitors can read approved garments",
     async () => {
@@ -76,6 +79,10 @@ const checks = [
       blocked(await visitor.from("tailor_verifications").select("tailor_id")),
   ],
   [
+    "Visitors cannot read the PIN lockout list",
+    async () => blocked(await visitor.from("pin_attempts").select("phone")),
+  ],
+  [
     "Visitors cannot add garments",
     async () => {
       const { error } = await visitor.from("garments").insert(sampleGarment);
@@ -118,22 +125,285 @@ const checks = [
   ],
 ];
 
-let failures = 0;
+function testShop(profileId, name) {
+  return {
+    profile_id: profileId,
+    owner_name: name,
+    shop_name: name,
+    district: "gasabo",
+    sector: "remera",
+    shop_address: "Security test address",
+    tailoring_types: ["dressmaking"],
+    tailoring_since: "2020-01-01",
+  };
+}
 
-for (const [name, run] of checks) {
-  let passed = false;
-  try {
-    passed = await run();
-  } catch {
-    passed = false;
+function testGarment(tailorId) {
+  return {
+    tailor_id: tailorId,
+    name: "Security test garment",
+    category: "dresses",
+    story: "This garment only exists while the security checks run.",
+    price_rwf: 1000,
+  };
+}
+
+async function removeTestUsers(admin) {
+  const { data, error } = await admin.auth.admin.listUsers({ perPage: 1000 });
+  if (error) throw error;
+
+  const phones = testPhones.map((phone) => phone.slice(1));
+  for (const user of data.users) {
+    if (phones.includes(user.phone)) await admin.auth.admin.deleteUser(user.id);
   }
-  if (!passed) failures += 1;
-  console.log(`${passed ? "PASS" : "FAIL"}  ${name}`);
+}
+
+async function signedInUser(admin, phone) {
+  const password = randomUUID();
+  const { data, error } = await admin.auth.admin.createUser({
+    phone,
+    password,
+    phone_confirm: true,
+  });
+  if (error) throw error;
+
+  const client = createClient(url, key, options);
+  const { error: signInError } = await client.auth.signInWithPassword({
+    phone,
+    password,
+  });
+  if (signInError) throw signInError;
+
+  return { client, userId: data.user.id };
+}
+
+async function setUp(admin) {
+  await removeTestUsers(admin);
+
+  const a = await signedInUser(admin, testPhones[0]);
+  const b = await signedInUser(admin, testPhones[1]);
+
+  const { data: shopB, error: shopError } = await b.client
+    .from("tailors")
+    .insert(testShop(b.userId, "Security test shop B"))
+    .select("id")
+    .single();
+  if (shopError) throw shopError;
+
+  const { error: requestError } = await admin.from("requests").insert({
+    tailor_id: shopB.id,
+    buyer_name: "Test buyer",
+    buyer_phone: "0780000000",
+    size: "M",
+  });
+  if (requestError) throw requestError;
+
+  return { a, b, shopB: shopB.id };
+}
+
+function tailorChecks({ a, b, shopB }) {
+  const own = {};
+
+  return [
+    [
+      "Tailors can create their own shop",
+      async () => {
+        const { data, error } = await a.client
+          .from("tailors")
+          .insert(testShop(a.userId, "Security test shop A"))
+          .select("id, status")
+          .single();
+        if (error) return false;
+        own.shop = data;
+        return true;
+      },
+    ],
+    [
+      "New shops wait for verification",
+      async () => own.shop?.status === "pending",
+    ],
+    [
+      "Tailors cannot create a shop for someone else",
+      async () =>
+        denied(
+          await a.client
+            .from("tailors")
+            .insert(testShop(b.userId, "Shop for someone else")),
+        ),
+    ],
+    [
+      "Tailors cannot verify their own shop",
+      async () =>
+        denied(
+          await a.client
+            .from("tailors")
+            .update({ status: "verified" })
+            .eq("id", own.shop.id),
+        ),
+    ],
+    [
+      "Tailors can edit their own shop details",
+      async () => {
+        const { data, error } = await a.client
+          .from("tailors")
+          .update({ shop_name: "Security test shop A, edited" })
+          .eq("id", own.shop.id)
+          .select("id");
+        return !error && data.length === 1;
+      },
+    ],
+    [
+      "Tailors cannot edit another tailor's shop",
+      async () =>
+        blocked(
+          await a.client
+            .from("tailors")
+            .update({ shop_name: "Changed by another tailor" })
+            .eq("id", shopB)
+            .select("id"),
+        ),
+    ],
+    [
+      "Tailors cannot see other shops waiting for verification",
+      async () =>
+        blocked(await a.client.from("tailors").select("id").eq("id", shopB)),
+    ],
+    [
+      "New garments wait for review",
+      async () => {
+        const { data, error } = await a.client
+          .from("garments")
+          .insert(testGarment(own.shop.id))
+          .select("id, status")
+          .single();
+        if (error) return false;
+        own.garment = data;
+        return data.status === "pending";
+      },
+    ],
+    [
+      "Tailors cannot publish garments without review",
+      async () =>
+        denied(
+          await a.client
+            .from("garments")
+            .insert({ ...testGarment(own.shop.id), status: "approved" }),
+        ),
+    ],
+    [
+      "Tailors cannot approve their own garments",
+      async () =>
+        denied(
+          await a.client
+            .from("garments")
+            .update({ status: "approved" })
+            .eq("id", own.garment.id),
+        ),
+    ],
+    [
+      "Tailors cannot add garments to another tailor's shop",
+      async () =>
+        denied(await a.client.from("garments").insert(testGarment(shopB))),
+    ],
+    [
+      "Tailors cannot see garments waiting for review in other shops",
+      async () =>
+        blocked(
+          await a.client
+            .from("garments")
+            .select("id")
+            .eq("id", pendingGarmentId),
+        ),
+    ],
+    [
+      "Tailors can read requests sent to their shop",
+      async () => {
+        const { data, error } = await b.client.from("requests").select("id");
+        return !error && data.length === 1;
+      },
+    ],
+    [
+      "Tailors cannot read requests sent to other shops",
+      async () => blocked(await a.client.from("requests").select("id")),
+    ],
+    [
+      "Tailors only see their own account details",
+      async () => {
+        const { data, error } = await a.client.from("profiles").select("id");
+        return !error && data.length === 1 && data[0].id === a.userId;
+      },
+    ],
+    [
+      "Tailors cannot make themselves admins",
+      async () =>
+        denied(
+          await a.client
+            .from("profiles")
+            .update({ role: "admin" })
+            .eq("id", a.userId),
+        ),
+    ],
+    [
+      "Tailors cannot read the PIN lockout list",
+      async () => blocked(await a.client.from("pin_attempts").select("phone")),
+    ],
+    [
+      "Tailors cannot read verification records",
+      async () =>
+        blocked(
+          await a.client.from("tailor_verifications").select("tailor_id"),
+        ),
+    ],
+  ];
+}
+
+async function run(checks) {
+  let failures = 0;
+
+  for (const [name, check] of checks) {
+    let passed = false;
+    try {
+      passed = await check();
+    } catch {
+      passed = false;
+    }
+    if (!passed) failures += 1;
+    console.log(`${passed ? "PASS" : "FAIL"}  ${name}`);
+  }
+
+  return failures;
+}
+
+console.log("Visitors\n");
+let total = visitorChecks.length;
+let failures = await run(visitorChecks);
+
+console.log("\nSigned-in tailors\n");
+
+if (!secretKey) {
+  console.log(
+    "SKIP  Add SUPABASE_SECRET_KEY to .env.local to run the signed-in tailor checks.",
+  );
+  total += 1;
+  failures += 1;
+} else {
+  const admin = createClient(url, secretKey, options);
+  try {
+    const checks = tailorChecks(await setUp(admin));
+    total += checks.length;
+    failures += await run(checks);
+  } catch (error) {
+    console.log(`FAIL  Could not create the test tailors: ${error.message}`);
+    total += 1;
+    failures += 1;
+  } finally {
+    await removeTestUsers(admin);
+  }
 }
 
 console.log(
   failures === 0
-    ? `\nAll ${checks.length} security checks passed.`
-    : `\n${failures} of ${checks.length} security checks failed.`,
+    ? `\nAll ${total} security checks passed.`
+    : `\n${failures} of ${total} security checks failed.`,
 );
 process.exit(failures === 0 ? 0 : 1);

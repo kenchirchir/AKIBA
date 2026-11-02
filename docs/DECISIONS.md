@@ -62,6 +62,23 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Public pages read the database with the publishable key**, without signing in. The Welcome page refreshes at most once a minute, so it loads quickly on slow connections.
 - **`npm run check:security`** repeats 12 checks of what a visitor can and cannot do. Checks for signed-in tailors are added in Milestone 5.
 
+## 2026-11-02: Tailor accounts
+
+- **The sign-up journey follows the 2 November journey map:** Sign up, SMS code, Log in, My shop. After the code is checked the tailor is signed out and logs in once with the new PIN, to practise it. The phone number is filled in for them.
+- **How the PIN is stored.** The server turns the phone number and PIN into a long password with `AUTH_PIN_PEPPER`, a secret that only the server knows. Without it, nobody can guess PINs straight against Supabase. **The pepper must never change once tailors have signed up**, or every PIN stops working.
+- **PIN rules.** Exactly 5 digits, and easy PINs such as 12345 or 11111 are refused. Five wrong PINs in a row lock that phone number for 15 minutes; resetting the PIN by SMS unlocks it. The count lives in the `pin_attempts` table, which only the server can read.
+- **Sign-up details wait in an encrypted cookie** on the tailor's own phone for up to 30 minutes, and are saved to the account only once the SMS code is right. Whoever proves they own the number chooses the PIN, so a person who signs up first with someone else's number cannot take over that account later, and a tailor who fills in the form twice keeps the PIN from the second try.
+- **The shop name starts as the tailor's full name**, because the sign-up design has no shop-name field. Tailors can change it in their profile (Milestone 10).
+- **Experience is stored as a start date** (`tailoring_since`) worked out from the years and months chosen, so it grows by itself. Buyers see a level: New (under 1 year), Skilled (1 to 4 years), Experienced (5 to 9 years) or Master tailor (10 years or more).
+- **"Remember me"** keeps a tailor signed in on that phone until they log out. The sign-in renews itself whenever they use AKIBA and only runs out after about 13 months without a visit, the longest a browser allows. Unticked, closing the browser signs them out.
+- **Pages under `/shop`** send anyone who is not signed in to the log-in page, and signed-in tailors who open the log-in or sign-up page go straight to their shop. New shops show a "Waiting for verification" note until the admin verifies them (Milestone 11).
+- **A refused code or PIN is emptied** so the tailor can type it again straight away. A full box ignores new digits, and tailors may not think to delete the old ones first. When the two new PINs do not match, both boxes are emptied, because the tailor cannot see which one has the mistake.
+- **Small changes from the design:** the terms checkbox sits above the Sign up button so it is ticked before pressing it, and "Resend code" unlocks after 60 seconds instead of 45, because Supabase allows one SMS a minute per number.
+- **SMS while developing:** Supabase test numbers with a fixed code, so no SMS is sent or paid for. The SMS provider for the pilot is still an open question.
+- **The terms page is a short placeholder** until the full terms and privacy notice are written before the pilot.
+- **The demo tailor is gone.** The tailor menu and sidebar now show the signed-in tailor.
+- **`npm run check:security`** now also creates two temporary test tailors and checks 18 things a signed-in tailor can and cannot do, then deletes them. It needs `SUPABASE_SECRET_KEY` in `.env.local`.
+
 ## Open questions
 
 - Participant codes linking usage logs to the surveys. Needed in Milestone 11.

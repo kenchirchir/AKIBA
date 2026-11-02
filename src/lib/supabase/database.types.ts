@@ -168,6 +168,27 @@ export type Database = {
           },
         ]
       }
+      pin_attempts: {
+        Row: {
+          failures: number
+          locked_until: string | null
+          phone: string
+          updated_at: string
+        }
+        Insert: {
+          failures?: number
+          locked_until?: string | null
+          phone: string
+          updated_at?: string
+        }
+        Update: {
+          failures?: number
+          locked_until?: string | null
+          phone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string

@@ -26,7 +26,14 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Before running the app, fill in `.env.local` with your Supabase project URL and publishable key (in Supabase, click **Connect** and choose **Next.js**). Then open <http://localhost:3000>.
+Before running the app, fill in `.env.local`, then open <http://localhost:3000>.
+
+| Variable                               | Where it comes from                                                                                                                      |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`             | Supabase: **Connect**, then **Next.js**                                                                                                  |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase: **Connect**, then **Next.js**                                                                                                  |
+| `SUPABASE_SECRET_KEY`                  | Supabase: **Project Settings**, **API Keys**, **Secret keys**. Server only: never share it or put it in code                             |
+| `AUTH_PIN_PEPPER`                      | A long random secret, made with `openssl rand -base64 32`. Use the same value everywhere and never change it once tailors have signed up |
 
 ## Scripts
 
@@ -47,7 +54,7 @@ AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase 
 | ------------------------ | ---------------------------------------------------------------- |
 | `npm run db:push`        | Applies new migrations and the sample data to the linked project |
 | `npm run db:types`       | Regenerates `src/lib/supabase/database.types.ts` after a change  |
-| `npm run check:security` | Checks what a visitor can and cannot do in the database          |
+| `npm run check:security` | Checks what visitors and signed-in tailors can and cannot do     |
 
 ## Project structure
 
@@ -56,7 +63,10 @@ AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase 
 | `src/app`               | Pages and layouts. Folders in brackets, such as `(site)`, group pages that share a layout without changing their URL |
 | `src/components/ui`     | Reusable design-system components                                                                                    |
 | `src/components/layout` | The rail, menus, headers and other page building blocks                                                              |
+| `src/components/auth`   | The sign-up, SMS code, log-in and PIN reset forms                                                                    |
 | `src/lib`               | Shared helpers and data: garment categories and Kigali districts and sectors                                         |
+| `src/lib/auth`          | Tailor accounts: phone numbers, PIN rules, lockout and the server actions behind each form                           |
+| `src/proxy.ts`          | Keeps tailors signed in and sends visitors away from the `/shop` pages                                               |
 | `src/assets`            | Images that are bundled with the app                                                                                 |
 | `messages/en.json`      | Every piece of text shown on screen                                                                                  |
 | `docs`                  | Roadmap and decision log                                                                                             |

@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import { ResetRequestForm } from "@/components/auth/reset-request-form";
 import { AuthHeader } from "@/components/layout/auth-header";
-import { Placeholder } from "@/components/layout/placeholder";
-import { buttonClasses } from "@/components/ui/button";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("ResetPin");
@@ -17,16 +15,7 @@ export default function ResetPinPage() {
   return (
     <>
       <AuthHeader title={t("title")} />
-      <div className="mt-8">
-        <Placeholder milestone={5} description={t("placeholder")}>
-          <Link
-            href="/login"
-            className={buttonClasses({ variant: "secondary", fullWidth: true })}
-          >
-            {t("backToLogin")}
-          </Link>
-        </Placeholder>
-      </div>
+      <ResetRequestForm />
     </>
   );
 }

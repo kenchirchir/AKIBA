@@ -8,7 +8,7 @@ Each milestone is built, tested and pushed to GitHub before the next one starts.
 | 2   | Design system: colours, font, core components              | Components match the designs at phone width                   | Done        |
 | 3   | App layout, menus, Welcome page, placeholder pages         | Every journey can be clicked through                          | Done        |
 | 4   | Database, security rules and sample data                   | Security tests pass and the feed shows sample garments        | Done        |
-| 5   | Tailor accounts: sign-up, SMS code, PIN login              | A new tailor can join, verify and log in                      | Not started |
+| 5   | Tailor accounts: sign-up, SMS code, PIN login              | A new tailor can join, verify and log in                      | Done        |
 | 6   | Tailor shop: upload garments with photos and story         | A garment can be uploaded from a real phone                   | Not started |
 | 7   | Discover feed, filters, search, garment story page, saving | The story page loads in under 5 seconds on simulated 3G       | Not started |
 | 8   | Meet the tailors: list, filters, public profile            | Only verified tailors appear                                  | Not started |

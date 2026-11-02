@@ -11,14 +11,26 @@ type OtpInputProps = {
   autoFocus?: boolean;
   "aria-invalid"?: true;
   "aria-describedby"?: string;
+  clear?: boolean;
   onComplete?: (code: string) => void;
 };
 
-export function OtpInput({ length = 6, onComplete, ...props }: OtpInputProps) {
+export function OtpInput({
+  length = 6,
+  clear = false,
+  onComplete,
+  ...props
+}: OtpInputProps) {
   const [code, setCode] = useState("");
   const [focused, setFocused] = useState(false);
+  const [cleared, setCleared] = useState(clear);
   const activeIndex = Math.min(code.length, length - 1);
   const invalid = props["aria-invalid"] === true;
+
+  if (clear !== cleared) {
+    setCleared(clear);
+    if (clear) setCode("");
+  }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const next = event.target.value.replace(/\D/g, "").slice(0, length);

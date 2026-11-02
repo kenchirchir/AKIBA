@@ -1,29 +1,26 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { VerifyForm } from "@/components/auth/verify-form";
 import { AuthHeader } from "@/components/layout/auth-header";
-import { Placeholder } from "@/components/layout/placeholder";
-import { buttonClasses } from "@/components/ui/button";
+import { pendingSignUp } from "@/lib/auth/pending";
+import { formatRwandaPhone } from "@/lib/auth/phone";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Verify");
   return { title: t("title") };
 }
 
-export default function VerifyPage() {
-  const t = useTranslations("Verify");
+export default async function VerifyPage() {
+  const pending = await pendingSignUp.read();
+  if (!pending) redirect("/join");
+
+  const t = await getTranslations("Verify");
 
   return (
     <>
       <AuthHeader title={t("title")} />
-      <div className="mt-8">
-        <Placeholder milestone={5} description={t("placeholder")}>
-          <Link href="/login" className={buttonClasses({ fullWidth: true })}>
-            {t("continue")}
-          </Link>
-        </Placeholder>
-      </div>
+      <VerifyForm phone={formatRwandaPhone(pending.phone)} />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import { LogoutButton } from "@/components/auth/logout-button";
 import { PageHeader } from "@/components/layout/page-header";
 import { Placeholder } from "@/components/layout/placeholder";
 
@@ -18,9 +18,9 @@ export default function ProfilePage() {
       <PageHeader title={t("title")} backHref="/shop" />
       <div className="px-5 pt-4 pb-12 lg:max-w-4xl lg:px-10">
         <Placeholder milestone={10} description={t("placeholder")}>
-          <Link href="/" className="text-body text-danger hover:underline">
+          <LogoutButton className="cursor-pointer self-start text-body text-danger hover:underline">
             {t("logout")}
-          </Link>
+          </LogoutButton>
         </Placeholder>
       </div>
     </main>

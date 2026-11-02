@@ -8,7 +8,8 @@
     "home": "AKIBA home",
     "back": "Back",
     "saved": "Saved garments and tailors",
-    "kigali": "Kigali"
+    "kigali": "Kigali",
+    "showPin": "Show PIN"
   },
   "Nav": {
     "label": "Main",
@@ -181,33 +182,119 @@
   },
   "Join": {
     "title": "Sign up",
-    "placeholder": "Full name, phone number, 5-digit PIN, district, sector, type of tailoring, experience and shop location.",
-    "continue": "Continue (demo)",
+    "fullName": "Full name",
+    "fullNamePlaceholder": "e.g. Aline Uwase",
+    "phone": "Phone number",
+    "phoneHint": "We’ll text a code to verify it. When a buyer requests your garment, we SMS you their name and number.",
+    "pin": "Create a 5-digit PIN",
+    "district": "District in Kigali",
+    "sector": "Sector",
+    "sectorHint": "Sectors update to match the district you pick.",
+    "types": "Type of tailoring",
+    "selected": "{count, plural, =0 {Choose types} one {# selected} other {# selected}}",
+    "remove": "Remove {item}",
+    "experience": "Tailoring experience",
+    "years": "Years",
+    "months": "Months",
+    "yearsOption": "{count, plural, one {# year} other {# years}}",
+    "monthsOption": "{count, plural, one {# month} other {# months}}",
+    "buyersSee": "Buyers will see: {level} · {time}",
+    "shopAddress": "Shop location",
+    "shopAddressPlaceholder": "e.g. Kimironko Market, stall 42",
+    "choose": "Choose",
+    "chooseDistrictFirst": "Choose a district first",
+    "terms": "I have read and agree to the",
+    "termsLink": "terms & conditions",
+    "submit": "Sign up",
+    "submitting": "Signing up…",
     "haveAccount": "Have an account?",
-    "login": "Log in"
+    "login": "Log in instead"
   },
   "Verify": {
     "title": "Verify phone",
-    "placeholder": "Enter the 6-digit code sent by SMS to finish creating the account.",
-    "continue": "Continue (demo)"
+    "sent": "We sent a 6-digit code by SMS to <strong>{phone}</strong>. Enter it below to finish creating your account.",
+    "code": "Verification code",
+    "submit": "Verify and continue",
+    "submitting": "Checking…",
+    "noCode": "Didn’t get a code?",
+    "resend": "Resend",
+    "resendIn": "Resend in {time}",
+    "resent": "We sent a new code.",
+    "wrongNumber": "Wrong number?",
+    "changeIt": "Go back and change it"
   },
   "Login": {
     "title": "Login",
-    "placeholder": "Phone number and 5-digit PIN.",
-    "continue": "Log in (demo)",
+    "verified": "Phone verified — your account is ready.",
+    "phone": "Phone number",
+    "pin": "PIN",
+    "remember": "Remember me",
     "forgotPin": "Forgot PIN?",
     "reset": "Reset it here",
+    "submit": "Log in",
+    "submitting": "Logging in…",
     "noAccount": "Don’t have an account?",
-    "signUp": "Sign up"
+    "signUp": "Sign up instead"
   },
   "ResetPin": {
     "title": "Reset PIN",
-    "placeholder": "We send a code by SMS, then you choose a new 5-digit PIN.",
-    "backToLogin": "Back to login"
+    "intro": "Enter the phone number you signed up with. We’ll send you a 6-digit code by SMS.",
+    "phone": "Phone number",
+    "send": "Send code",
+    "sending": "Sending…",
+    "sent": "We sent a 6-digit code by SMS to <strong>{phone}</strong>. Enter it and choose a new PIN.",
+    "code": "Verification code",
+    "pin": "New 5-digit PIN",
+    "confirm": "Confirm new PIN",
+    "save": "Save new PIN",
+    "saving": "Saving…",
+    "remembered": "Remembered your PIN?",
+    "login": "Log in"
+  },
+  "Auth": {
+    "errors": {
+      "nameRequired": "Enter your full name.",
+      "phoneInvalid": "Enter a Rwandan mobile number, for example 078 123 4567.",
+      "pinInvalid": "Your PIN must be exactly 5 digits.",
+      "pinWeak": "Choose a PIN that is harder to guess, not 12345 or 11111.",
+      "pinMismatch": "The two PINs don’t match.",
+      "districtRequired": "Choose your district.",
+      "sectorRequired": "Choose your sector.",
+      "typesRequired": "Choose at least one type of tailoring.",
+      "experienceRequired": "Choose how long you have been tailoring.",
+      "locationRequired": "Enter where buyers can find your shop.",
+      "termsRequired": "Please agree to the terms to continue.",
+      "codeInvalid": "Enter the 6-digit code from the SMS.",
+      "codeWrong": "That code is wrong or has expired. Try again or ask for a new one.",
+      "phoneTaken": "This number already has an account. Log in instead.",
+      "wrongPin": "That phone number and PIN don’t match.",
+      "locked": "Too many wrong PINs. Try again in {minutes} minutes, or reset your PIN.",
+      "tooManyCodes": "Please wait a minute before asking for another code.",
+      "smsFailed": "We couldn’t send the SMS. Check the number and try again.",
+      "noAccount": "There’s no AKIBA account with this number. Sign up instead.",
+      "setupFailed": "We couldn’t finish setting up your shop. Please try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "Experience": {
+    "levels": {
+      "new": "New",
+      "skilled": "Skilled",
+      "experienced": "Experienced",
+      "master": "Master tailor"
+    },
+    "short": "{years, plural, =0 {} one {# yr} other {# yrs}} {months, plural, =0 {} one {# mo} other {# mos}}",
+    "underMonth": "under 1 mo"
+  },
+  "Terms": {
+    "title": "Terms & conditions",
+    "placeholder": "The full terms and privacy notice are added before the pilot. In short: you own the stories and photos you publish, you can remove them or close your account at any time, and AKIBA never shares your phone number except with a buyer who requests your garment."
   },
   "Shop": {
     "title": "My shop",
     "greeting": "Muraho, {name} · {shop}",
+    "pendingTitle": "Waiting for verification",
+    "pendingBody": "AKIBA is checking your details with your tailor association. Your garments become public once your shop is verified.",
     "placeholder": "Your garment count, story views and the garments you have published.",
     "upload": "Upload a garment",
     "requests": "Requests",
@@ -224,7 +311,7 @@
   "Profile": {
     "title": "Profile",
     "placeholder": "Edit profile, SMS alerts, change PIN, language, help and terms.",
-    "logout": "Log out (demo)"
+    "logout": "Log out"
   },
   "NotFound": {
     "title": "Page not found",

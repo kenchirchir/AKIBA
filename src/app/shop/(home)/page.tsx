@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { Hourglass } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { LogoBar } from "@/components/layout/logo-bar";
 import { Placeholder } from "@/components/layout/placeholder";
 import { buttonClasses } from "@/components/ui/button";
-import { demoTailor } from "@/lib/demo";
+import { requireTailor } from "@/lib/tailor";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Shop");
   return { title: t("title") };
 }
 
-export default function ShopPage() {
-  const t = useTranslations("Shop");
+export default async function ShopPage() {
+  const tailor = await requireTailor();
+  const t = await getTranslations("Shop");
+  const firstName = tailor.owner_name.split(/\s+/)[0];
 
   return (
     <main className="flex-1">
@@ -23,11 +25,17 @@ export default function ShopPage() {
           {t("title")}
         </h1>
         <p className="text-body text-secondary lg:mt-1">
-          {t("greeting", {
-            name: demoTailor.firstName,
-            shop: demoTailor.shopName,
-          })}
+          {t("greeting", { name: firstName, shop: tailor.shop_name })}
         </p>
+        {tailor.status === "pending" && (
+          <section className="mt-5 flex gap-3 rounded-card bg-warning-50 p-4 text-warning-ink lg:mt-8">
+            <Hourglass className="mt-0.5 size-5 shrink-0" />
+            <div>
+              <h2 className="text-section">{t("pendingTitle")}</h2>
+              <p className="mt-1 text-body">{t("pendingBody")}</p>
+            </div>
+          </section>
+        )}
         <div className="mt-5 lg:mt-8">
           <Placeholder milestone={6} description={t("placeholder")}>
             <Link

@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { LogoutButton } from "@/components/auth/logout-button";
 import { Avatar } from "@/components/ui/avatar";
 import { Logo } from "@/components/ui/logo";
-import { demoTailor } from "@/lib/demo";
+import { areaNames } from "@/lib/kigali";
+import type { CurrentTailor } from "@/lib/tailor";
 import { TailorNav } from "./tailor-nav";
 
-export function TailorSidebar() {
+export function TailorSidebar({ tailor }: { tailor: CurrentTailor }) {
   const t = useTranslations("TailorNav");
-  const tailor = demoTailor;
+  const area = areaNames(tailor.district, tailor.sector);
 
   return (
     <aside className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col border-r border-line-soft bg-white px-4 py-6 lg:flex">
@@ -18,11 +20,11 @@ export function TailorSidebar() {
         <Logo variant="bold" />
       </Link>
       <div className="mt-6 flex items-center gap-2.5 rounded-[14px] bg-haze p-2.5">
-        <Avatar name={tailor.shopName} size="md" />
+        <Avatar name={tailor.shop_name} size="md" />
         <div className="min-w-0">
-          <p className="truncate text-sm font-bold">{tailor.shopName}</p>
+          <p className="truncate text-sm font-bold">{tailor.shop_name}</p>
           <p className="truncate text-caption text-secondary">
-            {tailor.sector} · {tailor.district}
+            {area.sector} · {area.district}
           </p>
         </div>
       </div>
@@ -34,9 +36,9 @@ export function TailorSidebar() {
         >
           {t("publicPage")}
         </Link>
-        <Link href="/" className="py-2 text-danger hover:underline">
+        <LogoutButton className="cursor-pointer py-2 text-left text-danger hover:underline">
           {t("logout")}
-        </Link>
+        </LogoutButton>
       </div>
     </aside>
   );

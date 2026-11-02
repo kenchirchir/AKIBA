@@ -31,7 +31,7 @@ export function Field({
   const messageId = message ? `${id}-message` : undefined;
 
   return (
-    <div className={cn("flex flex-col gap-1.5", className)}>
+    <div data-field={id} className={cn("flex flex-col gap-1.5", className)}>
       <label htmlFor={id} className="text-label text-ink">
         {label}
         {required && (

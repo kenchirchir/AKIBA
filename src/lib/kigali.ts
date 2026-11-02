@@ -74,3 +74,12 @@ export function findSector(
 ) {
   return district?.sectors.find((name) => sectorSlug(name) === slug);
 }
+
+export function areaNames(district: string, sector: string) {
+  const match = findDistrict(district);
+
+  return {
+    district: match?.name ?? district,
+    sector: findSector(match, sector) ?? sector,
+  };
+}
