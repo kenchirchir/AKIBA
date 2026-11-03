@@ -26,6 +26,7 @@ export function MakerCard({ tailor }: { tailor: GarmentStory["tailors"] }) {
   return (
     <Link
       href={`/tailors/${tailor.id}`}
+      prefetch={false}
       className="flex items-center gap-4 rounded-card border border-line-soft bg-white p-4 transition-colors hover:bg-haze focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
     >
       <Avatar name={tailor.shop_name} size="lg" />

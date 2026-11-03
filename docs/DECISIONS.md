@@ -177,6 +177,20 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
   - A full Content Security Policy is left out for now, because Next.js needs inline scripts and a wrong policy would break pages; it can be added with nonces later.
 - **GitHub checks.** Every push to `main` runs the type check, lint, formatting check and unit tests on GitHub (`.github/workflows/checks.yml`). They need no secret keys. The browser tests and database security checks stay on Kenneth's Mac, because they use the database keys.
 
+## 2026-11-03: Final design check and live speed
+
+- **Every screen checked at 390, 820, 1280 and 1440 pixels**, with screenshots of 24 screens, the request sheet and both phone menus (92 pictures). Phones keep the rail and full-screen menus; tablets use split screens for Welcome and sign-in; laptops use the top header, the tailor sidebar and full-width grids, as agreed. No layout problems were found, and no page scrolls sideways. A browser test now checks that no public or tailor page becomes wider than the screen at 375, 390, 820, 1280 and 1440 pixels.
+- **Live speed on 3G (NFR2).** Measured with Lighthouse on the live site (Vercel) on a story page with a 1600-pixel cover photo, the size a phone upload becomes. A test shop was put on the live site for the measurement and then deleted, with Kenneth's agreement. Three runs each:
+
+  | Connection                                              | Text appears | Main photo    | Page ready |
+  | ------------------------------------------------------- | ------------ | ------------- | ---------- |
+  | Chrome's 3G preset (1.5 Mbps, 560 ms delay, slow phone) | 2.2–2.5 s    | **2.9–3.0 s** | 3.2–3.7 s  |
+  | Lighthouse's stricter "Regular 3G" estimate (0.7 Mbps)  | 2.1–2.3 s    | 6.5–6.7 s     | 6.5–6.7 s  |
+
+  The story page meets the 5-second goal on Chrome's 3G preset, which slows a real browser down. Lighthouse's stricter estimate does not reach it: at 0.7 Mbps the 34 KB cover photo shares the line with about 270 KB of other files, mostly the page's JavaScript and font. Going further would need a smaller JavaScript bundle; that is noted for after the pilot.
+
+- **Links no longer download pages in the background.** Next.js normally prefetches every page linked on screen. On the live feed this downloaded 17 pages, 177 KB of the 537 KB the feed used, which buyers on mobile data pay for. Garment cards, tailor cards, the maker card and the garments on a tailor's page now load their page only when tapped. Those pages are cached by Vercel, so they still open quickly. The few menu links (Home, Saved) still prefetch.
+
 ## Open questions
 
 - SMS provider and budget, and whether to add the two-way "Reply 1 or 2" follow-up. Needed before the pilot (Milestone 14).

@@ -191,6 +191,7 @@ export function TailorProfile({ tailor, preview = false }: TailorProfileProps) {
               {tailor.garments.map((garment) => (
                 <li key={garment.id}>
                   <Link
+                    prefetch={false}
                     href={
                       preview
                         ? `/shop/garments/${garment.id}`

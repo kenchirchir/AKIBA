@@ -27,6 +27,7 @@ export function TailorCard({ tailor }: { tailor: ListedTailor }) {
   return (
     <Link
       href={`/tailors/${tailor.id}`}
+      prefetch={false}
       className="flex h-full flex-col gap-3 rounded-card border border-line-soft bg-white p-4 transition-colors hover:bg-haze focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
     >
       <span className="flex items-center gap-3 pr-12">

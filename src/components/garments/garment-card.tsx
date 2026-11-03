@@ -19,6 +19,7 @@ export function GarmentCard({ garment }: { garment: FeedGarment }) {
   return (
     <Link
       href={`/garments/${garment.id}`}
+      prefetch={false}
       className="group flex flex-col rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
     >
       <span className="relative flex aspect-[3/4] items-center justify-center overflow-hidden rounded-lg bg-surface text-muted transition-colors group-hover:bg-brand-50">
