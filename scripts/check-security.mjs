@@ -493,6 +493,43 @@ function tailorChecks({ admin, a, b, shopB, garmentB }) {
       async () => blocked(await a.client.from("requests").select("id")),
     ],
     [
+      "Tailors can mark a request to their shop as ordered",
+      async () => {
+        const { data, error } = await b.client
+          .from("requests")
+          .update({ status: "ordered", ordered_at: new Date().toISOString() })
+          .eq("tailor_id", shopB)
+          .select("id, status");
+        return !error && data.length === 1 && data[0].status === "ordered";
+      },
+    ],
+    [
+      "Tailors cannot change the buyer's details on a request",
+      async () =>
+        denied(
+          await b.client
+            .from("requests")
+            .update({ buyer_phone: "0780000999" })
+            .eq("tailor_id", shopB),
+        ),
+    ],
+    [
+      "Tailors cannot change requests sent to other shops",
+      async () =>
+        blocked(
+          await a.client
+            .from("requests")
+            .update({ status: "read" })
+            .eq("tailor_id", shopB)
+            .select("id"),
+        ),
+    ],
+    [
+      "Tailors cannot delete requests",
+      async () =>
+        denied(await b.client.from("requests").delete().eq("tailor_id", shopB)),
+    ],
+    [
       "Tailors only see their own account details",
       async () => {
         const { data, error } = await a.client.from("profiles").select("id");

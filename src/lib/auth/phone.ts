@@ -19,3 +19,8 @@ export function formatRwandaPhone(phone: string) {
   const national = nationalPart(phone);
   return `+250 ${national.slice(0, 3)} ${national.slice(3, 6)} ${national.slice(6)}`;
 }
+
+export function localRwandaPhone(phone: string) {
+  const national = nationalPart(phone);
+  return `0${national.slice(0, 3)} ${national.slice(3, 6)} ${national.slice(6)}`;
+}

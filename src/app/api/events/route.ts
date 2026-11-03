@@ -1,12 +1,12 @@
-import { cookies } from "next/headers";
 import { after } from "next/server";
 import { z } from "zod";
+import { visitorId } from "@/lib/discover/visitor";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createServerSupabase } from "@/lib/supabase/server";
 
 const eventSchema = z.union([
   z.object({
-    type: z.enum(["story_view", "save", "unsave"]),
+    type: z.enum(["story_view", "save", "unsave", "call_click"]),
     garmentId: z.uuid(),
   }),
   z.object({
@@ -24,8 +24,6 @@ type UsageEvent = z.infer<typeof eventSchema>;
 type Admin = ReturnType<typeof createAdminClient>;
 type Target = { garment_id: string | null; tailor_id: string };
 
-const visitorCookie = "akiba_visitor";
-const oneYear = 60 * 60 * 24 * 365;
 const repeatViewMinutes = 30;
 const robots = /bot|crawl|spider|slurp|preview|lighthouse|headless/i;
 
@@ -75,14 +73,14 @@ async function viewedRecently(
   supabase: Admin,
   type: "story_view" | "tailor_view",
   target: Target,
-  visitorId: string,
+  visitor: string,
 ) {
   const since = new Date(Date.now() - repeatViewMinutes * 60_000);
   let request = supabase
     .from("analytics_events")
     .select("id", { count: "exact", head: true })
     .eq("event_type", type)
-    .eq("visitor_id", visitorId)
+    .eq("visitor_id", visitor)
     .gte("created_at", since.toISOString());
 
   request = target.garment_id
@@ -95,7 +93,7 @@ async function viewedRecently(
 
 async function record(
   event: UsageEvent,
-  visitorId: string,
+  visitor: string,
   userId: string | null,
 ) {
   const supabase = createAdminClient();
@@ -107,7 +105,7 @@ async function record(
   if (!target) return;
   if (
     (event.type === "story_view" || event.type === "tailor_view") &&
-    (await viewedRecently(supabase, event.type, target, visitorId))
+    (await viewedRecently(supabase, event.type, target, visitor))
   ) {
     return;
   }
@@ -115,7 +113,7 @@ async function record(
   const { error } = await supabase.from("analytics_events").insert({
     event_type: event.type,
     ...target,
-    visitor_id: visitorId,
+    visitor_id: visitor,
     duration_seconds: event.type === "story_read" ? event.seconds : null,
   });
 
@@ -130,22 +128,9 @@ export async function POST(request: Request) {
   const parsed = eventSchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return new Response(null, { status: 400 });
 
-  const jar = await cookies();
-  let visitorId = jar.get(visitorCookie)?.value ?? "";
-
-  if (!z.uuid().safeParse(visitorId).success) {
-    visitorId = crypto.randomUUID();
-    jar.set(visitorCookie, visitorId, {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: oneYear,
-      path: "/",
-    });
-  }
-
+  const visitor = await visitorId();
   const userId = await signedInUser();
-  after(() => record(parsed.data, visitorId, userId));
+  after(() => record(parsed.data, visitor, userId));
 
   return new Response(null, { status: 204 });
 }

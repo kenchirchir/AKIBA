@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { RequestSheet } from "@/components/requests/request-sheet";
 import { BackButton } from "@/components/story/back-button";
 import { MakerCard } from "@/components/story/maker-card";
 import { PhotoCarousel } from "@/components/story/photo-carousel";
 import { SaveButton } from "@/components/story/save-button";
 import { StoryText } from "@/components/story/story-text";
 import { StoryTracker } from "@/components/story/story-tracker";
-import { buttonClasses } from "@/components/ui/button";
 import {
   audienceSlugs,
   findCategory,
@@ -16,6 +15,7 @@ import {
   materialSlugs,
 } from "@/lib/catalogue";
 import { getGarmentStory } from "@/lib/garments";
+import { areaNames } from "@/lib/kigali";
 import { photoUrl } from "@/lib/photos";
 
 export const revalidate = 60;
@@ -141,12 +141,18 @@ export default async function GarmentStoryPage({
               </p>
             </section>
           )}
-          <Link
-            href={`/garments/${garment.id}/request-sent`}
-            className={buttonClasses({ size: "lg", fullWidth: true })}
-          >
-            {t("request")}
-          </Link>
+          <RequestSheet
+            garment={{
+              id: garment.id,
+              name: garment.name,
+              price: garment.price_rwf,
+              cover: garment.photos[0]?.publicId,
+              shop: garment.tailors.shop_name,
+              area: areaNames(garment.tailors.district, garment.tailors.sector)
+                .sector,
+              tailorName: garment.tailors.owner_name.split(/\s+/)[0],
+            }}
+          />
         </article>
       </div>
     </main>

@@ -219,14 +219,69 @@
     "readMore": "Read full story",
     "readLess": "Show less",
     "description": "Description",
-    "request": "Request this garment",
     "photoAlt": "{name}, photo {number} of {total}",
     "showPhoto": "Show photo {number}",
     "noPhoto": "No photo yet"
   },
+  "RequestOptions": {
+    "sizes": {
+      "xs": "XS",
+      "s": "S",
+      "m": "M",
+      "l": "L",
+      "xl": "XL",
+      "xxl": "XXL",
+      "measure": "Measure me at the fitting"
+    },
+    "times": {
+      "anytime": "Anytime",
+      "morning": "Morning",
+      "afternoon": "Afternoon",
+      "evening": "Evening"
+    }
+  },
+  "RequestForm": {
+    "open": "Request this garment",
+    "title": "Request this garment",
+    "name": "Your name",
+    "namePlaceholder": "e.g. Keza Mutoni",
+    "phone": "Your phone number",
+    "size": "Size",
+    "choose": "Choose",
+    "quantity": "Quantity",
+    "pieces": "{count, plural, one {# piece} other {# pieces}}",
+    "neededBy": "Needed by",
+    "bestTime": "Best time to call",
+    "note": "{name} gets your request and your phone number, and will call you to agree a fitting.",
+    "send": "Send request",
+    "sending": "Sending…",
+    "cancel": "Cancel",
+    "errors": {
+      "nameRequired": "Enter your name.",
+      "phoneInvalid": "Enter a Rwandan mobile number, for example 078 123 4567.",
+      "sizeRequired": "Choose a size.",
+      "quantityInvalid": "Choose how many pieces, from 1 to 20.",
+      "neededByInvalid": "Choose a date from today up to one year from now.",
+      "unavailable": "This garment can’t be requested right now. It may have been changed or removed.",
+      "tooMany": "You have sent several requests already. Please wait a while before sending another.",
+      "generic": "Something went wrong. Check your connection and try again."
+    }
+  },
   "RequestSent": {
     "title": "Request sent",
-    "placeholder": "Confirmation of the request, what happens next, and a button to call the tailor.",
+    "body": "We sent your request and your number (<strong>{phone}</strong>) to {name}. {time, select, morning {{name} will call you in the morning, as you asked.} afternoon {{name} will call you in the afternoon, as you asked.} evening {{name} will call you in the evening, as you asked.} other {{name} will call you soon.}}",
+    "summary": "{quantity} × {garment} · {size, select, measure {measured at the fitting} other {Size {sizeName}}}",
+    "garment": "A garment that was removed",
+    "neededBy": "Needed by {weekday}, {day} {month}",
+    "shop": "{shop} · {sector}, {district}",
+    "nextTitle": "What happens next",
+    "steps": {
+      "call": "{name} calls you to talk about the garment and agree a price",
+      "fitting": "You visit {name}’s shop for a fitting",
+      "pay": "You pay {name} directly — MoMo or cash"
+    },
+    "cantWait": "Can’t wait for the call?",
+    "callNow": "Call {name} now",
     "keepDiscovering": "Keep discovering"
   },
   "TailorProfile": {
@@ -470,7 +525,25 @@
   },
   "Requests": {
     "title": "Requests",
-    "placeholder": "Garment requests from buyers, with their phone number and a button to mark each one as ordered."
+    "tabs": "Which requests to show",
+    "all": "All",
+    "unread": "Unread",
+    "markAllRead": "Mark all as read",
+    "new": "New",
+    "summary": "{quantity} x {garment} · {size, select, measure {measure at the fitting} other {Size {sizeName}}}",
+    "neededBy": "needed by {day} {month}",
+    "bestTime": "{time, select, morning {Call in the morning} afternoon {Call in the afternoon} evening {Call in the evening} other {Call any time}}",
+    "call": "Call {phone}",
+    "markOrdered": "Mark as ordered",
+    "ordered": "Ordered",
+    "undo": "Undo",
+    "deletedGarment": "A garment you deleted",
+    "empty": "No requests yet. When a buyer requests one of your garments, it shows here.",
+    "emptyUnread": "You have read every request.",
+    "showAll": "Show all requests"
+  },
+  "Sms": {
+    "request": "AKIBA: {name} requested {quantity} x {garment} ({size, select, measure {to be measured at the fitting} other {size {sizeName}}}), needed by {day} {month}. Call {phone}, {time, select, morning {best in the morning} afternoon {best in the afternoon} evening {best in the evening} other {any time}}."
   },
   "Profile": {
     "title": "Profile",

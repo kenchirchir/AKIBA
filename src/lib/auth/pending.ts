@@ -13,7 +13,7 @@ export type PendingReset = {
   phone: string;
 };
 
-function pendingCookie<T>(name: string) {
+export function pendingCookie<T>(name: string) {
   return {
     async read() {
       return unseal<T>((await cookies()).get(name)?.value);

@@ -128,8 +128,21 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Photos and avatars.** Avatars show the tailor's photo when one is set (the upload comes in Milestone 10) and their initials until then. The profile band shows the cover photo when one is set.
 - **`npm run check:security`** now has 41 checks, including that a tailor can see their own shop while it waits, and that visitors see a verified tailor but not a suspended one or their garments.
 
+## 2026-11-03: Requests and SMS alerts
+
+- **Requests replace in-app messaging (D1, FR8, FR11, FR12).** "Request this garment" on a story page opens the 2 November request sheet: name, phone number, size, quantity, the date it is needed by and the best time to call. There is no note field, following the 2 November design (decided with Kenneth). Requests can only be made for an approved garment of a verified tailor.
+- **Sizes** (decided with Kenneth): XS, S, M, L, XL, XXL and "Measure me at the fitting". Quantity is 1 to 20 pieces, the date runs from today to one year ahead (Kigali time), and the best time to call is anytime, morning, afternoon or evening.
+- **Requests are saved by the server.** Visitors cannot write to the `requests` table, so the server checks the form and saves it. To stop spam, one browser can send at most 5 requests an hour and one phone number at most 5 a day.
+- **The SMS to the tailor is in test mode** (decided with Kenneth). The text is ready: "AKIBA: Keza Mutoni requested 2 x Kitenge wrap dress (size M), needed by 15 Nov. Call 0788 000 001, best in the afternoon." It fits in one SMS and uses plain letters only. One function, `sendSms()` in `src/lib/sms.ts`, sends it, and an SMS provider plugs in there before the pilot. Until then nothing is sent or paid for. On a local development server the message is printed in the terminal; on the live site only its length is logged, so buyers' names and numbers never land in the hosting logs. `sms_sent_at` is only filled in when an SMS really goes out. The SMS is sent just after the buyer's page has moved on, so the buyer never waits for it. Tailors who turn off SMS alerts (Milestone 10) get no SMS. The next-day "Reply 1 or 2" follow-up is not built, because it needs an SMS number that can receive replies.
+- **"Request sent" page.** It follows the 2 November design: the summary, "What happens next" and "Keep discovering". The request is remembered in an encrypted cookie for 30 minutes, so only the buyer who sent it can see the page; anyone else is sent back to the story. The design's "she" and "her" are replaced by the tailor's name, and "by SMS" is left out, because a tailor may have SMS alerts turned off.
+- **"Call Aline now"** (decided with Kenneth). The tailor's phone number is shown only to the buyer who has just sent a request, on the "Request sent" page, as the terms already say. Taps are logged as `call_click`.
+- **Requests inbox (FR11, FR12).** `/shop/requests` lists the newest requests first, with All and Unread tabs, the unread count, "Mark all as read", a call button with the buyer's number, and "Mark as ordered", which turns into a green "Ordered" with "Undo". Tapping the call button marks a request as read. A request whose garment was deleted stays in the inbox. On phones the call button shows the phone icon and the number, as in the 1 November button states, so both buttons fit on one row.
+- **Usage logs (FR10).** Every request records a `request_sent` event with the visitor's anonymous ID, so the research can measure requests after reading a story and the time between reading and requesting.
+- **Privacy (NFR7).** Only the tailor who receives a request can read it. Tailors can change only its status; they cannot change the buyer's details or delete it. `npm run check:security` now has 45 checks.
+- **Dates** are shown as "15 Nov" and "Sun, 15 Nov", and the app's time zone is set to Kigali.
+
 ## Open questions
 
 - Participant codes linking usage logs to the surveys. Needed in Milestone 11.
-- SMS budget and provider. Needed by Milestone 9.
+- SMS provider and budget, and whether to add the two-way "Reply 1 or 2" follow-up. Needed before the pilot (Milestone 14).
 - Date the pilot starts.
