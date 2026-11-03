@@ -662,5 +662,160 @@
     "title": "Your account is deleted",
     "body": "Your shop, garments, photos, stories and buyer requests have been removed from AKIBA. Thank you for taking part.",
     "home": "Back to AKIBA"
+  },
+  "Admin": {
+    "nav": {
+      "label": "Admin pages",
+      "admin": "Admin",
+      "overview": "Overview",
+      "tailors": "Tailors",
+      "garments": "Garments to review",
+      "report": "Research report",
+      "logout": "Log out"
+    },
+    "login": {
+      "title": "Admin login",
+      "intro": "For the AKIBA researcher only. Tailors log in with their phone number on the tailor login page.",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Log in",
+      "submitting": "Logging in…"
+    },
+    "overview": {
+      "title": "Overview",
+      "intro": "Verify tailors, review garments and follow the research data.",
+      "pendingTailors": "Tailors waiting for verification",
+      "pendingGarments": "Garments waiting for review",
+      "verifiedTailors": "Verified tailors",
+      "suspendedTailors": "Suspended tailors",
+      "participantsTitle": "Personal links for study participants",
+      "participantsBody": "Give each buyer in the study a link with their participant code at the end. Their views, reading time, saves and requests are then counted under that code, without their name.",
+      "participantsNote": "Codes can use letters, numbers and dashes (2 to 20). The code stays on the buyer's phone for a year."
+    },
+    "tailors": {
+      "title": "Tailors",
+      "tabs": "Tailors by status",
+      "status": {
+        "pending": "Waiting",
+        "verified": "Verified",
+        "suspended": "Suspended"
+      },
+      "empty": {
+        "pending": "No tailors are waiting for verification.",
+        "verified": "No verified tailors yet.",
+        "suspended": "No suspended tailors."
+      },
+      "sample": "Sample",
+      "joined": "Joined {date} · {count, plural, one {# garment} other {# garments}}"
+    },
+    "tailor": {
+      "title": "Tailor",
+      "back": "All tailors",
+      "owner": "Owner",
+      "area": "Area",
+      "address": "Shop address",
+      "types": "Types of tailoring",
+      "experience": "Experience",
+      "joined": "Joined",
+      "garments": "{count, plural, one {# garment} other {# garments}}",
+      "garmentStatus": {
+        "pending": "Waiting for review",
+        "approved": "Approved",
+        "rejected": "Not approved"
+      },
+      "verifyTitle": "Verification",
+      "verifyIntro": "Record who vouched for this tailor and when you visited the workshop. The shop becomes public once verified.",
+      "suspendIntro": "Suspending hides the shop and all its garments from buyers straight away.",
+      "suspend": "Suspend this shop",
+      "reopenIntro": "Moving the shop back to waiting keeps it hidden until you verify it again.",
+      "reopen": "Move back to waiting",
+      "notices": {
+        "verified": "The tailor is verified and their shop is now public.",
+        "suspended": "The shop is suspended and hidden from buyers.",
+        "pending": "The shop is back in the waiting list."
+      }
+    },
+    "verify": {
+      "association": "Tailor association",
+      "associationPlaceholder": "e.g. Kimironko Tailors Cooperative",
+      "official": "Official who vouched",
+      "visitDate": "Workshop visit date",
+      "notes": "Notes",
+      "consent": "The tailor gave consent to take part in the research",
+      "submit": "Verify tailor",
+      "update": "Update verification",
+      "saving": "Saving…"
+    },
+    "garments": {
+      "title": "Garments to review",
+      "intro": "{count, plural, =0 {Nothing to review.} one {# garment is waiting for review.} other {# garments are waiting for review.}}",
+      "empty": "Every garment has been reviewed.",
+      "by": "{shop} · {owner}",
+      "photoAlt": "{name}, photo {number}",
+      "shopNotVerified": "This shop is not verified yet. Approved garments only show once the shop is verified.",
+      "approve": "Approve",
+      "reject": "Not approved…",
+      "reason": "Reason",
+      "chooseReason": "Choose a reason",
+      "note": "Note for the tailor",
+      "noteHint": "Optional, unless you choose Other. The tailor sees it on the garment's edit page.",
+      "confirmReject": "Send back to the tailor",
+      "rejecting": "Sending…",
+      "cancel": "Cancel",
+      "notices": {
+        "approved": "The garment is approved and public.",
+        "rejected": "The garment was sent back to the tailor with your reason."
+      }
+    },
+    "reasons": {
+      "photos": "The photos are not clear enough. Please take them in good light.",
+      "story": "Please tell more of the story behind this garment.",
+      "notMadeByTailor": "AKIBA only shows garments you made yourself.",
+      "details": "Please check the name, category or price.",
+      "other": "Other reason"
+    },
+    "report": {
+      "title": "Research report",
+      "intro": "Usage of the platform, counted from the anonymous usage records. Buyer names, phone numbers and request details are never shown here.",
+      "downloadGarments": "Garments (CSV)",
+      "downloadParticipants": "Participants (CSV)",
+      "minutes": "{count, number} min",
+      "measures": {
+        "story_views": "Story views",
+        "visitors": "Visitors",
+        "participants": "Participants",
+        "reading_seconds": "Reading time (min)",
+        "saves": "Saves",
+        "unsaves": "Unsaves",
+        "tailor_views": "Tailor profile views",
+        "directions_clicks": "Directions taps",
+        "call_clicks": "Calls to tailors",
+        "requests": "Requests",
+        "requests_after_reading": "Requests after reading",
+        "median_minutes_to_request": "Median minutes to request"
+      },
+      "columns": {
+        "participant": "Participant",
+        "stories": "Stories read",
+        "garment": "Garment"
+      },
+      "participantsTitle": "By participant",
+      "noParticipants": "No participant codes yet. Share personal links from the Overview page.",
+      "garmentsTitle": "By garment",
+      "sample": "Sample",
+      "privacy": "Requests after reading count requests sent by a visitor who had opened that garment's story first. The median time runs from their first story view to the request."
+    },
+    "errors": {
+      "emailInvalid": "Enter a valid email address.",
+      "passwordRequired": "Enter your password.",
+      "wrongLogin": "That email and password don’t match.",
+      "notAdmin": "This account is not the AKIBA admin.",
+      "associationRequired": "Enter the tailor association.",
+      "officialRequired": "Enter the name of the official who vouched.",
+      "visitInvalid": "Choose the visit date, today or earlier.",
+      "consentRequired": "The tailor must give consent before you verify them.",
+      "reasonRequired": "Choose a reason, or write a note if you choose Other.",
+      "generic": "Something went wrong. Please try again."
+    }
   }
 }

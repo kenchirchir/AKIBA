@@ -6,7 +6,7 @@ import { after } from "next/server";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { z } from "zod";
 import { localRwandaPhone, normalizeRwandaPhone } from "@/lib/auth/phone";
-import { visitorId } from "@/lib/discover/visitor";
+import { participantCode, visitorId } from "@/lib/discover/visitor";
 import { sendSms } from "@/lib/sms";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createServerSupabase } from "@/lib/supabase/server";
@@ -139,6 +139,7 @@ export async function sendRequest(
     ? normalizeRwandaPhone(garment.tailors.profiles?.phone ?? "")
     : null;
   const message = await smsText(request, garment.name);
+  const participant = await participantCode();
 
   after(async () => {
     await supabase.from("analytics_events").insert({
@@ -146,6 +147,7 @@ export async function sendRequest(
       garment_id: garment.id,
       tailor_id: garment.tailor_id,
       visitor_id: visitor,
+      participant_code: participant,
     });
 
     if (tailorPhone && (await sendSms(tailorPhone, message))) {

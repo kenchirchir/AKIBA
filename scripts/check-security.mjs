@@ -25,6 +25,7 @@ const sampleGarment = {
   price_rwf: 1000,
 };
 const testPhones = ["+250780000901", "+250780000902"];
+const testAdminEmail = "security-check-admin@example.com";
 const testCode = "security-check";
 
 const blocked = ({ data, error }) => Boolean(error) || data.length === 0;
@@ -182,7 +183,9 @@ async function removeTestUsers(admin) {
 
   const phones = testPhones.map((phone) => phone.slice(1));
   for (const user of data.users) {
-    if (phones.includes(user.phone)) await admin.auth.admin.deleteUser(user.id);
+    if (phones.includes(user.phone) || user.email === testAdminEmail) {
+      await admin.auth.admin.deleteUser(user.id);
+    }
   }
 }
 
@@ -203,6 +206,31 @@ async function signedInUser(admin, phone) {
   if (signInError) throw signInError;
 
   return { client, userId: data.user.id };
+}
+
+async function signedInAdmin(admin) {
+  const password = randomUUID();
+  const { data, error } = await admin.auth.admin.createUser({
+    email: testAdminEmail,
+    password,
+    email_confirm: true,
+  });
+  if (error) throw error;
+
+  const { error: roleError } = await admin
+    .from("profiles")
+    .update({ role: "admin" })
+    .eq("id", data.user.id);
+  if (roleError) throw roleError;
+
+  const client = createClient(url, key, options);
+  const { error: signInError } = await client.auth.signInWithPassword({
+    email: testAdminEmail,
+    password,
+  });
+  if (signInError) throw signInError;
+
+  return client;
 }
 
 async function setUp(admin) {
@@ -233,10 +261,12 @@ async function setUp(admin) {
   });
   if (requestError) throw requestError;
 
-  return { admin, a, b, shopB: shopB.id, garmentB: garmentB.id };
+  const researcher = await signedInAdmin(admin);
+
+  return { admin, a, b, researcher, shopB: shopB.id, garmentB: garmentB.id };
 }
 
-function tailorChecks({ admin, a, b, shopB, garmentB }) {
+function tailorChecks({ admin, a, b, researcher, shopB, garmentB }) {
   const own = {};
 
   return [
@@ -556,6 +586,138 @@ function tailorChecks({ admin, a, b, shopB, garmentB }) {
         blocked(
           await a.client.from("tailor_verifications").select("tailor_id"),
         ),
+    ],
+    [
+      "The admin can see shops waiting for verification",
+      async () => {
+        const { data, error } = await researcher
+          .from("tailors")
+          .select("id")
+          .eq("id", unverifiedTailorId);
+        return !error && data.length === 1;
+      },
+    ],
+    [
+      "The admin can see garments waiting for review",
+      async () => {
+        const { data, error } = await researcher
+          .from("garments")
+          .select("id")
+          .eq("id", pendingGarmentId);
+        return !error && data.length === 1;
+      },
+    ],
+    [
+      "The admin cannot read buyer requests",
+      async () => blocked(await researcher.from("requests").select("id")),
+    ],
+    [
+      "The admin cannot verify a tailor without their consent",
+      async () => {
+        const { error } = await researcher.rpc("admin_verify_tailor", {
+          tailor: own.shop.id,
+          association_name: "Security check association",
+          official: "Security check official",
+          visited: "2026-01-01",
+          consent: false,
+          note: "",
+        });
+        return Boolean(error);
+      },
+    ],
+    [
+      "The admin can verify a tailor and read the verification record",
+      async () => {
+        const { error } = await researcher.rpc("admin_verify_tailor", {
+          tailor: own.shop.id,
+          association_name: "Security check association",
+          official: "Security check official",
+          visited: "2026-01-01",
+          consent: true,
+          note: "",
+        });
+        if (error) return false;
+
+        const [shop, record] = await Promise.all([
+          admin.from("tailors").select("status").eq("id", own.shop.id).single(),
+          researcher
+            .from("tailor_verifications")
+            .select("tailor_id")
+            .eq("tailor_id", own.shop.id),
+        ]);
+        return shop.data?.status === "verified" && record.data?.length === 1;
+      },
+    ],
+    [
+      "The admin can approve and reject garments",
+      async () => {
+        const approve = await researcher.rpc("admin_review_garment", {
+          garment: own.garment.id,
+          approve: true,
+          reason: "",
+        });
+        const approved = await admin
+          .from("garments")
+          .select("status, published_at")
+          .eq("id", own.garment.id)
+          .single();
+        const reject = await researcher.rpc("admin_review_garment", {
+          garment: own.garment.id,
+          approve: false,
+          reason: "Security check reason",
+        });
+        const rejected = await admin
+          .from("garments")
+          .select("status, rejection_reason")
+          .eq("id", own.garment.id)
+          .single();
+        return (
+          !approve.error &&
+          !reject.error &&
+          approved.data?.status === "approved" &&
+          Boolean(approved.data.published_at) &&
+          rejected.data?.status === "rejected" &&
+          rejected.data.rejection_reason === "Security check reason"
+        );
+      },
+    ],
+    [
+      "The admin can read the research report",
+      async () => {
+        const results = await Promise.all([
+          researcher.rpc("admin_report_summary"),
+          researcher.rpc("admin_garment_report"),
+          researcher.rpc("admin_participant_report"),
+        ]);
+        return results.every(({ error }) => !error);
+      },
+    ],
+    [
+      "Tailors cannot use the admin functions",
+      async () => {
+        const verify = await a.client.rpc("admin_verify_tailor", {
+          tailor: own.shop.id,
+          association_name: "Not the admin",
+          official: "Not the admin",
+          visited: "2026-01-01",
+          consent: true,
+          note: "",
+        });
+        const review = await a.client.rpc("admin_review_garment", {
+          garment: own.garment.id,
+          approve: true,
+          reason: "",
+        });
+        return Boolean(verify.error) && Boolean(review.error);
+      },
+    ],
+    [
+      "Tailors cannot read the research report",
+      async () => Boolean((await a.client.rpc("admin_report_summary")).error),
+    ],
+    [
+      "Visitors cannot read the research report",
+      async () => Boolean((await visitor.rpc("admin_garment_report")).error),
     ],
     [
       "Tailors can turn their own SMS alerts off",

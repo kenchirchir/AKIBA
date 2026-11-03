@@ -34,9 +34,15 @@ export async function proxy(request: NextRequest) {
 
   const { data } = await supabase.auth.getClaims();
 
-  if (!data?.claims && request.nextUrl.pathname.startsWith("/shop")) {
+  const { pathname } = request.nextUrl;
+  const loginPath = pathname.startsWith("/admin") ? "/admin/login" : "/login";
+  const guarded =
+    pathname.startsWith("/shop") ||
+    (pathname.startsWith("/admin") && pathname !== "/admin/login");
+
+  if (!data?.claims && guarded) {
     const loginUrl = request.nextUrl.clone();
-    loginUrl.pathname = "/login";
+    loginUrl.pathname = loginPath;
     loginUrl.search = "";
     const redirect = NextResponse.redirect(loginUrl);
     for (const cookie of response.cookies.getAll()) {
@@ -49,5 +55,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/shop/:path*", "/login/:path*", "/join/:path*"],
+  matcher: ["/shop/:path*", "/login/:path*", "/join/:path*", "/admin/:path*"],
 };

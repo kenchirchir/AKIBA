@@ -1,6 +1,6 @@
 import { after } from "next/server";
 import { z } from "zod";
-import { visitorId } from "@/lib/discover/visitor";
+import { participantCode, visitorId } from "@/lib/discover/visitor";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createServerSupabase } from "@/lib/supabase/server";
 
@@ -94,6 +94,7 @@ async function viewedRecently(
 async function record(
   event: UsageEvent,
   visitor: string,
+  participant: string | null,
   userId: string | null,
 ) {
   const supabase = createAdminClient();
@@ -114,6 +115,7 @@ async function record(
     event_type: event.type,
     ...target,
     visitor_id: visitor,
+    participant_code: participant,
     duration_seconds: event.type === "story_read" ? event.seconds : null,
   });
 
@@ -129,8 +131,9 @@ export async function POST(request: Request) {
   if (!parsed.success) return new Response(null, { status: 400 });
 
   const visitor = await visitorId();
+  const participant = await participantCode();
   const userId = await signedInUser();
-  after(() => record(parsed.data, visitor, userId));
+  after(() => record(parsed.data, visitor, participant, userId));
 
   return new Response(null, { status: 204 });
 }

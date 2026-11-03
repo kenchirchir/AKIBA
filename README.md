@@ -53,41 +53,46 @@ Before running the app, fill in `.env.local`, then open <http://localhost:3000>.
 
 AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase login` and `npx supabase link --project-ref <your-project-ref>`. The tables and security rules live in `supabase/migrations`, and the sample data in `supabase/seed.sql`.
 
-| Command                  | What it does                                                     |
-| ------------------------ | ---------------------------------------------------------------- |
-| `npm run db:push`        | Applies new migrations and the sample data to the linked project |
-| `npm run db:types`       | Regenerates `src/lib/supabase/database.types.ts` after a change  |
-| `npm run check:security` | Checks what visitors and signed-in tailors can and cannot do     |
+| Command                                 | What it does                                                     |
+| --------------------------------------- | ---------------------------------------------------------------- |
+| `npm run db:push`                       | Applies new migrations and the sample data to the linked project |
+| `npm run db:types`                      | Regenerates `src/lib/supabase/database.types.ts` after a change  |
+| `npm run check:security`                | Checks what visitors, tailors and the admin can and cannot do    |
+| `npm run make-admin -- you@example.com` | Makes an existing email account the AKIBA admin                  |
 
 ## Project structure
 
-| Folder                    | What is inside                                                                                                       |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `src/app`                 | Pages and layouts. Folders in brackets, such as `(site)`, group pages that share a layout without changing their URL |
-| `src/components/ui`       | Reusable design-system components                                                                                    |
-| `src/components/layout`   | The rail, menus, headers and other page building blocks                                                              |
-| `src/components/auth`     | The sign-up, SMS code, log-in and PIN reset forms                                                                    |
-| `src/components/shop`     | The garment form, the photo picker that uploads to Cloudinary, and the My shop cards                                 |
-| `src/components/garments` | The garment cards, the feed grid with its "Show price & tailor" switch, and the laptop filters                       |
-| `src/components/story`    | The garment story page: photos, the save heart, the maker card and the reading-time tracker                          |
-| `src/components/saved`    | The Saved page lists, which read the garments and tailors saved on the phone                                         |
-| `src/components/profile`  | The tailor's profile and settings: the edit form, photo uploads, SMS switch, help sheet, PIN and delete forms        |
-| `src/components/requests` | The request sheet on story pages, the call button on the Request sent page and the inbox buttons                     |
-| `src/components/tailors`  | The tailor cards and filters, the save heart for tailors, and the tailor profile with its experience card            |
-| `src/lib`                 | Shared helpers and data: garment categories and Kigali districts and sectors                                         |
-| `src/lib/auth`            | Tailor accounts: phone numbers, PIN rules, lockout and the server actions behind each form                           |
-| `src/lib/tailors.ts`      | Reads verified tailors for the Tailors list, the Saved page and the profile pages                                    |
-| `src/lib/shop`            | A tailor's own garments: reading them, and the server actions that save, edit and delete them                        |
-| `src/lib/profile`         | The tailor's own profile: reading it, and the server actions that save it, change the PIN and delete the account     |
-| `src/lib/requests`        | Buyer requests: the form rules, the server actions that save and update them, and the tailor's inbox                 |
-| `src/lib/sms.ts`          | Sends SMS alerts to tailors. Test mode until an SMS provider is set up                                               |
-| `src/lib/cloudinary.ts`   | Signs photo uploads and deletes photos on Cloudinary. Runs on the server only                                        |
-| `src/lib/discover`        | The buyer side: search words, garments saved on the phone, and usage events                                          |
-| `src/app/api/events`      | Records story views, reading time, saves, tailor profile views and directions taps. Runs on the server only          |
-| `src/proxy.ts`            | Keeps tailors signed in and sends visitors away from the `/shop` pages                                               |
-| `src/assets`              | Images that are bundled with the app                                                                                 |
-| `messages/en.json`        | Every piece of text shown on screen                                                                                  |
-| `docs`                    | Roadmap and decision log                                                                                             |
+| Folder                    | What is inside                                                                                                          |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `src/app`                 | Pages and layouts. Folders in brackets, such as `(site)`, group pages that share a layout without changing their URL    |
+| `src/components/ui`       | Reusable design-system components                                                                                       |
+| `src/components/layout`   | The rail, menus, headers and other page building blocks                                                                 |
+| `src/components/auth`     | The sign-up, SMS code, log-in and PIN reset forms                                                                       |
+| `src/components/shop`     | The garment form, the photo picker that uploads to Cloudinary, and the My shop cards                                    |
+| `src/components/garments` | The garment cards, the feed grid with its "Show price & tailor" switch, and the laptop filters                          |
+| `src/components/story`    | The garment story page: photos, the save heart, the maker card and the reading-time tracker                             |
+| `src/components/saved`    | The Saved page lists, which read the garments and tailors saved on the phone                                            |
+| `src/components/admin`    | The admin login, menu, tailor verification form and garment rejection form                                              |
+| `src/components/profile`  | The tailor's profile and settings: the edit form, photo uploads, SMS switch, help sheet, PIN and delete forms           |
+| `src/components/requests` | The request sheet on story pages, the call button on the Request sent page and the inbox buttons                        |
+| `src/components/tailors`  | The tailor cards and filters, the save heart for tailors, and the tailor profile with its experience card               |
+| `src/lib`                 | Shared helpers and data: garment categories and Kigali districts and sectors                                            |
+| `src/lib/auth`            | Tailor accounts: phone numbers, PIN rules, lockout and the server actions behind each form                              |
+| `src/lib/tailors.ts`      | Reads verified tailors for the Tailors list, the Saved page and the profile pages                                       |
+| `src/lib/shop`            | A tailor's own garments: reading them, and the server actions that save, edit and delete them                           |
+| `src/lib/admin`           | The admin side: who is the admin, the data for the admin pages, and the actions that verify tailors and review garments |
+| `src/lib/profile`         | The tailor's own profile: reading it, and the server actions that save it, change the PIN and delete the account        |
+| `src/lib/requests`        | Buyer requests: the form rules, the server actions that save and update them, and the tailor's inbox                    |
+| `src/lib/sms.ts`          | Sends SMS alerts to tailors. Test mode until an SMS provider is set up                                                  |
+| `src/lib/cloudinary.ts`   | Signs photo uploads and deletes photos on Cloudinary. Runs on the server only                                           |
+| `src/lib/discover`        | The buyer side: search words, garments saved on the phone, and usage events                                             |
+| `src/app/admin`           | The admin pages: overview, tailors, garments to review, research report and CSV downloads                               |
+| `src/app/api/participant` | Remembers a study participant's code from their personal link                                                           |
+| `src/app/api/events`      | Records story views, reading time, saves, tailor profile views and directions taps. Runs on the server only             |
+| `src/proxy.ts`            | Keeps tailors signed in and sends visitors away from the `/shop` pages                                                  |
+| `src/assets`              | Images that are bundled with the app                                                                                    |
+| `messages/en.json`        | Every piece of text shown on screen                                                                                     |
+| `docs`                    | Roadmap and decision log                                                                                                |
 
 ## Figma Design system
 

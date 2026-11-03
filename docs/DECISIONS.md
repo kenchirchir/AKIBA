@@ -154,8 +154,17 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Sign-up details** that were kept as a copy in the sign-in account are cleared the first time a tailor saves their profile.
 - **`npm run check:security`** now has 47 checks, including that a tailor can turn their SMS alerts off and that deleting an account removes the shop, its garments and its requests.
 
+## 2026-11-03: Admin, verification and research data
+
+- **One admin, the researcher (D5).** The admin logs in with email and password at `/admin/login`. The account is made by Kenneth in the Supabase dashboard (Authentication, Users, Add user, "Auto Confirm User" ticked), then turned into the admin with `npm run make-admin -- email` (decided with Kenneth), so no password ever passes through the code or the chat. Signed-out visitors are sent from any `/admin` page to the admin login.
+- **The admin uses their own session, never the secret key.** Admin pages read the database as the signed-in admin, so the security rules still apply: the admin can see every shop, garment and verification record, but **cannot read buyer requests** (ethical consideration 8). Changes the admin may make go through database functions that first check the caller is the admin: verify a tailor, suspend a shop or move it back to waiting, approve or reject a garment. These live in the migration `20261103120000_admin_and_research.sql`.
+- **Verification (FR9).** The tailor page records the tailor association, the official who vouched, the workshop visit date, notes and the tailor's consent. A tailor cannot be verified without consent; the database refuses it too. Verifying makes the shop and its approved garments public straight away; suspending hides them straight away.
+- **Garment review.** The queue shows each garment waiting for review with its photos, details, story and description, oldest first. "Approve" publishes it. "Not approved" asks for a reason, picked from a short list or typed (decided with Kenneth), plus an optional note. The tailor sees it on the garment's edit page. A warning shows when the shop itself is not verified yet.
+- **Participant codes (decided with Kenneth).** The researcher gives each buyer in the study a personal link ending in `?p=B07`. The code is kept in a cookie on the buyer's phone for a year, removed from the address bar, and added to that buyer's views, reading time, saves, tailor views, calls and requests. Codes use 2 to 20 letters, numbers or dashes. No names are stored.
+- **Research report (FR10).** `/admin/report` shows totals and two tables, by participant and by garment, which also download as CSV files for the analysis. The measures are story views, visitors, reading time, saves, unsaves, tailor profile views, directions taps, calls, requests, **requests after reading** (a request from a visitor who had opened that garment's story first) and the **median time from first story view to request**. The report is counted from the usage records only, so it never touches the requests table or any buyer's details.
+- **`npm run check:security`** now has 57 checks, including what the admin can and cannot do and that tailors and visitors cannot use the admin functions or read the report.
+
 ## Open questions
 
-- Participant codes linking usage logs to the surveys. Needed in Milestone 11.
 - SMS provider and budget, and whether to add the two-way "Reply 1 or 2" follow-up. Needed before the pilot (Milestone 14).
 - Date the pilot starts.

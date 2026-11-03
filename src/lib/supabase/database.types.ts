@@ -406,6 +406,77 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_garment_report: {
+        Args: never
+        Returns: {
+          garment_id: string
+          garment_name: string
+          is_sample: boolean
+          median_minutes_to_request: number
+          reading_seconds: number
+          requests: number
+          requests_after_reading: number
+          saves: number
+          shop_name: string
+          story_views: number
+          unsaves: number
+          visitors: number
+        }[]
+      }
+      admin_participant_report: {
+        Args: never
+        Returns: {
+          first_seen: string
+          last_seen: string
+          median_minutes_to_request: number
+          participant_code: string
+          reading_seconds: number
+          requests: number
+          requests_after_reading: number
+          saves: number
+          stories_viewed: number
+          story_views: number
+          tailor_views: number
+          unsaves: number
+          visitors: number
+        }[]
+      }
+      admin_report_summary: {
+        Args: never
+        Returns: {
+          call_clicks: number
+          directions_clicks: number
+          median_minutes_to_request: number
+          participants: number
+          reading_seconds: number
+          requests: number
+          requests_after_reading: number
+          saves: number
+          story_views: number
+          tailor_views: number
+          unsaves: number
+          visitors: number
+        }[]
+      }
+      admin_review_garment: {
+        Args: { approve: boolean; garment: string; reason: string }
+        Returns: undefined
+      }
+      admin_set_tailor_status: {
+        Args: { new_status: string; tailor: string }
+        Returns: undefined
+      }
+      admin_verify_tailor: {
+        Args: {
+          association_name: string
+          consent: boolean
+          note: string
+          official: string
+          tailor: string
+          visited: string
+        }
+        Returns: undefined
+      }
       is_admin: { Args: never; Returns: boolean }
       my_garment_views: {
         Args: never
@@ -415,6 +486,16 @@ export type Database = {
         }[]
       }
       owns_tailor: { Args: { target: string }; Returns: boolean }
+      request_timings: {
+        Args: never
+        Returns: {
+          first_view: string
+          garment_id: string
+          participant_code: string
+          requested_at: string
+        }[]
+      }
+      require_admin: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
