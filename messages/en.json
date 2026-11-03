@@ -27,16 +27,7 @@
     "womenTitle": "Made for women",
     "womenBody": "Dresses, blouses, kitenge and more",
     "menTitle": "Made for men",
-    "menBody": "Shirts, suits, trousers and more",
-    "showcase": "A showcase, not a shop.",
-    "howItWorks": "How AKIBA works",
-    "allTailorsTitle": "All tailors",
-    "allTailorsBody": "Every tailor is verified by a tailor association",
-    "masterTitle": "Master tailors",
-    "masterBody": "Ten years of experience or more",
-    "nearTitle": "Tailors near you",
-    "areYouTailor": "Are you a tailor?",
-    "joinAkiba": "Join AKIBA"
+    "menBody": "Shirts, suits, trousers and more"
   },
   "Placeholder": {
     "comingIn": "Built in Milestone {milestone}"

@@ -4,7 +4,6 @@ import { Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { buttonClasses } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
-import { Container } from "./container";
 import { SiteTabs } from "./site-tabs";
 
 export function SiteHeader() {
@@ -13,7 +12,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-30 hidden border-b border-line-soft bg-white lg:block">
-      <Container className="flex h-20 items-center gap-4 xl:gap-6">
+      <div className="flex h-20 w-full items-center gap-6 px-8 xl:gap-8 xl:px-12">
         <Link
           href="/"
           aria-label={common("home")}
@@ -21,11 +20,10 @@ export function SiteHeader() {
         >
           <Logo variant="bold" />
         </Link>
-        <SiteTabs />
         <Form
           action="/garments"
           role="search"
-          className="relative min-w-0 flex-1 xl:max-w-[560px]"
+          className="relative max-w-[560px] min-w-0 flex-1"
         >
           <label htmlFor="site-search" className="sr-only">
             {t("searchLabel")}
@@ -39,7 +37,10 @@ export function SiteHeader() {
             className="h-12 w-full rounded-lg border border-line bg-haze pr-4 pl-12 text-base text-ink transition-colors placeholder:text-placeholder focus:border-brand focus:ring-2 focus:ring-brand/25 focus:outline-none"
           />
         </Form>
-        <div className="ml-auto flex shrink-0 items-center gap-2">
+        <div className="ml-auto shrink-0">
+          <SiteTabs />
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
           <Link
             href="/login"
             className={buttonClasses({ variant: "outline", size: "md" })}
@@ -47,7 +48,7 @@ export function SiteHeader() {
             {t("tailorLogin")}
           </Link>
         </div>
-      </Container>
+      </div>
     </header>
   );
 }
