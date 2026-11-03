@@ -191,7 +191,16 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 
 - **Links no longer download pages in the background.** Next.js normally prefetches every page linked on screen. On the live feed this downloaded 17 pages, 177 KB of the 537 KB the feed used, which buyers on mobile data pay for. Garment cards, tailor cards, the maker card and the garments on a tailor's page now load their page only when tapped. Those pages are cached by Vercel, so they still open quickly. The few menu links (Home, Saved) still prefetch.
 
+## 2026-11-03: Production readiness
+
+- **Sample data deleted** (decided with Kenneth). The 5 sample shops, their 10 garments and the 3 usage records on them were removed from the live database. `supabase/seed.sql` is deleted and seeding is switched off, so they cannot come back; `npm run db:push` now only applies migrations. `npm run check:security` creates and removes its own test shops and garments instead of relying on the sample rows.
+- **`/styleguide` deleted** (decided with Kenneth). The Figma design system is the reference for the components.
+- **SMS through Africa's Talking** (decided with Kenneth). `sendSms()` sends through Africa's Talking when `AFRICASTALKING_USERNAME` and `AFRICASTALKING_API_KEY` are set; the username `sandbox` uses their free sandbox. Without the keys it stays in test mode. `sms_sent_at` is filled in only when Africa's Talking accepts the message.
+- **Sign-up and PIN-reset codes.** Supabase sends these, and so far only the test numbers worked. A Supabase **Send SMS hook** at `/api/auth/sms-hook` now lets Supabase send them through Africa's Talking too. The endpoint checks Supabase's signature (Standard Webhooks, with `SUPABASE_SMS_HOOK_SECRET`) and accepts only Rwandan mobile numbers. It does nothing until the hook is switched on in Supabase; the steps are in `docs/OPERATIONS.md`.
+- **Full terms and privacy page** at `/terms`, in plain English: what AKIBA is, buyers, tailors, requests and phone numbers, the research and participant codes, the cookies used, where data is kept, people's rights, and the contact (Kenneth Chirchir, kenchirchir2004@gmail.com, +250 794 096 359). It should be read with the supervisor against the ethics approval before the pilot.
+- **`docs/OPERATIONS.md`** is the researcher's guide: logins, what to set up before the pilot, verifying tailors and reviewing garments, checks to run, handling withdrawals, and deleting the data when the study ends.
+
 ## Open questions
 
-- SMS provider and budget, and whether to add the two-way "Reply 1 or 2" follow-up. Needed before the pilot (Milestone 14).
+- SMS budget, the approved sender name, and whether to add the two-way "Reply 1 or 2" follow-up.
 - Date the pilot starts.

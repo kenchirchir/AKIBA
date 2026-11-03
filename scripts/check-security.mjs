@@ -15,10 +15,11 @@ if (!url || !key) {
 const options = { auth: { persistSession: false, autoRefreshToken: false } };
 const visitor = createClient(url, key, options);
 
-const pendingGarmentId = "00000000-0000-4000-8000-000000000209";
-const unverifiedTailorId = "00000000-0000-4000-8000-000000000105";
+const fixtureName = "Security check fixture";
+let pendingGarmentId = "";
+let unverifiedTailorId = "";
 const sampleGarment = {
-  tailor_id: "00000000-0000-4000-8000-000000000101",
+  tailor_id: "",
   name: "Security test garment",
   category: "dresses",
   story: "This garment must never be saved by a visitor.",
@@ -231,6 +232,52 @@ async function signedInAdmin(admin) {
   if (signInError) throw signInError;
 
   return client;
+}
+
+async function removeFixtures(admin) {
+  await admin.from("tailors").delete().eq("owner_name", fixtureName);
+}
+
+async function createFixtures(admin) {
+  await removeFixtures(admin);
+
+  const shop = (status) => ({
+    owner_name: fixtureName,
+    shop_name: `${fixtureName}, ${status}`,
+    district: "gasabo",
+    sector: "remera",
+    tailoring_types: ["dressmaking"],
+    tailoring_since: "2020-01-01",
+    status,
+    verified_at: status === "verified" ? new Date().toISOString() : null,
+  });
+  const { data: shops, error } = await admin
+    .from("tailors")
+    .insert([shop("verified"), shop("pending")])
+    .select("id, status");
+  if (error) throw error;
+
+  const verified = shops.find((item) => item.status === "verified").id;
+  const pending = shops.find((item) => item.status === "pending").id;
+  const garment = (tailorId, status) => ({
+    ...testGarment(tailorId),
+    status,
+    published_at: status === "approved" ? new Date().toISOString() : null,
+  });
+  const { data: garments, error: garmentError } = await admin
+    .from("garments")
+    .insert([garment(verified, "approved"), garment(verified, "pending")])
+    .select("id, status");
+  if (garmentError) throw garmentError;
+
+  const { error: pendingShopGarmentError } = await admin
+    .from("garments")
+    .insert(garment(pending, "approved"));
+  if (pendingShopGarmentError) throw pendingShopGarmentError;
+
+  sampleGarment.tailor_id = verified;
+  unverifiedTailorId = pending;
+  pendingGarmentId = garments.find((item) => item.status === "pending").id;
 }
 
 async function setUp(admin) {
@@ -766,31 +813,35 @@ async function run(checks) {
   return failures;
 }
 
-console.log("Visitors\n");
-let total = visitorChecks.length;
-let failures = await run(visitorChecks);
-
-console.log("\nSigned-in tailors\n");
-
 if (!secretKey) {
-  console.log(
-    "SKIP  Add SUPABASE_SECRET_KEY to .env.local to run the signed-in tailor checks.",
+  console.error(
+    "Add SUPABASE_SECRET_KEY to .env.local to run the security checks.",
   );
+  process.exit(1);
+}
+
+const admin = createClient(url, secretKey, options);
+let total = 0;
+let failures = 0;
+
+try {
+  await createFixtures(admin);
+
+  console.log("Visitors\n");
+  total += visitorChecks.length;
+  failures += await run(visitorChecks);
+
+  console.log("\nSigned-in tailors and the admin\n");
+  const checks = tailorChecks(await setUp(admin));
+  total += checks.length;
+  failures += await run(checks);
+} catch (error) {
+  console.log(`FAIL  Could not set up the checks: ${error.message}`);
   total += 1;
   failures += 1;
-} else {
-  const admin = createClient(url, secretKey, options);
-  try {
-    const checks = tailorChecks(await setUp(admin));
-    total += checks.length;
-    failures += await run(checks);
-  } catch (error) {
-    console.log(`FAIL  Could not create the test tailors: ${error.message}`);
-    total += 1;
-    failures += 1;
-  } finally {
-    await removeTestUsers(admin);
-  }
+} finally {
+  await removeTestUsers(admin);
+  await removeFixtures(admin);
 }
 
 console.log(

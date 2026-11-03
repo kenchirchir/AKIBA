@@ -6,7 +6,7 @@ export async function logInAsTailor(page: Page) {
   await page.getByLabel("Phone number").fill(verifiedPhone.slice(4));
   await page.locator("input[name=pin]").fill(process.env.E2E_TAILOR_PIN!);
   await page.getByRole("button", { name: "Log in" }).click();
-  await expect(page).toHaveURL(/\/shop$/);
+  await expect(page).toHaveURL(/\/shop$/, { timeout: 15_000 });
 }
 
 export async function clickAndWaitForSave(page: Page, target: Locator) {

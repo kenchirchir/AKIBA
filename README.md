@@ -12,6 +12,7 @@ A Mission Capstone research project by Kenneth Chirchir.
 - [Tailwind CSS](https://tailwindcss.com) 4
 - [Supabase](https://supabase.com): PostgreSQL database and sign-in
 - [Cloudinary](https://cloudinary.com): garment photos
+- [Africa's Talking](https://africastalking.com): SMS alerts to tailors
 - [Vercel](https://vercel.com): hosting
 
 ## Getting started
@@ -37,6 +38,9 @@ Before running the app, fill in `.env.local`, then open <http://localhost:3000>.
 | `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`    | Cloudinary: **Settings**, **API Keys**, the cloud name at the top                                                                        |
 | `CLOUDINARY_API_KEY`                   | Cloudinary: **Settings**, **API Keys**                                                                                                   |
 | `CLOUDINARY_API_SECRET`                | Cloudinary: **Settings**, **API Keys**, next to the API key. Server only: never share it or put it in code                               |
+| `AFRICASTALKING_USERNAME`              | Africa's Talking: `sandbox` while testing, then your app's username for real SMS. Leave empty to keep SMS in test mode                   |
+| `AFRICASTALKING_API_KEY`               | Africa's Talking: **Settings**, **API Key** (sandbox and live keys differ). Server only: never share it or put it in code                |
+| `AFRICASTALKING_SENDER_ID`             | Optional. An approved sender name such as `AKIBA`. Leave empty in the sandbox                                                            |
 
 ## Scripts
 
@@ -50,17 +54,18 @@ Before running the app, fill in `.env.local`, then open <http://localhost:3000>.
 | `npm run format:check` | Checks the formatting without changing any files |
 | `npm test`             | Runs the unit tests                              |
 | `npm run test:e2e`     | Builds the app and runs the browser tests        |
+| `npm run test:live`    | Runs the browser tests against the live site     |
 
 ## Database
 
-AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase login` and `npx supabase link --project-ref <your-project-ref>`. The tables and security rules live in `supabase/migrations`, and the sample data in `supabase/seed.sql`.
+AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase login` and `npx supabase link --project-ref <your-project-ref>`. The tables and security rules live in `supabase/migrations`. There is no sample data; the pilot starts with real tailors only.
 
-| Command                                 | What it does                                                     |
-| --------------------------------------- | ---------------------------------------------------------------- |
-| `npm run db:push`                       | Applies new migrations and the sample data to the linked project |
-| `npm run db:types`                      | Regenerates `src/lib/supabase/database.types.ts` after a change  |
-| `npm run check:security`                | Checks what visitors, tailors and the admin can and cannot do    |
-| `npm run make-admin -- you@example.com` | Makes an existing email account the AKIBA admin                  |
+| Command                                 | What it does                                                    |
+| --------------------------------------- | --------------------------------------------------------------- |
+| `npm run db:push`                       | Applies new migrations to the linked project                    |
+| `npm run db:types`                      | Regenerates `src/lib/supabase/database.types.ts` after a change |
+| `npm run check:security`                | Checks what visitors, tailors and the admin can and cannot do   |
+| `npm run make-admin -- you@example.com` | Makes an existing email account the AKIBA admin                 |
 
 ## Project structure
 
@@ -107,3 +112,4 @@ The design system used to design this is on Figma here <https://www.figma.com/de
 
 - [Development roadmap](docs/ROADMAP.md)
 - [Decision log](docs/DECISIONS.md)
+- [Running the pilot](docs/OPERATIONS.md): the researcher's guide

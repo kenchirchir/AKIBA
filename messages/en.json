@@ -428,8 +428,84 @@
     "underMonth": "under 1 mo"
   },
   "Terms": {
-    "title": "Terms & conditions",
-    "placeholder": "The full terms and privacy notice are added before the pilot. In short: you own the stories and photos you publish, you can remove them or close your account at any time, and AKIBA never shares your phone number except with a buyer who requests your garment."
+    "title": "Terms of use & privacy",
+    "updated": "Last updated 3 November 2026",
+    "intro": "This page explains, in plain words, how AKIBA works, what it records and what you can ask for.",
+    "contents": "On this page",
+    "sections": {
+      "about": {
+        "title": "About AKIBA",
+        "points": [
+          "AKIBA shows garments made by verified tailors in Kigali, together with the story behind each one.",
+          "It is a Mission Capstone research project by Kenneth Chirchir.",
+          "AKIBA is a showcase, not a shop. It takes no payment and no commission. Buyers and tailors agree the price at a fitting, and buyers pay the tailor directly, by MoMo or cash."
+        ]
+      },
+      "buyers": {
+        "title": "Using AKIBA as a buyer",
+        "points": [
+          "You don’t need an account.",
+          "Garments and tailors you save are kept only in this browser on your phone. Clearing your browser removes them.",
+          "AKIBA counts how its pages are used: which stories are opened and for how long, saves, taps on Get directions or Call, and requests. These records use a random number kept in a cookie, never your name or phone number."
+        ]
+      },
+      "tailors": {
+        "title": "Using AKIBA as a tailor",
+        "points": [
+          "You sign up with your Rwandan mobile number and a 5-digit PIN. Keep your PIN secret. Nobody from AKIBA will ever ask for it.",
+          "Your shop becomes public only after AKIBA has checked your details with your tailor association, and every garment is reviewed before buyers can see it.",
+          "You own the photos and stories you publish. By publishing them, you allow AKIBA to show them on the website during the research.",
+          "Only publish garments you made yourself, with true descriptions and prices. AKIBA may hide a garment or suspend a shop that breaks these rules.",
+          "Your shop address is shown to buyers so they can find you. Never enter your home address.",
+          "You can edit or delete any garment, and delete your whole account, at any time in Profile."
+        ]
+      },
+      "requests": {
+        "title": "Requests and phone numbers",
+        "points": [
+          "When you request a garment, your name, phone number and the details you choose go to that tailor only, in their AKIBA inbox and by SMS.",
+          "After you send a request, you see the tailor’s phone number so you can call them.",
+          "Nobody else can read requests, including the AKIBA researcher. The research only counts how many requests are sent.",
+          "SMS messages are sent through Africa’s Talking."
+        ]
+      },
+      "research": {
+        "title": "The research",
+        "points": [
+          "AKIBA is part of a study of how stories help young buyers value local tailors. Taking part in the study is voluntary and needs your consent.",
+          "If you take part, you get a personal link with a participant code. The code links your use of AKIBA to your questionnaires, without your name.",
+          "In the results, people’s names are replaced by codes. The research data is deleted when the study ends.",
+          "You can stop taking part at any time, without giving a reason."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies",
+        "points": [
+          "akiba_visitor: a random number for the usage records, kept for a year.",
+          "akiba_participant: your participant code, only if you opened a personal study link, kept for a year.",
+          "Sign-in cookies for tailors and the researcher, kept until you log out, or for up to about a year if you tick Remember me.",
+          "Short cookies, kept for 30 minutes, that remember a sign-up, a PIN reset or a request you have just sent.",
+          "AKIBA uses no advertising or tracking cookies from other companies."
+        ]
+      },
+      "storage": {
+        "title": "Where data is kept",
+        "points": [
+          "The database and sign-in are run by Supabase, photos are stored by Cloudinary, and the website runs on Vercel. They keep the data for AKIBA and do not use it for anything else.",
+          "Your data is only ever shared with the tailor who receives your request."
+        ]
+      },
+      "rights": {
+        "title": "Your rights",
+        "points": [
+          "Tailors: go to Profile, then Delete account. Your shop, garments, photos, stories, requests and usage records are deleted straight away.",
+          "Buyers and study participants: contact AKIBA to have your requests or study data deleted, or to stop taking part.",
+          "Anyone can ask what data AKIBA holds about them, and have it corrected."
+        ]
+      }
+    },
+    "contactTitle": "Contact",
+    "contactLine": "Questions about AKIBA or your data: Kenneth Chirchir, <email>kenchirchir2004@gmail.com</email>, <phone>+250 794 096 359</phone>."
   },
   "Shop": {
     "title": "My shop",
@@ -543,7 +619,8 @@
     "showAll": "Show all requests"
   },
   "Sms": {
-    "request": "AKIBA: {name} requested {quantity} x {garment} ({size, select, measure {to be measured at the fitting} other {size {sizeName}}}), needed by {day} {month}. Call {phone}, {time, select, morning {best in the morning} afternoon {best in the afternoon} evening {best in the evening} other {any time}}."
+    "request": "AKIBA: {name} requested {quantity} x {garment} ({size, select, measure {to be measured at the fitting} other {size {sizeName}}}), needed by {day} {month}. Call {phone}, {time, select, morning {best in the morning} afternoon {best in the afternoon} evening {best in the evening} other {any time}}.",
+    "code": "AKIBA: your code is {code}. Do not share it with anyone."
   },
   "Profile": {
     "title": "Profile",

@@ -9,12 +9,13 @@
     "lint": "eslint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "db:push": "supabase db push --linked --include-seed",
+    "db:push": "supabase db push --linked",
     "db:types": "supabase gen types typescript --linked --schema public > src/lib/supabase/database.types.ts",
     "check:security": "node --env-file=.env.local scripts/check-security.mjs",
     "make-admin": "node --env-file=.env.local scripts/make-admin.mjs",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:live": "E2E_BASE_URL=https://akiba-seven.vercel.app playwright test"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

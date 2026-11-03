@@ -17,4 +17,4 @@ Each milestone is built, tested and pushed to GitHub before the next one starts.
 | 11  | Admin, verification and research data                      | Report numbers match test activity                            | Done        |
 | 12  | Automated tests, security and accessibility checks         | All tests pass                                                | Done        |
 | 13  | Final design check on phones, tablets and laptops          | Every screen checked at four screen widths                    | Done        |
-| 14  | Production deployment and documentation                    | Full journeys work on the live site                           | Not started |
+| 14  | Production deployment and documentation                    | Full journeys work on the live site                           | Done        |
