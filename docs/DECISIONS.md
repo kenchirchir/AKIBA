@@ -164,6 +164,19 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Research report (FR10).** `/admin/report` shows totals and two tables, by participant and by garment, which also download as CSV files for the analysis. The measures are story views, visitors, reading time, saves, unsaves, tailor profile views, directions taps, calls, requests, **requests after reading** (a request from a visitor who had opened that garment's story first) and the **median time from first story view to request**. The report is counted from the usage records only, so it never touches the requests table or any buyer's details.
 - **`npm run check:security`** now has 57 checks, including what the admin can and cannot do and that tailors and visitors cannot use the admin functions or read the report.
 
+## 2026-11-03: Automated tests, security and accessibility
+
+- **Three development-only test tools** (agreed with Kenneth): Vitest for unit tests, Playwright for browser tests of the journeys, and axe for accessibility checks. They never ship to users. `@types/node` moved from version 20 to 24 to match Node 24, which the project already runs on.
+- **`npm test`** runs 39 unit tests of the rules behind the forms and data: experience levels and start dates, Rwandan phone numbers, PIN rules, the garment, request, verification and rejection forms, Kigali dates, search words, the items saved on the phone, Kigali places and categories, and the CSV export.
+- **`npm run test:e2e`** builds the app, starts it on port 3100 and runs 11 browser tests, each at phone size (Pixel 7) and laptop size (1280px), 22 runs in all. They cover a buyer reading, saving and requesting a garment, the tailors list showing verified tailors only, a pending shop having no public page, the Request sent page being private, signed-out visitors being sent to the right login, a wrong PIN, a tailor marking a request as ordered, the upload form's errors and the SMS switch. Before the tests, temporary test tailors (+250780000903 and 904), a garment and a request are created with the secret key; they are deleted afterwards. The test browser is recognised as a test tool, so it adds nothing to the usage logs.
+- **Accessibility (WCAG 2.1 A and AA).** axe checks 11 public pages and 7 tailor pages at both sizes. It found one problem: grey placeholder text such as "Choose" was too faint (2.5:1 against white). The placeholder colour is now `#67738A`, which reaches the 4.5:1 minimum and is still lighter than normal text. The admin pages are not checked automatically, because the tests cannot create an admin account.
+- **Security review.**
+  - The 57 database checks in `npm run check:security` pass.
+  - `npm audit` finds no known vulnerabilities in anything that ships to users. The 17 moderate warnings are inside the ESLint development tools only.
+  - Every page now sends standard security headers: no MIME-type guessing, no embedding in other sites' frames, a careful referrer policy, and no access to the camera, microphone, location or payments from scripts. The "X-Powered-By" header is switched off. Photo uploads use the phone's own picker, so they still work.
+  - A full Content Security Policy is left out for now, because Next.js needs inline scripts and a wrong policy would break pages; it can be added with nonces later.
+- **GitHub checks.** Every push to `main` runs the type check, lint, formatting check and unit tests on GitHub (`.github/workflows/checks.yml`). They need no secret keys. The browser tests and database security checks stay on Kenneth's Mac, because they use the database keys.
+
 ## Open questions
 
 - SMS provider and budget, and whether to add the two-way "Reply 1 or 2" follow-up. Needed before the pilot (Milestone 14).

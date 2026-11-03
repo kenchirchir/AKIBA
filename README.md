@@ -48,6 +48,8 @@ Before running the app, fill in `.env.local`, then open <http://localhost:3000>.
 | `npm run lint`         | Checks the code for problems with ESLint         |
 | `npm run format`       | Formats every file with Prettier                 |
 | `npm run format:check` | Checks the formatting without changing any files |
+| `npm test`             | Runs the unit tests                              |
+| `npm run test:e2e`     | Builds the app and runs the browser tests        |
 
 ## Database
 
@@ -92,6 +94,9 @@ AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase 
 | `src/proxy.ts`            | Keeps tailors signed in and sends visitors away from the `/shop` pages                                                  |
 | `src/assets`              | Images that are bundled with the app                                                                                    |
 | `messages/en.json`        | Every piece of text shown on screen                                                                                     |
+| `tests/unit`              | Unit tests, run with Vitest                                                                                             |
+| `tests/e2e`               | Browser tests of the journeys and accessibility checks, run with Playwright                                             |
+| `.github/workflows`       | The checks GitHub runs after every push                                                                                 |
 | `docs`                    | Roadmap and decision log                                                                                                |
 
 ## Figma Design system
