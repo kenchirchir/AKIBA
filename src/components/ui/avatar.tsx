@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { CloudImage } from "./cloud-image";
 
 const sizes = {
   xs: { box: "size-6 text-[10px]", pixels: 24 },
@@ -11,7 +11,7 @@ const sizes = {
 
 type AvatarProps = {
   name: string;
-  src?: string;
+  publicId?: string | null;
   size?: keyof typeof sizes;
   className?: string;
 };
@@ -26,13 +26,18 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-export function Avatar({ name, src, size = "md", className }: AvatarProps) {
+export function Avatar({
+  name,
+  publicId,
+  size = "md",
+  className,
+}: AvatarProps) {
   const { box, pixels } = sizes[size];
 
-  if (src) {
+  if (publicId) {
     return (
-      <Image
-        src={src}
+      <CloudImage
+        publicId={publicId}
         alt={name}
         width={pixels}
         height={pixels}

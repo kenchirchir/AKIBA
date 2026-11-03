@@ -41,6 +41,12 @@ export type CurrentTailor = NonNullable<
   Awaited<ReturnType<typeof getCurrentTailor>>
 >;
 
+export function publicPageHref(tailor: CurrentTailor) {
+  return tailor.status === "verified"
+    ? `/tailors/${tailor.id}`
+    : "/shop/preview";
+}
+
 export async function requireTailor() {
   const tailor = await getCurrentTailor();
   if (!tailor) redirect("/login");

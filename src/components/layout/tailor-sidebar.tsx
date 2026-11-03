@@ -4,7 +4,7 @@ import { LogoutButton } from "@/components/auth/logout-button";
 import { Avatar } from "@/components/ui/avatar";
 import { Logo } from "@/components/ui/logo";
 import { areaNames } from "@/lib/kigali";
-import type { CurrentTailor } from "@/lib/tailor";
+import { publicPageHref, type CurrentTailor } from "@/lib/tailor";
 import { TailorNav } from "./tailor-nav";
 
 export function TailorSidebar({ tailor }: { tailor: CurrentTailor }) {
@@ -31,7 +31,7 @@ export function TailorSidebar({ tailor }: { tailor: CurrentTailor }) {
       <TailorNav newRequests={tailor.newRequests} />
       <div className="mt-auto flex flex-col px-3 text-sm font-semibold">
         <Link
-          href={`/tailors/${tailor.id}`}
+          href={publicPageHref(tailor)}
           className="py-2 text-teal hover:underline"
         >
           {t("publicPage")}

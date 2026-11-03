@@ -40,7 +40,7 @@ export async function getMyGarment(tailorId: string, id: string) {
   const { data } = await supabase
     .from("garments")
     .select(
-      "id, name, category, subcategory, audience, material, description, story, price_rwf, status, rejection_reason, garment_photos(public_id, width, height)",
+      "id, name, category, subcategory, audience, material, description, story, price_rwf, making_days, status, rejection_reason, garment_photos(public_id, width, height)",
     )
     .eq("id", id)
     .eq("tailor_id", tailorId)

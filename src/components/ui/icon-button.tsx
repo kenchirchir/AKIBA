@@ -6,6 +6,7 @@ const variants = {
   white: "bg-white text-ink hover:bg-mist",
   outline: "border border-line-soft bg-white text-ink hover:bg-mist",
   brand: "bg-brand-50 text-teal hover:bg-brand-100",
+  glass: "bg-white/30 text-ink hover:bg-white/50",
 };
 
 const sizes = {

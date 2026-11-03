@@ -68,7 +68,6 @@
   },
   "Catalogue": {
     "collections": {
-      "trending": "Trending",
       "men": "Men",
       "women": "Women"
     },
@@ -170,8 +169,25 @@
   "Tailors": {
     "eyebrow": "Verified by tailor associations",
     "title": "Tailors",
-    "placeholder": "Search verified tailors and filter them by district, type of tailoring and experience.",
-    "sampleTailor": "View a sample tailor"
+    "filters": "Filters",
+    "searchLabel": "Search by name or shop",
+    "district": "District",
+    "allDistricts": "All districts",
+    "sector": "Sector",
+    "anySector": "Any sector",
+    "type": "Type of tailoring",
+    "allTypes": "All types",
+    "experience": "Experience",
+    "anyExperience": "Any exp.",
+    "clearFilters": "Clear all filters",
+    "updating": "Updating…",
+    "results": "Tailors found",
+    "showing": "Showing {count, plural, one {# tailor} other {# tailors}} · most experienced first",
+    "empty": "No tailors match yet. Try another area or type of tailoring.",
+    "showAll": "Show all tailors",
+    "save": "Save {shop}",
+    "garments": "{count, plural, =0 {No garments yet} one {# garment} other {# garments}}",
+    "more": "+{count}"
   },
   "Saved": {
     "title": "Saved",
@@ -180,11 +196,14 @@
     "garments": "Garments",
     "tailors": "Tailors",
     "loading": "Loading your saved garments",
+    "loadingTailors": "Loading your saved tailors",
     "emptyTitle": "Nothing saved yet",
     "emptyBody": "Tap the heart on a garment to keep it here. Saved garments stay on this phone, no account needed.",
     "discover": "Discover garments",
-    "note": "Saved items stay in this browser. Ready to order? Open a garment and tap <strong>Request this garment</strong>.",
-    "tailorsSoon": "Tailors you save from their profile page will appear here."
+    "emptyTailorsTitle": "No tailors saved yet",
+    "emptyTailorsBody": "Tap the heart on a tailor to keep them here. Saved tailors stay on this phone, no account needed.",
+    "meetTailors": "Meet the tailors",
+    "note": "Saved items stay in this browser. Ready to order? Open a garment and tap <strong>Request this garment</strong>."
   },
   "GarmentStory": {
     "title": "Garment story",
@@ -194,6 +213,8 @@
     "material": "Material",
     "category": "Category",
     "madeFor": "Made for",
+    "madeIn": "Made in",
+    "days": "{count, plural, one {# day} other {# days}}",
     "story": "The story",
     "readMore": "Read full story",
     "readLess": "Show less",
@@ -210,8 +231,20 @@
   },
   "TailorProfile": {
     "title": "Tailor profile",
-    "placeholder": "Verified badge, experience, specialities, shop location and the tailor’s garments.",
-    "seeGarments": "See garments"
+    "description": "{shop}, run by {owner} in {sector}, {district}, Kigali. A tailor verified by AKIBA.",
+    "byline": "{owner} · Tailoring for {time}",
+    "pending": "Waiting for verification",
+    "previewTitle": "My public page",
+    "previewNote": "Only you can see this page until AKIBA verifies your shop. Your garments show here once AKIBA approves them.",
+    "specialities": "Specialities",
+    "location": "Shop location",
+    "area": "{sector} · {district}, Kigali",
+    "directions": "Get directions",
+    "opensMaps": "(opens Google Maps)",
+    "request": "Request a garment from {name}",
+    "garments": "Garments",
+    "pieces": "{count, plural, one {# piece} other {# pieces}}",
+    "noGarments": "{name} hasn’t published any garments yet."
   },
   "Join": {
     "title": "Sign up",
@@ -310,13 +343,33 @@
     }
   },
   "Experience": {
+    "title": "Tailoring experience",
     "levels": {
       "new": "New",
       "skilled": "Skilled",
       "experienced": "Experienced",
       "master": "Master tailor"
     },
+    "scale": {
+      "new": {
+        "name": "New",
+        "years": "<1 yr"
+      },
+      "skilled": {
+        "name": "Skilled",
+        "years": "1–4"
+      },
+      "experienced": {
+        "name": "Experienced",
+        "years": "5–9"
+      },
+      "master": {
+        "name": "Master",
+        "years": "10+"
+      }
+    },
     "short": "{years, plural, =0 {} one {# yr} other {# yrs}} {months, plural, =0 {} one {# mo} other {# mos}}",
+    "long": "{years, plural, =0 {{months, plural, =0 {Under 1 month} one {# month} other {# months}}} one {# year{months, plural, =0 {} one {, # month} other {, # months}}} other {# years{months, plural, =0 {} one {, # month} other {, # months}}}}",
     "underMonth": "under 1 mo"
   },
   "Terms": {
@@ -384,10 +437,13 @@
     "material": "Material",
     "audience": "Made for",
     "description": "Description",
-    "descriptionPlaceholder": "Fit, sizes available, how long it takes to make…",
+    "descriptionPlaceholder": "Fit, sizes available, how to care for it…",
     "story": "The story behind it",
     "storyPlaceholder": "What inspired it? What does the fabric or style mean? How did you make it?",
     "price": "Price",
+    "makingDays": "Made in (days)",
+    "makingDaysHint": "Optional. How many days it takes you to make one.",
+    "makingDaysPlaceholder": "e.g. 5",
     "publish": "Publish to showcase",
     "publishing": "Publishing…",
     "save": "Save changes",
@@ -407,6 +463,7 @@
       "storyRequired": "Tell buyers the story behind the garment, in at least a sentence.",
       "storyTooLong": "Keep the story under 3,000 letters.",
       "priceInvalid": "Enter a price between 500 and 10,000,000 RWF.",
+      "makingDaysInvalid": "Enter a number of days from 1 to 180, or leave it empty.",
       "notFound": "We couldn’t find this garment. It may have been deleted.",
       "generic": "Something went wrong. Check your connection and try again."
     }

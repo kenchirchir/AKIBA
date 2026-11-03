@@ -217,15 +217,35 @@ export function GarmentForm({ garment }: { garment?: GarmentDetails }) {
           )}
         </Field>
 
-        <Field id="price" label={t("price")} required error={error("price")}>
-          {(control) => (
-            <PriceInput
-              {...control}
-              name="price"
-              defaultValue={garment?.price_rwf.toLocaleString("en-US")}
-            />
-          )}
-        </Field>
+        <div className="grid gap-5 @sm:grid-cols-2 @sm:gap-3">
+          <Field id="price" label={t("price")} required error={error("price")}>
+            {(control) => (
+              <PriceInput
+                {...control}
+                name="price"
+                defaultValue={garment?.price_rwf.toLocaleString("en-US")}
+              />
+            )}
+          </Field>
+          <Field
+            id="makingDays"
+            label={t("makingDays")}
+            hint={t("makingDaysHint")}
+            error={error("makingDays")}
+          >
+            {(control) => (
+              <Input
+                {...control}
+                name="makingDays"
+                inputMode="numeric"
+                maxLength={3}
+                defaultValue={garment?.making_days ?? ""}
+                placeholder={t("makingDaysPlaceholder")}
+                autoComplete="off"
+              />
+            )}
+          </Field>
+        </div>
 
         <FormMessage message={(blocked && blocker) || error("form")} />
         <Button type="submit" fullWidth size="lg" disabled={pending}>

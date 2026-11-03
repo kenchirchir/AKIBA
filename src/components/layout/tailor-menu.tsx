@@ -4,7 +4,7 @@ import { LogoutButton } from "@/components/auth/logout-button";
 import { Avatar } from "@/components/ui/avatar";
 import { Logo } from "@/components/ui/logo";
 import { areaNames } from "@/lib/kigali";
-import type { CurrentTailor } from "@/lib/tailor";
+import { publicPageHref, type CurrentTailor } from "@/lib/tailor";
 
 const rowClasses =
   "flex h-[53px] items-center justify-between border-b border-ink/25 text-sm tracking-[0.08em] uppercase hover:underline";
@@ -62,7 +62,7 @@ export function TailorMenu({ tailor }: { tailor: CurrentTailor }) {
       <div className="mt-auto grid grid-cols-[1fr_auto] gap-x-4 gap-y-2 pt-10 text-micro tracking-[0.08em] uppercase">
         <span className="font-semibold">{tailor.shop_name}</span>
         <Link
-          href={`/tailors/${tailor.id}`}
+          href={publicPageHref(tailor)}
           className="text-right underline underline-offset-2"
         >
           {t("publicPage")}

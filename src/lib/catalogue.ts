@@ -1,4 +1,4 @@
-export const collectionSlugs = ["trending", "men", "women"] as const;
+export const collectionSlugs = ["men", "women"] as const;
 
 export const categorySlugs = [
   "tops",

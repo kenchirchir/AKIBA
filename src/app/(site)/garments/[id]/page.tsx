@@ -90,6 +90,9 @@ export default async function GarmentStoryPage({
     facts.push([t("category"), catalogue(`categories.${category.slug}`)]);
   }
   if (audience) facts.push([t("madeFor"), catalogue(`audiences.${audience}`)]);
+  if (garment.making_days) {
+    facts.push([t("madeIn"), t("days", { count: garment.making_days })]);
+  }
 
   return (
     <main className="flex-1 md:py-8 lg:py-10">

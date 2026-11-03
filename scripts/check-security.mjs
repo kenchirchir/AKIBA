@@ -402,6 +402,65 @@ function tailorChecks({ admin, a, b, shopB, garmentB }) {
       },
     ],
     [
+      "Tailors can see their own shop while it waits for verification",
+      async () => {
+        const { data, error } = await a.client
+          .from("tailors")
+          .select("id")
+          .eq("id", own.shop.id);
+        return !error && data.length === 1;
+      },
+    ],
+    [
+      "Visitors can see a verified tailor and their approved garments",
+      async () => {
+        const { error: approveError } = await admin
+          .from("garments")
+          .update({
+            status: "approved",
+            published_at: new Date().toISOString(),
+          })
+          .eq("id", own.garment.id);
+        const { error: verifyError } = await admin
+          .from("tailors")
+          .update({ status: "verified", verified_at: new Date().toISOString() })
+          .eq("id", own.shop.id);
+        if (approveError || verifyError) return false;
+
+        const tailors = await visitor
+          .from("tailors")
+          .select("id")
+          .eq("id", own.shop.id);
+        const garments = await visitor
+          .from("garments")
+          .select("id")
+          .eq("tailor_id", own.shop.id);
+        return tailors.data?.length === 1 && garments.data?.length === 1;
+      },
+    ],
+    [
+      "Visitors cannot see a suspended tailor or their garments",
+      async () => {
+        const { error } = await admin
+          .from("tailors")
+          .update({ status: "suspended" })
+          .eq("id", own.shop.id);
+        if (error) return false;
+
+        return (
+          blocked(
+            await visitor.from("tailors").select("id").eq("id", own.shop.id),
+          ) &&
+          blocked(
+            await visitor
+              .from("garments")
+              .select("id")
+              .eq("tailor_id", own.shop.id),
+          )
+        );
+      },
+    ],
+    [
       "Tailors only see story views of their own garments",
       async () => {
         const { error: viewError } = await admin

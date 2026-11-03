@@ -9,6 +9,7 @@ export const garmentErrorKeys = [
   "storyRequired",
   "storyTooLong",
   "priceInvalid",
+  "makingDaysInvalid",
   "notFound",
   "generic",
 ] as const;

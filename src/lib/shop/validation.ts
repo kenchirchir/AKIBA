@@ -56,6 +56,19 @@ const price = z
       .max(10_000_000, { error: "priceInvalid" }),
   );
 
+const makingDays = z
+  .string()
+  .trim()
+  .transform((value) => (value ? Number(value) : null))
+  .pipe(
+    z
+      .number({ error: "makingDaysInvalid" })
+      .int({ error: "makingDaysInvalid" })
+      .min(1, { error: "makingDaysInvalid" })
+      .max(180, { error: "makingDaysInvalid" })
+      .nullable(),
+  );
+
 export const garmentSchema = z.object({
   photos,
   name: z
@@ -79,6 +92,7 @@ export const garmentSchema = z.object({
     .min(10, { error: "storyRequired" })
     .max(3000, { error: "storyTooLong" }),
   price,
+  makingDays,
 });
 
 export function garmentFieldErrors(error: z.ZodError) {

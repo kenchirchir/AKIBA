@@ -39,11 +39,12 @@ function savePhotos(supabase: Supabase, garmentId: string, photos: Photo[]) {
 
 function backToShop(
   notice: "uploaded" | "saved" | "deleted",
-  garmentId?: string,
+  changed?: { garmentId: string; tailorId: string },
 ): never {
   revalidatePath("/shop", "layout");
-  if (garmentId) {
-    revalidatePath(`/garments/${garmentId}`);
+  if (changed) {
+    revalidatePath(`/garments/${changed.garmentId}`);
+    revalidatePath(`/tailors/${changed.tailorId}`);
     revalidatePath("/");
   }
   redirect(`/shop?${notice}=1`, RedirectType.replace);
@@ -94,16 +95,22 @@ export async function saveGarment(
     description: text(formData, "description"),
     story: text(formData, "story"),
     price: text(formData, "price"),
+    makingDays: text(formData, "makingDays"),
   });
 
   if (!parsed.success) return { errors: garmentFieldErrors(parsed.error) };
 
-  const { photos, category, price, ...details } = parsed.data;
+  const { photos, category, price, makingDays, ...details } = parsed.data;
   if (!photos.every((photo) => ownsPhoto(tailor.id, photo.publicId))) {
     return failed;
   }
 
-  const garment = { ...details, ...category, price_rwf: price };
+  const garment = {
+    ...details,
+    ...category,
+    price_rwf: price,
+    making_days: makingDays,
+  };
   const supabase = await createServerSupabase();
 
   if (id) {
@@ -135,7 +142,7 @@ export async function saveGarment(
       .map((photo) => photo.public_id)
       .filter((publicId) => !kept.has(publicId));
     after(() => destroyPhotos(removed));
-    backToShop("saved", id);
+    backToShop("saved", { garmentId: id, tailorId: tailor.id });
   }
 
   const { data: created, error } = await supabase
@@ -178,5 +185,5 @@ export async function deleteGarment(
 
   const removed = garment.garment_photos.map((photo) => photo.public_id);
   after(() => destroyPhotos(removed));
-  backToShop("deleted", id);
+  backToShop("deleted", { garmentId: id, tailorId: tailor.id });
 }

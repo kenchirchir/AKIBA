@@ -7,6 +7,16 @@ export const experienceLevels = [
 
 export type ExperienceLevel = (typeof experienceLevels)[number];
 
+export const experienceYears: Record<
+  ExperienceLevel,
+  [number | null, number | null]
+> = {
+  new: [null, 1],
+  skilled: [1, 5],
+  experienced: [5, 10],
+  master: [10, null],
+};
+
 export function experienceLevel(totalMonths: number): ExperienceLevel {
   if (totalMonths < 12) return "new";
   if (totalMonths < 60) return "skilled";

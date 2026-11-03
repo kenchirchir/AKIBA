@@ -1,6 +1,7 @@
 export type TrackedEvent =
   | { type: "story_view" | "save" | "unsave"; garmentId: string }
-  | { type: "story_read"; garmentId: string; seconds: number };
+  | { type: "story_read"; garmentId: string; seconds: number }
+  | { type: "tailor_view" | "directions_click"; tailorId: string };
 
 const endpoint = "/api/events";
 

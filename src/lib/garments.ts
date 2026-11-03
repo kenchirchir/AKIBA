@@ -9,7 +9,11 @@ import type {
   TailoringTypeSlug,
 } from "@/lib/catalogue";
 import type { SearchWord } from "@/lib/discover/search";
-import { tailoringSince, type ExperienceLevel } from "@/lib/experience";
+import {
+  experienceYears,
+  tailoringSince,
+  type ExperienceLevel,
+} from "@/lib/experience";
 import type { Photo } from "@/lib/photos";
 import { createPublicClient } from "@/lib/supabase/public";
 
@@ -31,18 +35,10 @@ type Supabase = ReturnType<typeof createPublicClient>;
 const cardFields =
   "id, name, price_rwf, tailors!inner(id, shop_name, district, sector), garment_photos(public_id)";
 
-const audiencesFor = {
+const audiencesFor: Record<CollectionSlug, string[]> = {
   men: ["men", "unisex"],
   women: ["women", "unisex"],
 };
-
-const experienceYears: Record<ExperienceLevel, [number | null, number | null]> =
-  {
-    new: [null, 1],
-    skilled: [1, 5],
-    experienced: [5, 10],
-    master: [10, null],
-  };
 
 async function matchingTailors(supabase: Supabase, words: SearchWord[]) {
   const { data } = await supabase
@@ -108,7 +104,7 @@ export async function getFeedGarments(filters: FeedFilters = {}) {
   if (filters.subcategory) {
     request = request.eq("subcategory", filters.subcategory);
   }
-  if (filters.collection === "men" || filters.collection === "women") {
+  if (filters.collection) {
     request = request.in("audience", audiencesFor[filters.collection]);
   }
   if (filters.district) {
@@ -177,7 +173,7 @@ export const getGarmentStory = cache(async (id: string) => {
   const { data, error } = await supabase
     .from("garments")
     .select(
-      "id, name, category, subcategory, material, audience, description, story, price_rwf, tailors!inner(id, shop_name, owner_name, district, sector, tailoring_since), garment_photos(public_id, width, height)",
+      "id, name, category, subcategory, material, audience, description, story, price_rwf, making_days, tailors!inner(id, shop_name, owner_name, district, sector, tailoring_since), garment_photos(public_id, width, height)",
     )
     .eq("id", id)
     .eq("status", "approved")
