@@ -547,12 +547,120 @@
   },
   "Profile": {
     "title": "Profile",
-    "placeholder": "Edit profile, SMS alerts, change PIN, language, help and terms.",
-    "logout": "Log out"
+    "editTitle": "Edit profile",
+    "verified": "Verified",
+    "pending": "Waiting for verification",
+    "edit": "Edit profile",
+    "complete": "Your profile is {percent}% complete",
+    "missing": {
+      "avatar": "Add a photo of yourself",
+      "cover": "Add a cover photo for your page",
+      "about": "Add your story in About me",
+      "shopAddress": "Add where buyers can find your shop",
+      "tailoringTypes": "Choose your types of tailoring"
+    },
+    "viewAsBuyer": "View my shop as a buyer",
+    "smsAlerts": "SMS alerts for new requests",
+    "changePin": "Change PIN",
+    "language": "Language",
+    "english": "English",
+    "kinyarwanda": "Kinyarwanda (coming soon)",
+    "helpTerms": "Help & terms",
+    "logout": "Log out",
+    "deleteAccount": "Delete account",
+    "notices": {
+      "saved": "Your profile is saved. Buyers see the changes on your page.",
+      "pin": "Your PIN is changed. Use the new PIN next time you log in."
+    },
+    "photos": "Photos",
+    "avatar": "Your photo",
+    "cover": "Cover photo for your page",
+    "addPhoto": "Add photo",
+    "changePhoto": "Change photo",
+    "removePhoto": "Remove",
+    "uploading": "Uploading {percent}%",
+    "uploadFailed": "The photo didn’t upload. Check your connection and choose it again.",
+    "shopDetails": "Shop details",
+    "shopName": "Shop name",
+    "phoneVerified": "Verified number",
+    "phoneHint": "Your number is verified by SMS. Buyer requests come to this number.",
+    "shopLocation": "Shop location",
+    "yourWork": "Your work",
+    "about": "About me",
+    "aboutHint": "Optional. Shown on your public page.",
+    "aboutPlaceholder": "How did you learn to sew? What do you love making? What makes your work different?",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "publicNote": "Changes show on your public page straight away.",
+    "help": {
+      "title": "Help & terms",
+      "requests": {
+        "question": "How do buyer requests work?",
+        "answer": "When a buyer requests one of your garments, it appears in Requests and you get an SMS with their name and phone number. Call them to agree on the size, price and fitting."
+      },
+      "payments": {
+        "question": "Does AKIBA handle payments?",
+        "answer": "No. AKIBA takes no payment and no commission. The buyer pays you directly, by MoMo or cash."
+      },
+      "ordered": {
+        "question": "How do I mark a request as ordered?",
+        "answer": "Open Requests and tap Mark as ordered on the request once the buyer has ordered. Tap Undo if you made a mistake."
+      },
+      "terms": "Terms of use & privacy"
+    },
+    "pin": {
+      "title": "Change PIN",
+      "intro": "Use 5 digits only you know. You’ll use the new PIN the next time you log in.",
+      "current": "Current PIN",
+      "new": "New 5-digit PIN",
+      "confirm": "Confirm new PIN",
+      "save": "Update PIN",
+      "saving": "Updating…",
+      "forgot": "Forgot your PIN?",
+      "reset": "Reset it by SMS"
+    },
+    "delete": {
+      "title": "Delete account",
+      "warning": "This deletes everything about your shop",
+      "removed": {
+        "shop": "Your shop, profile and photos",
+        "garments": "All your garments, their photos and stories",
+        "requests": "All buyer requests sent to you",
+        "usage": "The usage records about your shop"
+      },
+      "final": "This can’t be undone. You can sign up again later with the same number.",
+      "pin": "Type your PIN to confirm",
+      "confirm": "Delete my account",
+      "deleting": "Deleting…",
+      "keep": "Keep my account"
+    },
+    "errors": {
+      "shopNameRequired": "Enter your shop name.",
+      "fullNameRequired": "Enter your full name.",
+      "experienceRequired": "Choose how long you have been tailoring.",
+      "districtRequired": "Choose your district.",
+      "sectorRequired": "Choose your sector.",
+      "locationRequired": "Enter where buyers can find your shop.",
+      "typesRequired": "Choose at least one type of tailoring.",
+      "aboutTooLong": "Keep About me under 2,000 letters.",
+      "photoInvalid": "One of the photos could not be used. Choose it again.",
+      "waitForPhotos": "Wait for your photos to finish uploading, then try again.",
+      "pinInvalid": "Your PIN must be exactly 5 digits.",
+      "pinWeak": "Choose a PIN that is harder to guess, not 12345 or 11111.",
+      "pinMismatch": "The two PINs don’t match.",
+      "wrongPin": "That PIN is not right.",
+      "locked": "Too many wrong PINs. Try again in {minutes} minutes, or reset your PIN.",
+      "generic": "Something went wrong. Check your connection and try again."
+    }
   },
   "NotFound": {
     "title": "Page not found",
     "body": "This page doesn’t exist or has moved.",
+    "home": "Back to AKIBA"
+  },
+  "AccountDeleted": {
+    "title": "Your account is deleted",
+    "body": "Your shop, garments, photos, stories and buyer requests have been removed from AKIBA. Thank you for taking part.",
     "home": "Back to AKIBA"
   }
 }

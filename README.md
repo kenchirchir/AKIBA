@@ -71,12 +71,14 @@ AKIBA uses a hosted Supabase project. Connect your copy once with `npx supabase 
 | `src/components/garments` | The garment cards, the feed grid with its "Show price & tailor" switch, and the laptop filters                       |
 | `src/components/story`    | The garment story page: photos, the save heart, the maker card and the reading-time tracker                          |
 | `src/components/saved`    | The Saved page lists, which read the garments and tailors saved on the phone                                         |
+| `src/components/profile`  | The tailor's profile and settings: the edit form, photo uploads, SMS switch, help sheet, PIN and delete forms        |
 | `src/components/requests` | The request sheet on story pages, the call button on the Request sent page and the inbox buttons                     |
 | `src/components/tailors`  | The tailor cards and filters, the save heart for tailors, and the tailor profile with its experience card            |
 | `src/lib`                 | Shared helpers and data: garment categories and Kigali districts and sectors                                         |
 | `src/lib/auth`            | Tailor accounts: phone numbers, PIN rules, lockout and the server actions behind each form                           |
 | `src/lib/tailors.ts`      | Reads verified tailors for the Tailors list, the Saved page and the profile pages                                    |
 | `src/lib/shop`            | A tailor's own garments: reading them, and the server actions that save, edit and delete them                        |
+| `src/lib/profile`         | The tailor's own profile: reading it, and the server actions that save it, change the PIN and delete the account     |
 | `src/lib/requests`        | Buyer requests: the form rules, the server actions that save and update them, and the tailor's inbox                 |
 | `src/lib/sms.ts`          | Sends SMS alerts to tailors. Test mode until an SMS provider is set up                                               |
 | `src/lib/cloudinary.ts`   | Signs photo uploads and deletes photos on Cloudinary. Runs on the server only                                        |

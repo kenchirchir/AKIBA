@@ -110,6 +110,11 @@ export function TailorProfile({ tailor, preview = false }: TailorProfileProps) {
                 : tailor.owner_name}
             </p>
           </div>
+          {tailor.about && (
+            <p className="text-body whitespace-pre-line text-ink-soft">
+              {tailor.about}
+            </p>
+          )}
           {preview && (
             <p className="flex gap-3 rounded-card bg-warning-50 p-4 text-body text-warning-ink">
               <Eye className="mt-1 size-4 shrink-0" />

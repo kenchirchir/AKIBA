@@ -37,15 +37,23 @@ export function photoFolder(tailorId: string) {
   return `akiba/garments/${tailorId}`;
 }
 
+export function profilePhotoFolder(tailorId: string) {
+  return `akiba/tailors/${tailorId}`;
+}
+
 export function ownsPhoto(tailorId: string, publicId: string) {
   return publicId.startsWith(`${photoFolder(tailorId)}/`);
 }
 
-export function signedPhotoUpload(tailorId: string) {
+export function ownsProfilePhoto(tailorId: string, publicId: string) {
+  return publicId.startsWith(`${profilePhotoFolder(tailorId)}/`);
+}
+
+export function signedPhotoUpload(folder: string) {
   const { cloudName, apiKey, apiSecret } = cloudinaryConfig();
   const params = {
     allowed_formats: allowedFormats,
-    public_id: `${photoFolder(tailorId)}/${randomUUID()}`,
+    public_id: `${folder}/${randomUUID()}`,
     timestamp: timestamp(),
     transformation: incomingLimit,
   };

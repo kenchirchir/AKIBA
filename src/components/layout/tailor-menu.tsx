@@ -20,7 +20,11 @@ export function TailorMenu({ tailor }: { tailor: CurrentTailor }) {
         <Link href="/shop">
           <Logo />
         </Link>
-        <Avatar name={tailor.shop_name} size="sm" />
+        <Avatar
+          name={tailor.shop_name}
+          publicId={tailor.avatar_public_id}
+          size="sm"
+        />
       </div>
       <p className={`mt-6 uppercase ${noteClasses}`}>
         {t("signedInAs", { shop: tailor.shop_name })}

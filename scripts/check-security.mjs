@@ -557,6 +557,33 @@ function tailorChecks({ admin, a, b, shopB, garmentB }) {
           await a.client.from("tailor_verifications").select("tailor_id"),
         ),
     ],
+    [
+      "Tailors can turn their own SMS alerts off",
+      async () => {
+        const { data, error } = await a.client
+          .from("tailors")
+          .update({ sms_alerts: false })
+          .eq("id", own.shop.id)
+          .select("sms_alerts");
+        return !error && data.length === 1 && data[0].sms_alerts === false;
+      },
+    ],
+    [
+      "Deleting an account removes the shop, its garments and its requests",
+      async () => {
+        const { error } = await admin.auth.admin.deleteUser(b.userId);
+        if (error) return false;
+
+        const [shops, garments, requests] = await Promise.all([
+          admin.from("tailors").select("id").eq("id", shopB),
+          admin.from("garments").select("id").eq("tailor_id", shopB),
+          admin.from("requests").select("id").eq("tailor_id", shopB),
+        ]);
+        return [shops, garments, requests].every(
+          ({ data, error: readError }) => !readError && data.length === 0,
+        );
+      },
+    ],
   ];
 }
 

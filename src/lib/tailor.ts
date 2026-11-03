@@ -12,7 +12,9 @@ export const getCurrentTailor = cache(async () => {
 
   const { data: tailor } = await supabase
     .from("tailors")
-    .select("id, owner_name, shop_name, district, sector, status")
+    .select(
+      "id, owner_name, shop_name, district, sector, status, avatar_public_id",
+    )
     .eq("profile_id", userId)
     .maybeSingle();
 

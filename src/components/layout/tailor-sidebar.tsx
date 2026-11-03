@@ -20,7 +20,11 @@ export function TailorSidebar({ tailor }: { tailor: CurrentTailor }) {
         <Logo variant="bold" />
       </Link>
       <div className="mt-6 flex items-center gap-2.5 rounded-[14px] bg-haze p-2.5">
-        <Avatar name={tailor.shop_name} size="md" />
+        <Avatar
+          name={tailor.shop_name}
+          publicId={tailor.avatar_public_id}
+          size="md"
+        />
         <div className="min-w-0">
           <p className="truncate text-sm font-bold">{tailor.shop_name}</p>
           <p className="truncate text-caption text-secondary">

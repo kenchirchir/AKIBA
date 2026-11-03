@@ -28,7 +28,7 @@ const cardFields =
   "id, shop_name, district, sector, tailoring_types, tailoring_since, avatar_public_id, pieces:garments(count), covers:garments(garment_photos(public_id))";
 
 const profileFields =
-  "id, owner_name, shop_name, district, sector, shop_address, tailoring_types, tailoring_since, avatar_public_id, cover_public_id, status, garments(id, name, garment_photos(public_id))";
+  "id, owner_name, shop_name, district, sector, shop_address, tailoring_types, tailoring_since, about, avatar_public_id, cover_public_id, status, garments(id, name, garment_photos(public_id))";
 
 function cardQuery(supabase: Supabase) {
   return supabase

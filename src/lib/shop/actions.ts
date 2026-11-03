@@ -4,7 +4,12 @@ import { revalidatePath } from "next/cache";
 import { redirect, RedirectType } from "next/navigation";
 import { after } from "next/server";
 import { z } from "zod";
-import { destroyPhotos, ownsPhoto, signedPhotoUpload } from "@/lib/cloudinary";
+import {
+  destroyPhotos,
+  ownsPhoto,
+  photoFolder,
+  signedPhotoUpload,
+} from "@/lib/cloudinary";
 import { maxPhotos, type Photo } from "@/lib/photos";
 import { createServerSupabase } from "@/lib/supabase/server";
 import { getCurrentTailor } from "@/lib/tailor";
@@ -58,7 +63,9 @@ export async function signPhotoUploads(count: number) {
     Math.max(Math.trunc(Number(count)) || 1, 1),
     maxPhotos,
   );
-  return Array.from({ length: total }, () => signedPhotoUpload(tailor.id));
+  return Array.from({ length: total }, () =>
+    signedPhotoUpload(photoFolder(tailor.id)),
+  );
 }
 
 export async function discardPhoto(publicId: string) {
