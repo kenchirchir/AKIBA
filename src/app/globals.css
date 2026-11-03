@@ -43,6 +43,21 @@
 
   --shadow-sheet: 0 -8px 32px rgb(11 27 63 / 0.12);
   --shadow-knob: 0 1px 3px rgb(11 27 63 / 0.25);
+  --shadow-dropdown:
+    0 12px 32px rgb(11 27 63 / 0.12), 0 2px 6px rgb(11 27 63 / 0.06);
+
+  --animate-dropdown: dropdown-in 0.15s ease-out;
+
+  @keyframes dropdown-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   --text-display: 28px;
   --text-display--line-height: 1.2;

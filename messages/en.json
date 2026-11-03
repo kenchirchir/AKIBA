@@ -18,7 +18,25 @@
     "discover": "Discover",
     "tailors": "Tailors",
     "saved": "Saved",
-    "tailorLogin": "Tailor login"
+    "tailorLogin": "Tailor login",
+    "browse": "Browse",
+    "moreGarments": "More garments",
+    "browseByArea": "Browse by area:",
+    "offersTitle": "Tailor offers",
+    "offersBody": "The newest garments from verified tailors",
+    "womenTitle": "Made for women",
+    "womenBody": "Dresses, blouses, kitenge and more",
+    "menTitle": "Made for men",
+    "menBody": "Shirts, suits, trousers and more",
+    "showcase": "A showcase, not a shop.",
+    "howItWorks": "How AKIBA works",
+    "allTailorsTitle": "All tailors",
+    "allTailorsBody": "Every tailor is verified by a tailor association",
+    "masterTitle": "Master tailors",
+    "masterBody": "Ten years of experience or more",
+    "nearTitle": "Tailors near you",
+    "areYouTailor": "Are you a tailor?",
+    "joinAkiba": "Join AKIBA"
   },
   "Placeholder": {
     "comingIn": "Built in Milestone {milestone}"
@@ -26,8 +44,7 @@
   "Menu": {
     "label": "Menu",
     "open": "Open menu",
-    "close": "Close menu",
-    "browse": "Browse"
+    "close": "Close menu"
   },
   "BuyerMenu": {
     "searchLabel": "Search garments or tailors",

@@ -200,6 +200,17 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Full terms and privacy page** at `/terms`, in plain English: what AKIBA is, buyers, tailors, requests and phone numbers, the research and participant codes, the cookies used, where data is kept, people's rights, and the contact (Kenneth Chirchir, kenchirchir2004@gmail.com, +250 794 096 359). It should be read with the supervisor against the ethics approval before the pilot.
 - **`docs/OPERATIONS.md`** is the researcher's guide: logins, what to set up before the pilot, verifying tailors and reviewing garments, checks to run, handling withdrawals, and deleting the data when the study ends.
 
+## 2026-11-04: Laptop navigation tabs
+
+- **The laptop header now uses tabs with dropdowns, modelled on Dribbble** (Kenneth's request and screen recording). The "Browse" button used to open the full-height side menu, which covered the page. The header row is now: logo, **Browse**, **Discover**, **Tailors**, **Saved**, search, Tailor login.
+- **Each tab opens a small card under it**: on hover with a mouse, and on click or tap and with the keyboard. Escape, clicking elsewhere or choosing a link closes it. The open tab's text turns grey and its arrow flips, as on Dribbble.
+  - **Browse:** garment categories in three columns (Tops, Bottoms, More garments), with a "Browse by area" strip for the three districts.
+  - **Discover:** Tailor offers, Made for women and Made for men, each with a one-line description, and a "How AKIBA works" link.
+  - **Tailors:** All tailors, Master tailors, and tailors near you by district, with an "Are you a tailor? Join AKIBA" link.
+  - **Saved:** a plain tab showing how many items are saved on the phone.
+- **The tabs sit right after the logo**, unlike Dribbble's order, so every card can open left-aligned under its tab without running off a 1024-pixel screen.
+- **Phones and tablets keep the rail and the full-screen menu** from the 2 November journey map.
+
 ## Open questions
 
 - SMS budget, the approved sender name, and whether to add the two-way "Reply 1 or 2" follow-up.

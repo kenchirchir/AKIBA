@@ -4,10 +4,8 @@ import { Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { buttonClasses } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
-import { BuyerMenu } from "./buyer-menu";
 import { Container } from "./container";
-import { MenuDrawer } from "./menu-drawer";
-import { SiteNav } from "./site-nav";
+import { SiteTabs } from "./site-tabs";
 
 export function SiteHeader() {
   const t = useTranslations("Nav");
@@ -23,9 +21,7 @@ export function SiteHeader() {
         >
           <Logo variant="bold" />
         </Link>
-        <MenuDrawer trigger="browse">
-          <BuyerMenu />
-        </MenuDrawer>
+        <SiteTabs />
         <Form
           action="/garments"
           role="search"
@@ -44,7 +40,6 @@ export function SiteHeader() {
           />
         </Form>
         <div className="ml-auto flex shrink-0 items-center gap-2">
-          <SiteNav />
           <Link
             href="/login"
             className={buttonClasses({ variant: "outline", size: "md" })}

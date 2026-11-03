@@ -45,7 +45,9 @@ test("the tailors list shows verified tailors only", async ({ page }) => {
 
   await page.getByText(shopName).click();
   await expect(page.getByRole("heading", { name: shopName })).toBeVisible();
-  await expect(page.getByText("Verified tailor")).toBeVisible();
+  await expect(
+    page.getByText("Verified tailor", { exact: true }),
+  ).toBeVisible();
 });
 
 test("a shop waiting for verification has no public page", async ({

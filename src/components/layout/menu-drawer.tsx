@@ -1,16 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { LayoutGrid, Plus, X } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { buttonClasses } from "@/components/ui/button";
 
-type MenuDrawerProps = {
-  trigger?: "rail" | "browse";
-  children: ReactNode;
-};
-
-export function MenuDrawer({ trigger = "rail", children }: MenuDrawerProps) {
+export function MenuDrawer({ children }: { children: ReactNode }) {
   const t = useTranslations("Menu");
   const ref = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
@@ -24,27 +18,15 @@ export function MenuDrawer({ trigger = "rail", children }: MenuDrawerProps) {
 
   return (
     <>
-      {trigger === "rail" ? (
-        <button
-          type="button"
-          aria-label={t("open")}
-          aria-haspopup="dialog"
-          onClick={() => setOpen(true)}
-          className="flex size-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-ink/10 focus-visible:outline-2 focus-visible:outline-ink"
-        >
-          <Plus strokeWidth={1.25} className="size-8" />
-        </button>
-      ) : (
-        <button
-          type="button"
-          aria-haspopup="dialog"
-          onClick={() => setOpen(true)}
-          className={buttonClasses({ variant: "secondary" })}
-        >
-          <LayoutGrid />
-          {t("browse")}
-        </button>
-      )}
+      <button
+        type="button"
+        aria-label={t("open")}
+        aria-haspopup="dialog"
+        onClick={() => setOpen(true)}
+        className="flex size-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-ink/10 focus-visible:outline-2 focus-visible:outline-ink"
+      >
+        <Plus strokeWidth={1.25} className="size-8" />
+      </button>
       <dialog
         ref={ref}
         aria-label={t("label")}
