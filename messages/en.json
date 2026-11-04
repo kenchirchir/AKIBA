@@ -29,6 +29,21 @@
     "menTitle": "Made for men",
     "menBody": "Shirts, suits, trousers and more"
   },
+  "Footer": {
+    "tagline": "Garments made by verified tailors in Kigali. Read the story behind each piece and meet the maker.",
+    "discover": "Discover",
+    "garments": "Tailor offers",
+    "tailors": "Tailors",
+    "saved": "Saved",
+    "forTailors": "For tailors",
+    "join": "Join AKIBA",
+    "login": "Log in",
+    "help": "Help",
+    "terms": "Terms & privacy",
+    "email": "kenchirchir2004@gmail.com",
+    "phone": "+250 794 096 359",
+    "copyright": "© {year} AKIBA · Kigali, Rwanda"
+  },
   "Placeholder": {
     "comingIn": "Built in Milestone {milestone}"
   },

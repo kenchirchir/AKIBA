@@ -226,6 +226,11 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **0780000002 is a Supabase test number** (fixed code 123456 until 31 January 2027). No real SMS reaches it, so after that date a forgotten admin PIN could not be reset. Before then, either extend the test number in Supabase or move the admin to a real phone with the same script.
 - **The security check's admin is now a phone account too**, so email sign-in can be switched off in Supabase.
 
+## 2026-11-04: Footer
+
+- **Every public page ends with a simple footer** (Kenneth's request): the logo and a one-line description, then three short columns. Discover links to Tailor offers, Tailors and Saved. For tailors links to Join AKIBA and Log in. Help links to Terms & privacy and gives the contact email and phone from the terms page. A last line shows the year and "Kigali, Rwanda".
+- **It uses only pages and details that already exist.** The tailor shop, admin and login pages keep their own layouts without it.
+
 ## Open questions
 
 - SMS budget, the approved sender name, and whether to add the two-way "Reply 1 or 2" follow-up.
