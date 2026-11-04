@@ -22,19 +22,19 @@ export default async function WelcomePage() {
 
   return (
     <main className="flex-1">
-      <section className="bg-brand md:grid md:min-h-dvh md:grid-cols-2 md:bg-white lg:min-h-[calc(100dvh-5rem)]">
-        <div className="relative aspect-[342/396] md:aspect-auto md:bg-brand">
+      <section className="bg-brand md:bg-white lg:grid lg:min-h-[calc(100dvh-5rem)] lg:grid-cols-2">
+        <div className="relative aspect-[3/2] lg:aspect-auto">
           <Image
             src={heroImage}
             alt={t("imageAlt")}
             fill
             priority
             placeholder="blur"
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-cover"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-[56%_50%]"
           />
         </div>
-        <div className="relative -mt-6 px-5 pb-12 md:mt-0 md:flex md:flex-col md:justify-center md:px-10 md:py-16 xl:px-20">
+        <div className="relative px-5 pt-6 pb-12 md:flex md:flex-col md:justify-center md:px-10 md:py-16 xl:px-20">
           <div className="md:max-w-xl">
             <div className="mb-6 hidden md:block">
               <Badge>{t("pill")}</Badge>
