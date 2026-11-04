@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { getOverview } from "@/lib/admin/data";
@@ -10,13 +9,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AdminOverviewPage() {
-  const [overview, t, headerList] = await Promise.all([
+  const [overview, t] = await Promise.all([
     getOverview(),
     getTranslations("Admin.overview"),
-    headers(),
   ]);
-  const host = headerList.get("host") ?? "akiba-seven.vercel.app";
-  const protocol = host.startsWith("localhost") ? "http" : "https";
   const cards = [
     {
       href: "/admin/tailors?status=pending",
@@ -59,14 +55,6 @@ export default async function AdminOverviewPage() {
           </li>
         ))}
       </ul>
-      <section className="flex flex-col gap-2 rounded-card border border-line-soft bg-white p-5 lg:max-w-3xl">
-        <h2 className="text-section">{t("participantsTitle")}</h2>
-        <p className="text-body text-secondary">{t("participantsBody")}</p>
-        <code className="w-fit rounded-md bg-surface px-3 py-2 text-sm break-all text-ink">
-          {`${protocol}://${host}/?p=B01`}
-        </code>
-        <p className="text-caption text-secondary">{t("participantsNote")}</p>
-      </section>
     </div>
   );
 }

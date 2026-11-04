@@ -764,10 +764,7 @@
       "pendingTailors": "Tailors waiting for verification",
       "pendingGarments": "Garments waiting for review",
       "verifiedTailors": "Verified tailors",
-      "suspendedTailors": "Suspended tailors",
-      "participantsTitle": "Personal links for study participants",
-      "participantsBody": "Give each buyer in the study a link with their participant code at the end. Their views, reading time, saves and requests are then counted under that code, without their name.",
-      "participantsNote": "Codes can use letters, numbers and dashes (2 to 20). The code stays on the buyer's phone for a year."
+      "suspendedTailors": "Suspended tailors"
     },
     "tailors": {
       "title": "Tailors",
@@ -877,7 +874,7 @@
         "garment": "Garment"
       },
       "participantsTitle": "By participant",
-      "noParticipants": "No participant codes yet. Share personal links from the Overview page.",
+      "noParticipants": "No participant codes yet.",
       "garmentsTitle": "By garment",
       "sample": "Sample",
       "privacy": "Requests after reading count requests sent by a visitor who had opened that garment's story first. The median time runs from their first story view to the request."
