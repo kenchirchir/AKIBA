@@ -77,6 +77,17 @@ async function ensureTailor(supabase: Supabase, user: User) {
   return !error;
 }
 
+async function homePath(supabase: Supabase, user: User) {
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  if (profile?.role === "admin") return "/admin";
+  return (await ensureTailor(supabase, user)) ? "/shop" : null;
+}
+
 async function finishSignUp(
   supabase: Supabase,
   user: User,
@@ -229,7 +240,8 @@ export async function logIn(
 
   await clearWrongPins(phone);
 
-  if (!(await ensureTailor(supabase, data.user))) {
+  const home = await homePath(supabase, data.user);
+  if (!home) {
     await supabase.auth.signOut({ scope: "local" });
     return { errors: { form: "setupFailed" } };
   }
@@ -242,7 +254,7 @@ export async function logIn(
     maxAge: remember ? 60 * 60 * 24 * 365 : undefined,
   });
   await pendingSignUp.clear();
-  redirect("/shop");
+  redirect(home);
 }
 
 export async function requestPinReset(
@@ -311,9 +323,9 @@ export async function resetPin(
   }
 
   await clearWrongPins(pending.phone);
-  await ensureTailor(supabase, data.user);
+  const home = await homePath(supabase, data.user);
   await pendingReset.clear();
-  redirect("/shop");
+  redirect(home ?? "/shop");
 }
 
 export async function logOut() {

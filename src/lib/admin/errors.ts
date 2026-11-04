@@ -1,8 +1,4 @@
 export const adminErrorKeys = [
-  "emailInvalid",
-  "passwordRequired",
-  "wrongLogin",
-  "notAdmin",
   "associationRequired",
   "officialRequired",
   "visitInvalid",

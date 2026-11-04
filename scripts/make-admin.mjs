@@ -2,7 +2,17 @@ import { createClient } from "@supabase/supabase-js";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const secretKey = process.env.SUPABASE_SECRET_KEY;
-const email = process.argv[2]?.trim().toLowerCase();
+
+function rwandaPhone(input) {
+  const digits = (input ?? "").replace(/\D/g, "");
+  const national = digits.startsWith("250")
+    ? digits.slice(3)
+    : digits.startsWith("0")
+      ? digits.slice(1)
+      : digits;
+
+  return /^7[2389]\d{7}$/.test(national) ? `+250${national}` : null;
+}
 
 if (!url || !secretKey) {
   console.error(
@@ -11,8 +21,9 @@ if (!url || !secretKey) {
   process.exit(1);
 }
 
-if (!email || !email.includes("@")) {
-  console.error("Usage: npm run make-admin -- you@example.com");
+const phone = rwandaPhone(process.argv[2]);
+if (!phone) {
+  console.error("Usage: npm run make-admin -- 0780000002");
   process.exit(1);
 }
 
@@ -26,10 +37,28 @@ if (error) {
   process.exit(1);
 }
 
-const user = data.users.find((item) => item.email?.toLowerCase() === email);
+let user = data.users.find((item) => item.phone === phone.slice(1));
+
 if (!user) {
+  const { data: created, error: createError } =
+    await admin.auth.admin.createUser({ phone, phone_confirm: true });
+  if (createError) {
+    console.error(`Could not create ${phone}: ${createError.message}`);
+    process.exit(1);
+  }
+  user = created.user;
+  console.log(`Created an account for ${phone}.`);
+}
+
+const { data: shop } = await admin
+  .from("tailors")
+  .select("shop_name")
+  .eq("profile_id", user.id)
+  .maybeSingle();
+
+if (shop) {
   console.error(
-    `No account with ${email}. Create it first in Supabase: Authentication, Users, Add user, with "Auto Confirm User" ticked.`,
+    `${phone} already has the tailor shop "${shop.shop_name}". Use a number without a shop for the admin.`,
   );
   process.exit(1);
 }
@@ -39,8 +68,25 @@ const { error: updateError } = await admin
   .upsert({ id: user.id, role: "admin" });
 
 if (updateError) {
-  console.error(`Could not make ${email} an admin: ${updateError.message}`);
+  console.error(`Could not make ${phone} the admin: ${updateError.message}`);
   process.exit(1);
 }
 
-console.log(`${email} is now the AKIBA admin. Log in at /admin/login.`);
+const { data: others } = await admin
+  .from("profiles")
+  .update({ role: "tailor" })
+  .eq("role", "admin")
+  .neq("id", user.id)
+  .select("id");
+
+for (const other of others ?? []) {
+  const old = data.users.find((item) => item.id === other.id);
+  console.log(
+    `${old?.email || old?.phone || other.id} is no longer the admin. You can delete it in Supabase: Authentication, Users.`,
+  );
+}
+
+console.log(`${phone} is now the AKIBA admin.`);
+console.log(
+  `Set the admin PIN: open /login, tap "Forgot PIN?", enter 0${phone.slice(4)}, type the SMS code and choose a PIN.`,
+);

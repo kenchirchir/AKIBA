@@ -35,7 +35,6 @@ test("public pages have no accessibility problems", async ({ page }) => {
     "/login",
     "/join",
     "/login/reset",
-    "/admin/login",
   ];
   await expectNoViolations(page, paths);
 });

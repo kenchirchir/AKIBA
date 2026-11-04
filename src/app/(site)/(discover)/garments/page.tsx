@@ -102,9 +102,6 @@ export default async function GarmentsPage({
         <div className="lg:grid lg:grid-cols-[232px_1fr] lg:items-start lg:gap-10 xl:grid-cols-[260px_1fr]">
           <FeedFilters className="hidden lg:sticky lg:top-28 lg:flex lg:pb-12" />
           <div>
-            <p className="hidden pb-5 text-right text-caption text-secondary lg:block">
-              {t("guidePrices")}
-            </p>
             <GarmentGrid
               garments={garments}
               more={

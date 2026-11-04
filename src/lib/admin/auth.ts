@@ -17,11 +17,11 @@ export const getCurrentAdmin = cache(async () => {
 
   if (profile?.role !== "admin") return null;
 
-  return { id: profile.id, email: data.claims.email ?? "", supabase };
+  return { id: profile.id, supabase };
 });
 
 export async function requireAdmin() {
   const admin = await getCurrentAdmin();
-  if (!admin) redirect("/admin/login");
+  if (!admin) redirect("/login");
   return admin;
 }

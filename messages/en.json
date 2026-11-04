@@ -126,7 +126,7 @@
     "title": "Tailor offers",
     "allGarments": "All garments",
     "resultsFor": "Results for “{query}”",
-    "showcase": "AKIBA is a showcase, not a shop: request a garment, agree a fitting, and pay the tailor directly.",
+    "showcase": "Request a garment, agree a fitting, and pay the tailor directly.",
     "price": "{price, number} RF",
     "empty": "No garments match yet. Try another category or area.",
     "detailsLabel": "Show price and tailor",
@@ -135,7 +135,6 @@
     "showMore": "Show more garments",
     "seeAll": "See all garments",
     "showAll": "Show all garments",
-    "guidePrices": "Guide prices · final price agreed with the tailor",
     "filters": "Filters",
     "updating": "Updating…",
     "tailoringType": "Type of tailoring",
@@ -759,14 +758,6 @@
       "report": "Research report",
       "logout": "Log out"
     },
-    "login": {
-      "title": "Admin login",
-      "intro": "For the AKIBA researcher only. Tailors log in with their phone number on the tailor login page.",
-      "email": "Email",
-      "password": "Password",
-      "submit": "Log in",
-      "submitting": "Logging in…"
-    },
     "overview": {
       "title": "Overview",
       "intro": "Verify tailors, review garments and follow the research data.",
@@ -892,10 +883,6 @@
       "privacy": "Requests after reading count requests sent by a visitor who had opened that garment's story first. The median time runs from their first story view to the request."
     },
     "errors": {
-      "emailInvalid": "Enter a valid email address.",
-      "passwordRequired": "Enter your password.",
-      "wrongLogin": "That email and password don’t match.",
-      "notAdmin": "This account is not the AKIBA admin.",
       "associationRequired": "Enter the tailor association.",
       "officialRequired": "Enter the name of the official who vouched.",
       "visitInvalid": "Choose the visit date, today or earlier.",

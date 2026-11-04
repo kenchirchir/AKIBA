@@ -4,12 +4,10 @@ import { revalidatePath } from "next/cache";
 import { redirect, RedirectType } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { z } from "zod";
-import { createServerSupabase } from "@/lib/supabase/server";
 import { requireAdmin } from "./auth";
 import type { AdminFormState } from "./errors";
 import {
   adminFieldErrors,
-  adminLoginSchema,
   rejectionSchema,
   verificationSchema,
 } from "./validation";
@@ -34,35 +32,6 @@ async function revalidateTailor(tailorId: string) {
   for (const garment of garments ?? []) {
     revalidatePath(`/garments/${garment.id}`);
   }
-}
-
-export async function adminLogIn(
-  _state: AdminFormState,
-  formData: FormData,
-): Promise<AdminFormState> {
-  const parsed = adminLoginSchema.safeParse({
-    email: text(formData, "email").trim(),
-    password: text(formData, "password"),
-  });
-
-  if (!parsed.success) return { errors: adminFieldErrors(parsed.error) };
-
-  const supabase = await createServerSupabase({ remember: false });
-  const { data, error } = await supabase.auth.signInWithPassword(parsed.data);
-  if (error || !data.user) return { errors: { form: "wrongLogin" } };
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", data.user.id)
-    .maybeSingle();
-
-  if (profile?.role !== "admin") {
-    await supabase.auth.signOut({ scope: "local" });
-    return { errors: { form: "notAdmin" } };
-  }
-
-  redirect("/admin");
 }
 
 export async function verifyTailor(

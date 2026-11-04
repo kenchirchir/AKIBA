@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 
 export const verifiedPhone = "+250780000903";
 export const pendingPhone = "+250780000904";
+export const adminPhone = "+250780000906";
 export const shopName = "E2E Test Couture";
 export const pendingShopName = "E2E Pending Shop";
 export const garmentName = "E2E kitenge wrap dress";
@@ -31,7 +32,9 @@ export function pinPassword(phone: string, pin: string) {
 export async function removeTestData() {
   const admin = adminClient();
   const { data } = await admin.auth.admin.listUsers({ perPage: 1000 });
-  const phones = [verifiedPhone, pendingPhone].map((phone) => phone.slice(1));
+  const phones = [verifiedPhone, pendingPhone, adminPhone].map((phone) =>
+    phone.slice(1),
+  );
 
   for (const user of data?.users ?? []) {
     if (!user.phone || !phones.includes(user.phone)) continue;
@@ -50,5 +53,5 @@ export async function removeTestData() {
   await admin
     .from("pin_attempts")
     .delete()
-    .in("phone", [verifiedPhone, pendingPhone]);
+    .in("phone", [verifiedPhone, pendingPhone, adminPhone]);
 }

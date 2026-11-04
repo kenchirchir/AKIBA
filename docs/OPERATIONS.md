@@ -4,12 +4,12 @@ A practical guide for the researcher. The live site is <https://akiba-seven.verc
 
 ## Logins
 
-| Who                         | Where                    | How                                                                                                                                                                                      |
-| --------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Admin (the researcher)      | `/admin/login`           | Email and password. A new admin account is made in Supabase (Authentication, Users, Add user, "Auto Confirm User" ticked), then `npm run make-admin -- email`. Only one admin is planned |
-| Tailors                     | `/login`                 | Rwandan phone number and 5-digit PIN. Tailors sign up themselves at `/join`                                                                                                              |
-| Buyers                      | No login                 | Buyers use the site without an account                                                                                                                                                   |
-| Supabase test phone numbers | 0780000001 to 0780000003 | Fixed SMS code `123456`, set in Supabase until **31 January 2027**. 0780000001 is Kenneth's own tailor account                                                                           |
+| Who                         | Where                    | How                                                                                                                                                                                                 |
+| --------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Admin (the researcher)      | `/login`                 | The same page as tailors: phone number and 5-digit PIN, then straight to `/admin`. Made with `npm run make-admin -- 0780000002`; the first PIN is set with "Forgot PIN?". Only one admin is planned |
+| Tailors                     | `/login`                 | Rwandan phone number and 5-digit PIN. Tailors sign up themselves at `/join`                                                                                                                         |
+| Buyers                      | No login                 | Buyers use the site without an account                                                                                                                                                              |
+| Supabase test phone numbers | 0780000001 to 0780000003 | Fixed SMS code `123456`, set in Supabase until **31 January 2027**. 0780000001 is Kenneth's own tailor account and 0780000002 is the admin                                                          |
 
 ## Before the pilot starts
 

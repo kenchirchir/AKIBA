@@ -156,7 +156,7 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 
 ## 2026-11-03: Admin, verification and research data
 
-- **One admin, the researcher (D5).** The admin logs in with email and password at `/admin/login`. The account is made by Kenneth in the Supabase dashboard (Authentication, Users, Add user, "Auto Confirm User" ticked), then turned into the admin with `npm run make-admin -- email` (decided with Kenneth), so no password ever passes through the code or the chat. Signed-out visitors are sent from any `/admin` page to the admin login.
+- **One admin, the researcher (D5).** The admin first logged in with email and password at `/admin/login`. Since 4 November the admin uses the same phone and PIN login as tailors (see below).
 - **The admin uses their own session, never the secret key.** Admin pages read the database as the signed-in admin, so the security rules still apply: the admin can see every shop, garment and verification record, but **cannot read buyer requests** (ethical consideration 8). Changes the admin may make go through database functions that first check the caller is the admin: verify a tailor, suspend a shop or move it back to waiting, approve or reject a garment. These live in the migration `20261103120000_admin_and_research.sql`.
 - **Verification (FR9).** The tailor page records the tailor association, the official who vouched, the workshop visit date, notes and the tailor's consent. A tailor cannot be verified without consent; the database refuses it too. Verifying makes the shop and its approved garments public straight away; suspending hides them straight away.
 - **Garment review.** The queue shows each garment waiting for review with its photos, details, story and description, oldest first. "Approve" publishes it. "Not approved" asks for a reason, picked from a short list or typed (decided with Kenneth), plus an optional note. The tailor sees it on the garment's edit page. A warning shows when the shop itself is not verified yet.
@@ -203,7 +203,8 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 ## 2026-11-04: Laptop navigation tabs
 
 - **The laptop header now uses tabs, modelled on Dribbble** (Kenneth's request and screen recording). The "Browse" button used to open the full-height side menu, which covered the page.
-- **The header fills the screen width**: the logo at the far left with a small margin, then the search bar, then the tabs **Browse**, **Discover**, **Tailors** and **Saved**, evenly spaced, then Tailor login.
+- **The header fills the screen width**: the logo at the far left with a small margin, the search bar in the middle of the screen, then the tabs **Browse**, **Discover**, **Tailors** and **Saved**, evenly spaced, and Tailor login on the right. On narrower laptops the tabs need the room, so the search moves a little left of centre instead of shrinking.
+- **The Tailor offers heading matches the phone**: a centred, spaced-out title with the area under it and the one-line explanation below. The blue box behind it was removed because it did not blend with the rest of the page.
 - **Only Browse and Discover open a card under them**: on hover with a mouse, and on click or tap and with the keyboard. Escape, clicking elsewhere or choosing a link closes it. The open tab's text turns grey and its arrow flips, as on Dribbble.
   - **Browse:** garment categories in three columns (Tops, Bottoms, More garments), with a "Browse by area" strip for the three districts.
   - **Discover:** Tailor offers, Made for women and Made for men, each with a one-line description.
@@ -217,6 +218,13 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Search sits under the bar with a filter button beside it.** The district and sector choices, which were in the old menu, open in place under the search. The Tailors page does the same with its own search and its four filters.
 - **Nothing was added or removed.** Every link and choice from the old menu is still there, only moved. Laptops keep the 4 November tab bar.
 - **A sharper Welcome photo.** Kenneth supplied the original 2000 × 1331 photo, replacing a 684-pixel copy that looked pixelated on large screens. It is shown as it is, without the blue fade the old copy had baked in. Phones and tablets show the whole photo above the text. Laptops show it on the left half, cropped slightly right of centre so both tailors' faces stay in view.
+
+## 2026-11-04: One phone login for everyone
+
+- **Everyone logs in at `/login` with a phone number and PIN** (Kenneth's request). The admin's email and password login is gone. After logging in, the admin goes to `/admin` and tailors to `/shop`. `/admin/login` now opens `/login`, and signed-out visitors on any `/admin` or `/shop` page are sent there.
+- **The admin account is made with `npm run make-admin -- 0780000002`.** The script creates the phone account if needed and gives it the admin role. It refuses a number that already has a tailor shop. Only one admin is planned, so any other admin loses the role and the script says which. The admin sets the first PIN through "Forgot PIN?", so no PIN passes through the code or the chat.
+- **0780000002 is a Supabase test number** (fixed code 123456 until 31 January 2027). No real SMS reaches it, so after that date a forgotten admin PIN could not be reset. Before then, either extend the test number in Supabase or move the admin to a real phone with the same script.
+- **The security check's admin is now a phone account too**, so email sign-in can be switched off in Supabase.
 
 ## Open questions
 

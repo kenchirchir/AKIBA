@@ -1,5 +1,6 @@
 import {
   adminClient,
+  adminPhone,
   buyerName,
   garmentName,
   pendingPhone,
@@ -42,6 +43,24 @@ async function createShop(phone: string, name: string, status: string) {
   return { id: shop.id, pin };
 }
 
+async function createAdmin() {
+  const admin = adminClient();
+  const pin = testPin();
+  const { data, error } = await admin.auth.admin.createUser({
+    phone: adminPhone,
+    password: pinPassword(adminPhone, pin),
+    phone_confirm: true,
+  });
+  if (error) throw error;
+
+  const { error: roleError } = await admin
+    .from("profiles")
+    .upsert({ id: data.user.id, role: "admin" });
+  if (roleError) throw roleError;
+
+  return pin;
+}
+
 export default async function globalSetup() {
   await removeTestData();
 
@@ -82,4 +101,5 @@ export default async function globalSetup() {
   process.env.E2E_TAILOR_PIN = verified.pin;
   process.env.E2E_PENDING_TAILOR_ID = pending.id;
   process.env.E2E_GARMENT_ID = garment.id;
+  process.env.E2E_ADMIN_PIN = await createAdmin();
 }

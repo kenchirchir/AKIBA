@@ -26,7 +26,7 @@ const sampleGarment = {
   price_rwf: 1000,
 };
 const testPhones = ["+250780000901", "+250780000902"];
-const testAdminEmail = "security-check-admin@example.com";
+const testAdminPhone = "+250780000905";
 const testCode = "security-check";
 
 const blocked = ({ data, error }) => Boolean(error) || data.length === 0;
@@ -184,7 +184,7 @@ async function removeTestUsers(admin) {
 
   const phones = testPhones.map((phone) => phone.slice(1));
   for (const user of data.users) {
-    if (phones.includes(user.phone) || user.email === testAdminEmail) {
+    if (phones.includes(user.phone) || user.phone === testAdminPhone.slice(1)) {
       await admin.auth.admin.deleteUser(user.id);
     }
   }
@@ -210,26 +210,13 @@ async function signedInUser(admin, phone) {
 }
 
 async function signedInAdmin(admin) {
-  const password = randomUUID();
-  const { data, error } = await admin.auth.admin.createUser({
-    email: testAdminEmail,
-    password,
-    email_confirm: true,
-  });
-  if (error) throw error;
+  const { client, userId } = await signedInUser(admin, testAdminPhone);
 
   const { error: roleError } = await admin
     .from("profiles")
     .update({ role: "admin" })
-    .eq("id", data.user.id);
+    .eq("id", userId);
   if (roleError) throw roleError;
-
-  const client = createClient(url, key, options);
-  const { error: signInError } = await client.auth.signInWithPassword({
-    email: testAdminEmail,
-    password,
-  });
-  if (signInError) throw signInError;
 
   return client;
 }

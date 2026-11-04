@@ -4,11 +4,6 @@ import { kigaliDate } from "@/lib/requests/options";
 import { isAdminErrorKey, type AdminErrorKey } from "./errors";
 import { rejectReasons } from "./options";
 
-export const adminLoginSchema = z.object({
-  email: z.email({ error: "emailInvalid" }),
-  password: z.string().min(1, { error: "passwordRequired" }),
-});
-
 export const verificationSchema = z.object({
   tailorId: z.uuid({ error: "generic" }),
   association: z

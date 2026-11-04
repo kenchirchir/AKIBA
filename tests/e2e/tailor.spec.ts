@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { clickAndWaitForSave, logInAsTailor } from "./helpers";
-import { buyerName } from "./test-data";
+import { adminPhone, buyerName } from "./test-data";
 
 test("signed-out visitors are sent to the right login page", async ({
   page,
@@ -9,7 +9,23 @@ test("signed-out visitors are sent to the right login page", async ({
   await expect(page).toHaveURL(/\/login$/);
 
   await page.goto("/admin/report");
-  await expect(page).toHaveURL(/\/admin\/login$/);
+  await expect(page).toHaveURL(/\/login$/);
+
+  await page.goto("/admin/login");
+  await expect(page).toHaveURL(/\/login$/);
+});
+
+test("the admin logs in on the same page with a phone number", async ({
+  page,
+}) => {
+  await page.goto("/login");
+  await page.getByLabel("Phone number").fill(adminPhone.slice(4));
+  await page.locator("input[name=pin]").fill(process.env.E2E_ADMIN_PIN!);
+  await page.getByRole("button", { name: "Log in" }).click();
+  await expect(page).toHaveURL(/\/admin$/, { timeout: 15_000 });
+
+  await page.goto("/login");
+  await expect(page).toHaveURL(/\/admin$/);
 });
 
 test("a wrong PIN is refused", async ({ page }) => {
