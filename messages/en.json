@@ -151,7 +151,7 @@
     "retry": "Try again"
   },
   "Welcome": {
-    "title": "Clothes made in Kigali, by tailors you can meet.",
+    "title": "<line>Wear the story.</line> <line>Meet the maker.</line>",
     "intro": "Discover garments from verified local tailors, read the story behind each piece, and request it.",
     "imageAlt": "Two tailors fitting a red dress with lace trim on a mannequin",
     "join": "I’m a tailor — join AKIBA",

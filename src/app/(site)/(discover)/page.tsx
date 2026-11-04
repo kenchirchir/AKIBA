@@ -41,7 +41,9 @@ export default async function WelcomePage() {
               <Badge>{t("pill")}</Badge>
             </div>
             <h1 className="text-display md:text-[40px] md:leading-[1.1] md:tracking-[-0.03em] xl:text-[56px]">
-              {t("title")}
+              {t.rich("title", {
+                line: (chunks) => <span className="block">{chunks}</span>,
+              })}
             </h1>
             <p className="mt-3 text-body text-ink-soft md:mt-6 md:text-lg md:text-secondary">
               {t("intro")}
