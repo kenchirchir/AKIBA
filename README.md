@@ -4,21 +4,7 @@
 
 Every garment on AKIBA comes with the Kigali tailor who made it and the story behind it. Browse, fall for a piece, and request it straight from the maker.
 
-|              |                                                                                                                     |
-| ------------ | ------------------------------------------------------------------------------------------------------------------- |
-| Live site    | [akiba-seven.vercel.app](https://akiba-seven.vercel.app)                                                            |
-| Figma design | [AKIBA Webapp design system](https://www.figma.com/design/cjQuqZfaA0Sbdi9uoWSoxX/AKIBA-Webapp?t=dxiKMRC5Uq64kzL3-0) |
-| Repository   | [github.com/kenchirchir/AKIBA](https://github.com/kenchirchir/AKIBA)                                                |
-
-## Contents
-
-- [Project overview](#project-overview)
-- [Technical documentation](#technical-documentation)
-- [Installation](#installation)
-- [Running the tests](#running-the-tests)
-- [Requirements traceability](#requirements-traceability)
-- [Deployment](#deployment)
-- [Project documents](#project-documents)
+Figma design: [AKIBA Webapp design system](https://www.figma.com/design/cjQuqZfaA0Sbdi9uoWSoxX/AKIBA-Webapp?t=dxiKMRC5Uq64kzL3-0)
 
 ## Project overview
 
