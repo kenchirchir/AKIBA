@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/layout/container";
-import { LogoBar } from "@/components/layout/logo-bar";
 import { TailorFilters } from "@/components/tailors/tailor-filters";
 import { TailorList } from "@/components/tailors/tailor-list";
 import { buttonClasses } from "@/components/ui/button";
@@ -48,7 +47,6 @@ export default async function TailorsPage({
 
   return (
     <main className="flex-1">
-      <LogoBar />
       <Container className="pt-4 pb-12 lg:pt-10 lg:pb-16">
         <p className="text-label font-normal text-secondary">{t("eyebrow")}</p>
         <h1 className="mt-1 text-title lg:text-[36px]">{t("title")}</h1>

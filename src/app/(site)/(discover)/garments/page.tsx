@@ -5,7 +5,6 @@ import { FeedFilters } from "@/components/garments/feed-filters";
 import { GarmentGrid } from "@/components/garments/garment-grid";
 import { Container } from "@/components/layout/container";
 import { FeedHeader } from "@/components/layout/feed-header";
-import { LogoBar } from "@/components/layout/logo-bar";
 import { buttonClasses } from "@/components/ui/button";
 import {
   findCategory,
@@ -94,7 +93,6 @@ export default async function GarmentsPage({
 
   return (
     <main className="flex-1">
-      <LogoBar />
       <Container>
         <FeedHeader
           title={t("title")}

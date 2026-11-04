@@ -2,13 +2,15 @@
 
 import {
   useOptimistic,
+  useState,
   useTransition,
   type FormEvent,
   type ReactNode,
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Search } from "lucide-react";
+import { Search, SlidersHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { iconButtonClasses } from "@/components/ui/icon-button";
 import { controlClasses } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { tailoringTypeSlugs } from "@/lib/catalogue";
@@ -56,12 +58,16 @@ export function TailorFilters({ className }: { className?: string }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [pending, startTransition] = useTransition();
+  const [open, setOpen] = useState(false);
   const current = Object.fromEntries(
     filterKeys.map((key) => [key, searchParams.get(key) ?? ""]),
   ) as FilterValues;
   const [values, setValues] = useOptimistic(current);
   const district = findDistrict(values.district);
   const active = filterKeys.some((key) => searchParams.has(key));
+  const chosenFilters = filterKeys.some(
+    (key) => key !== "q" && searchParams.has(key),
+  );
 
   function navigate(next: FilterValues) {
     const params = new URLSearchParams();
@@ -96,11 +102,16 @@ export function TailorFilters({ className }: { className?: string }) {
       className={cn("flex flex-col gap-3 lg:gap-5", className)}
     >
       <h2 className="hidden text-section lg:block">{t("filters")}</h2>
-      <form role="search" action={pathname} onSubmit={search}>
+      <form
+        role="search"
+        action={pathname}
+        onSubmit={search}
+        className="flex items-center gap-2"
+      >
         <label htmlFor="tailor-search" className="sr-only">
           {t("searchLabel")}
         </label>
-        <div className="relative">
+        <div className="relative min-w-0 flex-1">
           <Search className="pointer-events-none absolute top-1/2 left-4 size-5 -translate-y-1/2 text-secondary" />
           <input
             key={current.q}
@@ -113,8 +124,32 @@ export function TailorFilters({ className }: { className?: string }) {
             className={cn("h-[46px] pr-4 pl-12", controlClasses)}
           />
         </div>
+        <button
+          type="button"
+          aria-label={t("filters")}
+          aria-expanded={open}
+          aria-controls="tailor-filter-fields"
+          onClick={() => setOpen(!open)}
+          className={iconButtonClasses({
+            variant: open ? "brand" : "outline",
+            size: "lg",
+            shape: "square",
+            className: "relative size-[46px] rounded-lg lg:hidden",
+          })}
+        >
+          <SlidersHorizontal strokeWidth={2} />
+          {chosenFilters && (
+            <span className="absolute top-2 right-2 size-2 rounded-full bg-teal" />
+          )}
+        </button>
       </form>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-1 lg:gap-5">
+      <div
+        id="tailor-filter-fields"
+        className={cn(
+          "grid animate-dropdown grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-1 lg:gap-5",
+          !open && "max-lg:hidden",
+        )}
+      >
         <FilterField id="tailor-district" label={t("district")}>
           <Select
             id="tailor-district"

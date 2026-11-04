@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/layout/container";
-import { LogoBar } from "@/components/layout/logo-bar";
 import { SavedItems } from "@/components/saved/saved-items";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -15,7 +14,6 @@ export default function SavedPage() {
 
   return (
     <main className="flex-1">
-      <LogoBar />
       <Container className="pt-4 pb-12 lg:pt-10">
         <p className="text-caption text-secondary">{t("subtitle")}</p>
         <h1 className="mt-1 text-title lg:text-[36px]">{t("title")}</h1>

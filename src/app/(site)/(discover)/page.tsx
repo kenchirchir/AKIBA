@@ -6,7 +6,6 @@ import heroImage from "@/assets/welcome-hero.jpg";
 import { GarmentGrid } from "@/components/garments/garment-grid";
 import { Container } from "@/components/layout/container";
 import { FeedHeader } from "@/components/layout/feed-header";
-import { LogoBar } from "@/components/layout/logo-bar";
 import { Badge } from "@/components/ui/badge";
 import { buttonClasses } from "@/components/ui/button";
 import { getFeedGarments } from "@/lib/garments";
@@ -97,8 +96,7 @@ export default async function WelcomePage() {
           </div>
         </div>
       </section>
-      <LogoBar className="-mt-[34px] md:mt-0" />
-      <section id="tailor-offers" className="scroll-mt-[34px] lg:scroll-mt-20">
+      <section id="tailor-offers" className="scroll-mt-16 lg:scroll-mt-20">
         <Container>
           <FeedHeader
             as="h2"

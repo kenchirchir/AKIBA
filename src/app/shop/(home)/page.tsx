@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CircleCheck, Eye, Hourglass, Shirt } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { LogoBar } from "@/components/layout/logo-bar";
 import { MyGarmentCard } from "@/components/shop/my-garment-card";
 import { buttonClasses } from "@/components/ui/button";
 import { getMyGarments } from "@/lib/shop/garments";
@@ -28,7 +27,6 @@ export default async function ShopPage({ searchParams }: PageProps<"/shop">) {
 
   return (
     <main className="flex-1">
-      <LogoBar />
       <div className="px-4 pt-4 pb-12 lg:px-10 lg:pt-10">
         <h1 className="sr-only lg:not-sr-only lg:text-[28px] lg:leading-tight lg:font-semibold lg:tracking-[-0.02em]">
           {t("title")}

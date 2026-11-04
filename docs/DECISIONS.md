@@ -47,7 +47,7 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **All screen text lives in `messages/en.json`**, read through the `next-intl` library. Adding Kinyarwanda later means adding `messages/rw.json` with the same keys; the file can be turned into a spreadsheet for translating and back again.
 - **Where designs disagree, the 2 November journey maps win.** They are newer than the HTML files exported on 31 October and 1 November. Exact sizes still come from the HTML files where both match.
 - **Categories and Kigali locations are defined in code** (`src/lib/catalogue.ts`, `src/lib/kigali.ts`). The database will store only their short codes (such as `tops` or `kimironko`), and the names shown on screen come from the text file, so they can be translated.
-- **Every screen size fills the screen.** Phones use the rail and full-screen menu. From 768px (tablets), the Welcome and sign-in pages are split screen with the photo on one half. From 1024px (laptops), a top header replaces the rail (logo, Browse, search, Discover, Tailors, Saved, Tailor login) and tailors get a sidebar, following the 31 October laptop designs without their discount features (D4).
+- **Every screen size fills the screen.** Phones use a top bar with a drop-down menu (see 4 November). From 768px (tablets), the Welcome and sign-in pages are split screen with the photo on one half. From 1024px (laptops), a top header replaces the rail (logo, Browse, search, Discover, Tailors, Saved, Tailor login) and tailors get a sidebar, following the 31 October laptop designs without their discount features (D4).
 - **Placeholder screens** show which milestone builds them, with "(demo)" links so every journey can be clicked through. The sample tailor in `src/lib/demo.ts` is removed once real accounts exist (Milestones 5 and 6).
 - **Logo: "Akiba"** with a capital A. Bold without a dot on the sign-in pages and headers, regular weight in the menus and the cyan block.
 - **Confirmed by Kenneth:** the Welcome photo may be used, and the Kigali sector list in `src/lib/kigali.ts` is correct.
@@ -209,7 +209,13 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
   - **Discover:** Tailor offers, Made for women and Made for men, each with a one-line description.
 - **Tailors and Saved are plain links** with no card. Saved shows how many items are saved on the phone.
 - **A card that would run off the right edge moves left** to stay 16 pixels inside the screen, so it fits at 1024 pixels too.
-- **Phones and tablets keep the rail and the full-screen menu** from the 2 November journey map.
+
+## 2026-11-04: Phone top bar and filters
+
+- **Phones and tablets now use a top bar, modelled on Dribbble** (Kenneth's request and screen recording). The cyan rail and the full-screen side menu covered the page.
+- **The bar shows a menu button, the logo and Saved.** The menu button turns into a cross and the menu drops down under the bar, with the page dimmed behind it. Escape, tapping the dimmed page or choosing a link closes it. Categories open in place, as Dribbble's menu items do. In the tailor's shop the bar shows the tailor's photo instead of Saved.
+- **Search sits under the bar with a filter button beside it.** The district and sector choices, which were in the old menu, open in place under the search. The Tailors page does the same with its own search and its four filters.
+- **Nothing was added or removed.** Every link and choice from the old menu is still there, only moved. Laptops keep the 4 November tab bar.
 
 ## Open questions
 

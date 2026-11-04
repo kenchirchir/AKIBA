@@ -40,6 +40,7 @@
   "BuyerMenu": {
     "searchLabel": "Search garments or tailors",
     "search": "Search",
+    "filters": "Filters",
     "district": "District",
     "allOfKigali": "All of Kigali",
     "sector": "Sector",
