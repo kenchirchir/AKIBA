@@ -27,14 +27,6 @@ Kigali's tailors make beautiful, made-to-measure clothes, but their work is hard
 5. A buyer reads the story, saves it, and sends a request with their name, phone number, size and date needed.
 6. The tailor gets an SMS with the buyer's details and calls them. They agree a fitting and a price, and the buyer pays the tailor directly.
 
-### Key features
-
-- **One phone login for everyone.** Tailors and the admin log in with a phone number and a 5-digit PIN. Repeated wrong PINs lock the account for a while.
-- **Only verified work is public.** Row-level security in PostgreSQL shows visitors only verified tailors and approved garments. `npm run check:security` runs 57 checks of what each role can and cannot do.
-- **Fast on mobile data.** Photos are shrunk on the phone before upload, and story pages are measured on 3G.
-- **No buyer accounts.** Saved garments and tailors stay on the buyer's phone. Research measures use an anonymous visitor ID and optional participant codes, never names.
-- **Designed for phones first**, with a drop-down menu on phones and a tab bar on laptops, and accessibility checks on every public and tailor page.
-
 ## Technical documentation
 
 The software, frameworks, services and hardware AKIBA needs, and a map of every folder, are in [docs/technical](docs/technical/README.md):
