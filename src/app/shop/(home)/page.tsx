@@ -52,20 +52,30 @@ export default async function ShopPage({ searchParams }: PageProps<"/shop">) {
             </div>
           </section>
         )}
-        <dl className="mt-5 grid grid-cols-2 gap-3 lg:mt-8 lg:max-w-xl lg:gap-4">
-          <div className="rounded-card bg-linear-to-b from-brand-50 to-white p-3.5 lg:p-5">
-            <dt className="flex items-center justify-between text-sm text-ink">
+        <dl className="mt-5 grid grid-cols-2 gap-3 lg:mt-8 lg:gap-6">
+          <div className="flex flex-col justify-between gap-4 rounded-card bg-linear-to-b from-brand-50 to-white p-4 md:p-6 lg:min-h-44 lg:p-8">
+            <dt className="flex items-center justify-between text-sm text-ink md:text-base lg:text-lg">
               {t("garments")}
-              <Shirt aria-hidden="true" className="size-4 text-secondary" />
+              <Shirt
+                aria-hidden="true"
+                className="size-5 text-secondary lg:size-6"
+              />
             </dt>
-            <dd className="mt-1 text-heading text-ink">{garments.length}</dd>
+            <dd className="text-[28px] leading-none font-semibold text-ink md:text-[36px] lg:text-[48px]">
+              {garments.length}
+            </dd>
           </div>
-          <div className="rounded-card bg-linear-to-b from-brand-50 to-white p-3.5 lg:p-5">
-            <dt className="flex items-center justify-between text-sm text-ink">
+          <div className="flex flex-col justify-between gap-4 rounded-card bg-linear-to-b from-brand-50 to-white p-4 md:p-6 lg:min-h-44 lg:p-8">
+            <dt className="flex items-center justify-between text-sm text-ink md:text-base lg:text-lg">
               {t("storyViews")}
-              <Eye aria-hidden="true" className="size-4 text-secondary" />
+              <Eye
+                aria-hidden="true"
+                className="size-5 text-secondary lg:size-6"
+              />
             </dt>
-            <dd className="mt-1 text-heading text-ink">{views}</dd>
+            <dd className="text-[28px] leading-none font-semibold text-ink md:text-[36px] lg:text-[48px]">
+              {views}
+            </dd>
           </div>
         </dl>
         <h2 className="mt-8 text-[19px] text-ink lg:mt-10">
