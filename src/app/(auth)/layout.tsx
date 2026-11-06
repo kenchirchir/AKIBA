@@ -18,7 +18,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           fill
           placeholder="blur"
           sizes="50vw"
-          className="object-cover object-[30%_50%]"
+          className="object-cover"
         />
       </div>
       <div className="relative flex flex-1 flex-col overflow-hidden px-6 pt-36 pb-10 md:items-center md:justify-center md:px-10 md:py-16">

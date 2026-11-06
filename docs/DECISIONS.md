@@ -217,7 +217,7 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **The bar shows a menu button, the logo and Saved.** The menu button turns into a cross and the menu drops down under the bar, with the page dimmed behind it. Escape, tapping the dimmed page or choosing a link closes it. Categories open in place, as Dribbble's menu items do. In the tailor's shop the bar shows the tailor's photo instead of Saved.
 - **Search sits under the bar with a filter button beside it.** The district and sector choices, which were in the old menu, open in place under the search. The Tailors page does the same with its own search and its four filters.
 - **Nothing was added or removed.** Every link and choice from the old menu is still there, only moved. Laptops keep the 4 November tab bar.
-- **A new Welcome photo (6 November).** Kenneth supplied a new 1671 × 941 workshop photo of two tailors, used as it is on the Welcome page and the sign-in pages. Phones and tablets show the whole photo above the Welcome text. Laptops show it on the left half, cropped slightly left of centre so both tailors' faces stay in view.
+- **A new Welcome photo (6 November).** Kenneth supplied a 1515 × 1038 photo of a tailor fitting a jacket on a client, used as it is on the Welcome page and the sign-in pages. Phones and tablets show the whole photo above the Welcome text. Laptops show it on the left half, centred so both people stay in view.
 
 ## 2026-11-04: One phone login for everyone
 
