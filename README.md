@@ -2,9 +2,22 @@
 
 **Wear the story. Meet the maker.**
 
-Every garment on AKIBA comes with the Kigali tailor who made it and the story behind it. Browse, fall for a piece, and request it straight from the maker.Kigali's tailors make beautiful, made-to-measure clothes, but their work is hard to find online and buyers rarely see who made a garment or why. AKIBA gives each garment its own story page, linked to a verified tailor, so buyers can discover local makers and contact them directly. AKIBA is a showcase, not a shop: it takes no payments and no commission.
+Every garment on AKIBA comes with the Kigali tailor who made it and the story behind it. Browse, fall for a piece, and request it straight from the maker.
 
-Figma design: [AKIBA Webapp design system](https://www.figma.com/design/cjQuqZfaA0Sbdi9uoWSoxX/AKIBA-Webapp?t=dxiKMRC5Uq64kzL3-0)
+Built for the Mission Capstone project "AKIBA, A Digital Storytelling Integration in African Fashion: Promoting Tailors and Locally Tailored Clothing".
+
+|                        |                                                                                                                            |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Walkthrough video      | [Watch the walkthrough video (Google Drive)](https://drive.google.com/drive/u/0/folders/1oUte-XhhhXmE4lsA3n31Zz6of5Jzyi9F) |
+| Technical report       | [Read the technical report (Google Drive)](https://drive.google.com/drive/u/0/folders/1oUte-XhhhXmE4lsA3n31Zz6of5Jzyi9F)   |
+| Technical requirements | [Software, frameworks, services and hardware](docs/technical/technical-requirements.md)                                    |
+| Repository structure   | [What each folder and file is for](docs/technical/repository-structure.md)                                                 |
+| Figma design           | [AKIBA Webapp design system](https://www.figma.com/design/cjQuqZfaA0Sbdi9uoWSoxX/AKIBA-Webapp?t=dxiKMRC5Uq64kzL3-0)        |
+| Project documents      | [Roadmap, decision log and pilot guide](docs)                                                                              |
+
+## Project overview
+
+Kigali's tailors make beautiful, made-to-measure clothes, but their work is hard to find online and buyers rarely see who made a garment or why. AKIBA gives each garment its own story page, linked to a verified tailor, so buyers can discover local makers and contact them directly. AKIBA is a showcase, not a shop: it takes no payments and no commission.
 
 ### Who uses it
 
@@ -14,31 +27,56 @@ Figma design: [AKIBA Webapp design system](https://www.figma.com/design/cjQuqZfa
 | Tailor | Shares garments, their stories and their shop location. |
 | Admin  | Verifies tailors and approves garments.                 |
 
-| Resource          | Link                                                                                                        |
-| ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| Walkthrough video | [Watch the walkthrough video](https://drive.google.com/drive/u/0/folders/1oUte-XhhhXmE4lsA3n31Zz6of5Jzyi9F) |
-| Technical report  | [Read the technical report](https://drive.google.com/drive/u/0/folders/1oUte-XhhhXmE4lsA3n31Zz6of5Jzyi9F)   |
-| Repository        | [Open the repository](https://drive.google.com/drive/u/0/folders/1oUte-XhhhXmE4lsA3n31Zz6of5Jzyi9F)         |
+### How a garment moves through AKIBA
 
-### How a garment reaches a buyer
-
-1. A tailor signs up with their phone number, confirms the SMS code and chooses a PIN.
+1. A tailor signs up with their phone number, confirms the SMS code and chooses a 5-digit PIN.
 2. The admin verifies the tailor, recording the tailor association, the official who vouched, the workshop visit and the tailor's consent. The shop then goes public.
 3. The tailor uploads a garment. The photos go straight from the phone to Cloudinary, and the tailor writes the story behind the piece.
 4. The admin approves the garment, or sends it back with a reason. Any later edit goes back for review.
 5. A buyer reads the story, saves it, and sends a request with their name, phone number, size and date needed.
 6. The tailor gets an SMS with the buyer's details and calls them. They agree a fitting and a price, and the buyer pays the tailor directly.
 
-## Technical documentation
-
-The software, frameworks, services and hardware AKIBA needs, and a map of every folder, are in [docs/technical](docs/technical/README.md):
-
-- [Technical requirements](docs/technical/technical-requirements.md)
-- [Repository structure](docs/technical/repository-structure.md)
-
 ## Installation
 
+Check the [technical requirements](docs/technical/technical-requirements.md) first.
+
+Most commands are the same on every system. Where they differ, there is a block for each one:
+
+- **macOS:** use the Terminal app.
+- **Linux:** use any terminal.
+- **Windows:** use PowerShell, the default terminal in Windows 10 and 11. Command Prompt (cmd) alternatives are given where they differ.
+
+### 0. Install the tools
+
+You need Git and Node.js 24 or newer. The Supabase CLI comes with the project, so there is nothing else to install. Skip anything you already have; check with `git --version` and `node --version`.
+
+macOS (with [Homebrew](https://brew.sh)):
+
+```bash
+brew install git node
+```
+
+Linux (Debian or Ubuntu; nvm installs a current Node.js):
+
+```bash
+sudo apt update && sudo apt install -y git curl
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+source ~/.bashrc
+nvm install 24
+```
+
+Windows (PowerShell):
+
+```powershell
+winget install --id Git.Git -e
+winget install --id OpenJS.NodeJS.LTS -e
+```
+
+Close and reopen the terminal afterwards so the new commands are found.
+
 ### 1. Clone and install
+
+Same on macOS, Linux and Windows:
 
 ```bash
 git clone https://github.com/kenchirchir/AKIBA.git
@@ -48,17 +86,39 @@ npm install
 
 ### 2. Create the online services
 
-- **Supabase:** create an empty project at [supabase.com/dashboard](https://supabase.com/dashboard). Turn on the **Phone** provider under Authentication, Sign In / Providers. To try AKIBA without real SMS, add test phone numbers with a fixed code there.
-- **Cloudinary:** create an account at [cloudinary.com](https://cloudinary.com).
-- **Africa's Talking** (optional): create an account and use the sandbox while testing. [Running the pilot](docs/OPERATIONS.md) explains how to connect it to Supabase for sign-up codes.
+1. **Supabase:** create a new, empty project at [supabase.com/dashboard](https://supabase.com/dashboard). Under Authentication, Sign In / Providers, turn on **Phone**. To try AKIBA without real SMS, add test phone numbers with a fixed code there, for example `250780000001` with `123456`.
+2. **Cloudinary:** create an account at [cloudinary.com](https://cloudinary.com).
+3. **Africa's Talking** (optional): create an account and use the sandbox while testing. [Running the pilot](docs/OPERATIONS.md) explains how to connect it to Supabase for real sign-up codes.
 
 ### 3. Add environment variables
+
+Copy the template to `.env.local`.
+
+macOS and Linux:
 
 ```bash
 cp .env.example .env.local
 ```
 
-Fill in `.env.local`. Never commit it.
+Windows (PowerShell):
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+Windows (Command Prompt):
+
+```bat
+copy .env.example .env.local
+```
+
+Make the `AUTH_PIN_PEPPER` secret with this command, the same on every system:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+```
+
+Open `.env.local` in any text editor (for example `open -e .env.local` on macOS, `nano .env.local` on Linux, `notepad .env.local` on Windows) and fill it in:
 
 | Variable                               | Where it comes from                                                                                                                      |
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
@@ -74,7 +134,11 @@ Fill in `.env.local`. Never commit it.
 | `AFRICASTALKING_SENDER_ID`             | Optional. An approved sender name such as `AKIBA`. Leave empty in the sandbox                                                            |
 | `SUPABASE_SMS_HOOK_SECRET`             | Supabase: **Authentication**, **Hooks**, the secret of the Send SMS hook. Only needed for real sign-up codes                             |
 
+Never commit `.env.local`, and never change `AUTH_PIN_PEPPER` once tailors have signed up: their PINs would stop working.
+
 ### 4. Create the database
+
+Same on macOS, Linux and Windows:
 
 ```bash
 npx supabase login
@@ -82,17 +146,25 @@ npx supabase link --project-ref <your-project-ref>
 npm run db:push
 ```
 
-This applies the tables and security rules in `supabase/migrations`. There is no sample data: the pilot starts with real tailors only.
+This applies the tables and security rules in `supabase/migrations`.
 
-### 5. Run
+### 5. Try it with a test phone number
+
+There is no sample data: the pilot starts with real tailors only. To try the tailor side, run the app (step 6), open `/join` and sign up with one of the test numbers from step 2, for example `0780000001`, and its fixed code.
+
+### 6. Run
+
+Same on macOS, Linux and Windows:
 
 ```bash
 npm run dev
 ```
 
-Open <http://localhost:3000>. Tailors sign up at `/join`.
+Open <http://localhost:3000>.
 
 ### Making yourself the admin
+
+Same on macOS, Linux and Windows:
 
 ```bash
 npm run make-admin -- 0780000002
@@ -100,16 +172,9 @@ npm run make-admin -- 0780000002
 
 Use your own number. Then open `/login`, tap **Forgot PIN?**, enter the number and the SMS code, and choose a PIN. You will land on the admin pages. Only one admin is planned, so the script takes the role away from any other account.
 
-### Other commands
-
-| Command            | What it does                                                    |
-| ------------------ | --------------------------------------------------------------- |
-| `npm run build`    | Builds the production version                                   |
-| `npm run start`    | Runs the production build locally                               |
-| `npm run format`   | Formats every file with Prettier                                |
-| `npm run db:types` | Regenerates `src/lib/supabase/database.types.ts` after a change |
-
 ## Running the tests
+
+Same on macOS, Linux and Windows:
 
 ```bash
 npm test                  # unit tests (Vitest)
@@ -119,10 +184,23 @@ npm run format:check      # Prettier
 npm run check:security    # 57 database security checks
 npx playwright install chromium
 npm run test:e2e          # builds the app and runs the browser and accessibility tests
-npm run test:live         # the same browser tests against the live site
 ```
 
-The first four run on every push through GitHub Actions (`.github/workflows/checks.yml`). The security checks and browser tests need the database keys, so they run on a developer's machine. The browser tests create their own temporary tailors and admin and delete them afterwards.
+To run the browser tests against the live site:
+
+macOS and Linux:
+
+```bash
+npm run test:live
+```
+
+Windows (PowerShell):
+
+```powershell
+$env:E2E_BASE_URL = "https://akiba-seven.vercel.app"; npx playwright test
+```
+
+The first four checks run on every push and pull request through GitHub Actions (`.github/workflows/checks.yml`). The security checks and browser tests need the database keys, so they run on a developer's machine. The browser tests create their own temporary tailors and admin and delete them afterwards. Test results against the evaluation metrics are in the technical report.
 
 ## Requirements traceability
 
@@ -156,15 +234,8 @@ The requirements come from the research proposal. Where the build differs, the d
 1. Import the repository into [Vercel](https://vercel.com).
 2. Add the variables from `.env.example` in the Vercel project settings, for Production. Mark the secret ones as Sensitive.
 3. In Supabase, add a **Send SMS** hook pointing to `https://<your-domain>/api/auth/sms-hook` so sign-up and PIN-reset codes go through Africa's Talking.
-4. Redeploy after changing any variable, then run `npm run test:live`.
+4. Redeploy after changing any variable, then run the browser tests against the live site.
 
 [Running the pilot](docs/OPERATIONS.md) covers the full checklist, including SMS and participant links.
 
-## Project documents
-
-- [Development roadmap](docs/ROADMAP.md)
-- [Decision log](docs/DECISIONS.md)
-- [Running the pilot](docs/OPERATIONS.md): the researcher's guide
-- [Technical documentation](docs/technical/README.md)
-
-Kenneth Chirchir
+Kenneth Chirchir · Supervisor: Simeon Nsabiyumva
