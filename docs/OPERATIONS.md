@@ -10,6 +10,7 @@ A practical guide for the researcher. The live site is <https://akiba-seven.verc
 | Tailors                     | `/login`                 | Rwandan phone number and 5-digit PIN. Tailors sign up themselves at `/join`                                                                                                                         |
 | Buyers                      | No login                 | Buyers use the site without an account                                                                                                                                                              |
 | Supabase test phone numbers | 0780000001 to 0780000003 | Fixed SMS code `123456`, set in Supabase until **31 January 2027**. 0780000001 is Kenneth's own tailor account and 0780000002 is the admin                                                          |
+| Extra test tailors          | 0780000010 to 0780000019 | Fixed SMS code `123456`, for trying sign-up and uploads. Delete these accounts before the pilot so they do not count in the research data                                                           |
 
 ## Before the pilot starts
 
