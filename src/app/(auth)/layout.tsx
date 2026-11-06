@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
-import heroImage from "@/assets/welcome-hero.jpg";
+import heroImage from "@/assets/welcome-hero.webp";
 import { DecorativeCircles } from "@/components/layout/decorative-circles";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
@@ -18,7 +18,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           fill
           placeholder="blur"
           sizes="50vw"
-          className="object-cover"
+          className="object-cover object-[30%_50%]"
         />
       </div>
       <div className="relative flex flex-1 flex-col overflow-hidden px-6 pt-36 pb-10 md:items-center md:justify-center md:px-10 md:py-16">

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import heroImage from "@/assets/welcome-hero.jpg";
+import heroImage from "@/assets/welcome-hero.webp";
 import { GarmentGrid } from "@/components/garments/garment-grid";
 import { Container } from "@/components/layout/container";
 import { FeedHeader } from "@/components/layout/feed-header";
@@ -23,7 +23,7 @@ export default async function WelcomePage() {
   return (
     <main className="flex-1">
       <section className="bg-brand md:bg-white lg:grid lg:min-h-[calc(100dvh-5rem)] lg:grid-cols-2">
-        <div className="relative aspect-[3/2] lg:aspect-auto">
+        <div className="relative aspect-video lg:aspect-auto">
           <Image
             src={heroImage}
             alt={t("imageAlt")}
@@ -31,7 +31,7 @@ export default async function WelcomePage() {
             priority
             placeholder="blur"
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover object-[56%_50%]"
+            className="object-cover object-[30%_50%]"
           />
         </div>
         <div className="relative px-5 pt-6 pb-12 md:flex md:flex-col md:justify-center md:px-10 md:py-16 xl:px-20">
