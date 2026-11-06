@@ -8,11 +8,11 @@ Figma design: [AKIBA Webapp design system](https://www.figma.com/design/cjQuqZfa
 
 ### Who uses it
 
-| Role   | What they do                                       |
-| ------ | -------------------------------------------------- |
-| Buyer  | Discovers garments and requests them from tailors. |
-| Tailor | Shares garments and their stories.                 |
-| Admin  | Verifies tailors and approves garments.            |
+| Role   | What they do                                            |
+| ------ | ------------------------------------------------------- |
+| Buyer  | Discovers garments and requests them from tailors.      |
+| Tailor | Shares garments, their stories and their shop location. |
+| Admin  | Verifies tailors and approves garments.                 |
 
 | Resource          | Link                                                                                                        |
 | ----------------- | ----------------------------------------------------------------------------------------------------------- |
