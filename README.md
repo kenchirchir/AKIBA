@@ -9,7 +9,7 @@ Built for the Mission Capstone project "AKIBA, A Digital Storytelling Integratio
 |                        |                                                                                                                                  |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | Walkthrough video      | [Watch the walkthrough video (Google Drive)](https://drive.google.com/file/d/13ntDMqbyRwhR49O0qtselp2shsBUhQlQ/view?usp=sharing) |
-| Technical report       | [Read the technical report (Google Drive)](https://drive.google.com/drive/u/0/folders/1oUte-XhhhXmE4lsA3n31Zz6of5Jzyi9F)         |
+| Technical report       | [Read the technical report (Google Drive)](https://drive.google.com/file/d/1Kv7sPlulwLxsAGHDnMzPyqzMfq0BdAJa/view?usp=sharing)   |
 | Technical requirements | [Software, frameworks, services and hardware](docs/technical/technical-requirements.md)                                          |
 | Repository structure   | [What each folder and file is for](docs/technical/repository-structure.md)                                                       |
 | Figma design           | [AKIBA Webapp design system](https://www.figma.com/design/cjQuqZfaA0Sbdi9uoWSoxX/AKIBA-Webapp?t=dxiKMRC5Uq64kzL3-0)              |
