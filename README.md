@@ -8,11 +8,17 @@ Figma design: [AKIBA Webapp design system](https://www.figma.com/design/cjQuqZfa
 
 ### Who uses it
 
-| Role               | What they can do                                                                                                                                                                                                                     |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Buyer              | Browse and search garments and tailors, filter by district, sector, type of tailoring, experience and material, read a garment's story and its tailor's profile, save garments and tailors, and request a garment. No account needed |
-| Tailor             | Sign up with a phone number, an SMS code and a 5-digit PIN, build a shop profile, upload garments with photos and a story, receive requests by SMS, call buyers back and mark requests as ordered, edit or delete anything           |
-| Admin (researcher) | Verify tailors after an association official vouches for them, approve garments or send them back with a reason, suspend shops, and follow the research report with CSV downloads                                                    |
+| Role   | What they do                                       |
+| ------ | -------------------------------------------------- |
+| Buyer  | Discovers garments and requests them from tailors. |
+| Tailor | Shares garments and their stories.                 |
+| Admin  | Verifies tailors and approves garments.            |
+
+| Resource          | Link                                                                                                        |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| Walkthrough video | [Watch the walkthrough video](https://drive.google.com/drive/u/0/folders/1oUte-XhhhXmE4lsA3n31Zz6of5Jzyi9F) |
+| Technical report  | [Read the technical report](https://drive.google.com/drive/u/0/folders/1oUte-XhhhXmE4lsA3n31Zz6of5Jzyi9F)   |
+| Repository        | [Open the repository](https://drive.google.com/drive/u/0/folders/1oUte-XhhhXmE4lsA3n31Zz6of5Jzyi9F)         |
 
 ### How a garment reaches a buyer
 
