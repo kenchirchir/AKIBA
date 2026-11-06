@@ -51,6 +51,11 @@ function authErrorKey(error: AuthError | null): AuthErrorKey {
   }
 }
 
+function smsErrorKey(error: AuthError | null): AuthErrorKey {
+  const key = authErrorKey(error);
+  return key === "generic" && (error?.status ?? 0) >= 500 ? "smsFailed" : key;
+}
+
 async function ensureTailor(supabase: Supabase, user: User) {
   const { data: existing } = await supabase
     .from("tailors")
@@ -150,7 +155,7 @@ export async function signUp(
     options: { data: details },
   });
 
-  if (error) return { errors: { form: authErrorKey(error) } };
+  if (error) return { errors: { form: smsErrorKey(error) } };
   if (data.user?.identities?.length === 0) {
     return { errors: { phone: "phoneTaken" } };
   }
@@ -197,7 +202,7 @@ export async function resendSignUpCode(): Promise<AuthFormState> {
     phone: pending.phone,
   });
 
-  return error ? { errors: { form: authErrorKey(error) } } : { sent: true };
+  return error ? { errors: { form: smsErrorKey(error) } } : { sent: true };
 }
 
 export async function logIn(
@@ -271,7 +276,7 @@ export async function requestPinReset(
     options: { shouldCreateUser: false },
   });
 
-  if (error) return { errors: { form: authErrorKey(error) } };
+  if (error) return { errors: { form: smsErrorKey(error) } };
 
   await pendingReset.save({ phone });
   redirect("/login/reset/verify");
@@ -287,7 +292,7 @@ export async function resendResetCode(): Promise<AuthFormState> {
     options: { shouldCreateUser: false },
   });
 
-  return error ? { errors: { form: authErrorKey(error) } } : { sent: true };
+  return error ? { errors: { form: smsErrorKey(error) } } : { sent: true };
 }
 
 export async function resetPin(
