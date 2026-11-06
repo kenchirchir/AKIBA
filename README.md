@@ -2,13 +2,9 @@
 
 **Wear the story. Meet the maker.**
 
-Every garment on AKIBA comes with the Kigali tailor who made it and the story behind it. Browse, fall for a piece, and request it straight from the maker.
+Every garment on AKIBA comes with the Kigali tailor who made it and the story behind it. Browse, fall for a piece, and request it straight from the maker.Kigali's tailors make beautiful, made-to-measure clothes, but their work is hard to find online and buyers rarely see who made a garment or why. AKIBA gives each garment its own story page, linked to a verified tailor, so buyers can discover local makers and contact them directly. AKIBA is a showcase, not a shop: it takes no payments and no commission.
 
 Figma design: [AKIBA Webapp design system](https://www.figma.com/design/cjQuqZfaA0Sbdi9uoWSoxX/AKIBA-Webapp?t=dxiKMRC5Uq64kzL3-0)
-
-## Project overview
-
-Kigali's tailors make beautiful, made-to-measure clothes, but their work is hard to find online and buyers rarely see who made a garment or why. AKIBA gives each garment its own story page, linked to a verified tailor, so buyers can discover local makers and contact them directly. AKIBA is a showcase, not a shop: it takes no payments and no commission.
 
 ### Who uses it
 
