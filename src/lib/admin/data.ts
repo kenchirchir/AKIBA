@@ -5,12 +5,15 @@ import type { TailorStatus } from "./options";
 
 export async function getOverview() {
   const { supabase } = await requireAdmin();
-  const count = (table: "tailors" | "garments", status: string) =>
-    supabase
+  const count = (table: "tailors" | "garments", status: string) => {
+    const query = supabase
       .from(table)
       .select("id", { count: "exact", head: true })
-      .eq("status", status)
-      .then(({ count: total }) => total ?? 0);
+      .eq("status", status);
+    return (table === "garments" ? query.is("archived_at", null) : query).then(
+      ({ count: total }) => total ?? 0,
+    );
+  };
 
   const [pendingTailors, verifiedTailors, suspendedTailors, pendingGarments] =
     await Promise.all([
@@ -69,6 +72,7 @@ export async function getPendingGarments() {
       "id, name, category, subcategory, material, audience, description, story, price_rwf, making_days, updated_at, tailors(id, shop_name, owner_name, status), garment_photos(public_id, width, height)",
     )
     .eq("status", "pending")
+    .is("archived_at", null)
     .order("updated_at")
     .order("position", { referencedTable: "garment_photos" });
 

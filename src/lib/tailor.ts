@@ -24,7 +24,8 @@ export const getCurrentTailor = cache(async () => {
     supabase
       .from("garments")
       .select("id", { count: "exact", head: true })
-      .eq("tailor_id", tailor.id),
+      .eq("tailor_id", tailor.id)
+      .is("archived_at", null),
     supabase
       .from("requests")
       .select("id", { count: "exact", head: true })

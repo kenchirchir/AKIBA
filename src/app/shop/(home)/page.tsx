@@ -7,7 +7,13 @@ import { buttonClasses } from "@/components/ui/button";
 import { getMyGarments } from "@/lib/shop/garments";
 import { requireTailor } from "@/lib/tailor";
 
-const notices = ["uploaded", "saved", "deleted"] as const;
+const notices = [
+  "uploaded",
+  "saved",
+  "deleted",
+  "archived",
+  "restored",
+] as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Shop");
@@ -24,6 +30,8 @@ export default async function ShopPage({ searchParams }: PageProps<"/shop">) {
   const firstName = tailor.owner_name.split(/\s+/)[0];
   const notice = notices.find((key) => params[key] === "1");
   const views = garments.reduce((total, garment) => total + garment.views, 0);
+  const live = garments.filter((garment) => garment.archived_at === null);
+  const archived = garments.filter((garment) => garment.archived_at !== null);
 
   return (
     <main className="flex-1">
@@ -62,7 +70,7 @@ export default async function ShopPage({ searchParams }: PageProps<"/shop">) {
               />
             </dt>
             <dd className="text-[28px] leading-none font-semibold text-ink md:text-[36px] lg:text-[48px]">
-              {garments.length}
+              {live.length}
             </dd>
           </div>
           <div className="flex flex-col justify-between gap-4 rounded-card bg-linear-to-b from-brand-50 to-white p-4 md:p-6 lg:min-h-44 lg:p-8">
@@ -81,21 +89,38 @@ export default async function ShopPage({ searchParams }: PageProps<"/shop">) {
         <h2 className="mt-8 text-[19px] text-ink lg:mt-10">
           {t("myGarments")}
         </h2>
-        {garments.length === 0 ? (
+        {live.length === 0 ? (
           <div className="mt-4 flex flex-col items-start gap-4 rounded-card border border-dashed border-line bg-surface p-5 lg:max-w-xl">
-            <p className="text-body text-secondary">{t("empty")}</p>
+            <p className="text-body text-secondary">
+              {archived.length > 0 ? t("noLive") : t("empty")}
+            </p>
             <Link href="/shop/upload" className={buttonClasses()}>
-              {t("uploadFirst")}
+              {archived.length > 0 ? t("upload") : t("uploadFirst")}
             </Link>
           </div>
         ) : (
           <ul className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6 xl:grid-cols-5">
-            {garments.map((garment) => (
+            {live.map((garment) => (
               <li key={garment.id}>
                 <MyGarmentCard garment={garment} />
               </li>
             ))}
           </ul>
+        )}
+        {archived.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-[19px] text-ink">
+              {t("archived", { count: archived.length })}
+            </h2>
+            <p className="mt-1 text-body text-secondary">{t("archivedHelp")}</p>
+            <ul className="mt-4 grid grid-cols-2 gap-x-3.5 gap-y-6 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6 xl:grid-cols-5">
+              {archived.map((garment) => (
+                <li key={garment.id}>
+                  <MyGarmentCard garment={garment} />
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
       </div>
     </main>

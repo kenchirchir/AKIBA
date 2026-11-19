@@ -102,6 +102,7 @@ export type Database = {
       }
       garments: {
         Row: {
+          archived_at: string | null
           audience: string
           category: string
           created_at: string
@@ -121,6 +122,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          archived_at?: string | null
           audience?: string
           category: string
           created_at?: string
@@ -140,6 +142,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          archived_at?: string | null
           audience?: string
           category?: string
           created_at?: string
@@ -496,6 +499,10 @@ export type Database = {
         }[]
       }
       require_admin: { Args: never; Returns: undefined }
+      set_garment_archived: {
+        Args: { archived: boolean; garment: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

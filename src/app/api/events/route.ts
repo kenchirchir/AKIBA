@@ -47,6 +47,7 @@ async function garmentTarget(
     .select("id, tailor_id, tailors(profile_id)")
     .eq("id", garmentId)
     .eq("status", "approved")
+    .is("archived_at", null)
     .maybeSingle();
 
   if (!data || isOwner(data.tailors?.profile_id, userId)) return null;

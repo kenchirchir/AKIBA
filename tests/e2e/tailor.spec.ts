@@ -79,3 +79,24 @@ test("a tailor can turn SMS alerts off and on", async ({ page }) => {
   await clickAndWaitForSave(page, alerts);
   await expect(alerts).toBeChecked();
 });
+
+test("a tailor archives a garment and restores it", async ({
+  page,
+  request,
+}) => {
+  const garmentId = process.env.E2E_GARMENT_ID!;
+  await logInAsTailor(page);
+
+  await page.goto(`/shop/garments/${garmentId}`);
+  await page.getByRole("button", { name: "Archive garment" }).click();
+  await expect(page).toHaveURL(/\/shop\?archived=1$/, { timeout: 15_000 });
+  await expect(
+    page.getByRole("heading", { name: "Archived (1)" }),
+  ).toBeVisible();
+  expect((await request.get(`/garments/${garmentId}`)).status()).toBe(404);
+
+  await page.goto(`/shop/garments/${garmentId}`);
+  await page.getByRole("button", { name: "Restore garment" }).click();
+  await expect(page).toHaveURL(/\/shop\?restored=1$/, { timeout: 15_000 });
+  expect((await request.get(`/garments/${garmentId}`)).status()).toBe(200);
+});

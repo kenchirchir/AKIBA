@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CircleAlert, Eye, Hourglass } from "lucide-react";
+import { Archive, CircleAlert, Eye, Hourglass } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/layout/page-header";
+import { ArchiveGarment } from "@/components/shop/archive-garment";
 import { DeleteGarment } from "@/components/shop/delete-garment";
 import { GarmentForm } from "@/components/shop/garment-form";
 import { getMyGarment } from "@/lib/shop/garments";
@@ -23,18 +24,25 @@ export default async function EditGarmentPage({
   if (!garment) notFound();
 
   const t = await getTranslations("EditGarment");
+  const archived = garment.archived_at !== null;
 
   return (
     <main className="flex-1">
       <PageHeader title={t("title")} backHref="/shop" />
       <div className="flex flex-col gap-6 px-5 pt-4 pb-12 lg:px-10">
-        {garment.status === "pending" && (
+        {archived && (
+          <p className="flex gap-3 rounded-card bg-mist p-4 text-body text-ink lg:max-w-3xl">
+            <Archive className="mt-1 size-4 shrink-0" />
+            {t("archivedNotice")}
+          </p>
+        )}
+        {!archived && garment.status === "pending" && (
           <p className="flex gap-3 rounded-card bg-warning-50 p-4 text-body text-warning-ink lg:max-w-3xl">
             <Hourglass className="mt-1 size-4 shrink-0" />
             {t("pending")}
           </p>
         )}
-        {garment.status === "rejected" && (
+        {!archived && garment.status === "rejected" && (
           <div className="flex gap-3 rounded-card bg-danger/10 p-4 text-body text-danger lg:max-w-3xl">
             <CircleAlert className="mt-1 size-4 shrink-0" />
             <div>
@@ -47,14 +55,17 @@ export default async function EditGarmentPage({
             </div>
           </div>
         )}
-        {garment.status === "approved" && (
+        {!archived && garment.status === "approved" && (
           <p className="flex gap-3 rounded-card bg-brand-50 p-4 text-body text-ink lg:max-w-3xl">
             <Eye className="mt-1 size-4 shrink-0 text-teal" />
             {t("approved")}
           </p>
         )}
         <GarmentForm garment={garment} />
-        <DeleteGarment id={garment.id} />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
+          <ArchiveGarment id={garment.id} archived={archived} />
+          <DeleteGarment id={garment.id} />
+        </div>
       </div>
     </main>
   );

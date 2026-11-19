@@ -87,6 +87,7 @@ export async function getFeedGarments(filters: FeedFilters = {}) {
     .from("garments")
     .select(cardFields)
     .eq("status", "approved")
+    .is("archived_at", null)
     .order("published_at", { ascending: false, nullsFirst: false })
     .order("position", { referencedTable: "garment_photos" })
     .limit(1, { referencedTable: "garment_photos" })
@@ -152,6 +153,7 @@ export async function getGarmentsById(ids: string[]) {
     .from("garments")
     .select(cardFields)
     .eq("status", "approved")
+    .is("archived_at", null)
     .in("id", ids)
     .order("position", { referencedTable: "garment_photos" })
     .limit(1, { referencedTable: "garment_photos" });
@@ -177,6 +179,7 @@ export const getGarmentStory = cache(async (id: string) => {
     )
     .eq("id", id)
     .eq("status", "approved")
+    .is("archived_at", null)
     .order("position", { referencedTable: "garment_photos" })
     .maybeSingle();
 

@@ -21,22 +21,28 @@ export function MyGarmentCard({ garment }: { garment: MyGarment }) {
             alt=""
             fill
             sizes="(min-width: 1280px) 240px, (min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-            className="object-cover transition-transform group-hover:scale-[1.02]"
+            className={`object-cover transition-transform group-hover:scale-[1.02] ${garment.archived_at ? "opacity-60" : ""}`}
           />
         ) : (
           <span className="flex size-full items-center justify-center text-muted">
             <Shirt strokeWidth={1} className="size-10" />
           </span>
         )}
-        {garment.status !== "approved" && (
-          <Badge
-            variant={garment.status === "rejected" ? "danger" : "warning"}
-            className="absolute top-2 left-2"
-          >
-            {garment.status === "rejected"
-              ? t("status.rejected")
-              : t("status.pending")}
+        {garment.archived_at ? (
+          <Badge variant="neutral" className="absolute top-2 left-2">
+            {t("status.archived")}
           </Badge>
+        ) : (
+          garment.status !== "approved" && (
+            <Badge
+              variant={garment.status === "rejected" ? "danger" : "warning"}
+              className="absolute top-2 left-2"
+            >
+              {garment.status === "rejected"
+                ? t("status.rejected")
+                : t("status.pending")}
+            </Badge>
+          )
         )}
       </span>
       <span className="mt-3 text-label font-normal text-ink">

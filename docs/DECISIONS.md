@@ -231,6 +231,14 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Every public page ends with a simple footer** (Kenneth's request): the logo and a one-line description, then three short columns. Discover links to Tailor offers, Tailors and Saved. For tailors links to Join AKIBA and Log in. Help links to Terms & privacy and gives the contact email and phone from the terms page. A last line shows the year and "Kigali, Rwanda".
 - **It uses only pages and details that already exist.** The tailor shop, admin and login pages keep their own layouts without it.
 
+## 2026-11-19: Archiving garments
+
+- **Tailors can archive a garment instead of deleting it.** An archived garment disappears from Discover, search, the tailor's public page and the request form, but its photos, story, story views and requests are kept. The tailor can restore it at any time from its edit page.
+- **Archiving does not send a garment back for review.** Any direct change a tailor makes to a garment returns it to "pending", so archiving goes through a database function, `set_garment_archived`, that only changes `archived_at` and only for the tailor's own garments. A restored garment that was approved goes straight back to buyers.
+- **The rule lives in the database.** The public read policy now also requires `archived_at is null`, so visitors cannot see archived garments even if they call the database directly. The two server queries that use the secret key (requests and usage events) filter archived garments as well.
+- **My Shop shows archived garments in their own section**, with an "Archived" badge, and the garment count only counts live garments. Archived garments that were still waiting for review are left out of the admin's review queue.
+- Six new security checks and one browser test cover archiving and restoring.
+
 ## Open questions
 
 - SMS budget, the approved sender name, and whether to add the two-way "Reply 1 or 2" follow-up.

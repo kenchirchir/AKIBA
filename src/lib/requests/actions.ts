@@ -107,6 +107,7 @@ export async function sendRequest(
     )
     .eq("id", request.garmentId)
     .eq("status", "approved")
+    .is("archived_at", null)
     .eq("tailors.status", "verified")
     .maybeSingle();
 

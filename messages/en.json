@@ -541,15 +541,22 @@
     "myGarments": "My garments",
     "empty": "You haven’t uploaded any garments yet. Add your first one with its photos and the story behind it.",
     "uploadFirst": "Upload your first garment",
+    "noLive": "None of your garments are live right now. Upload a new one, or restore one from your archive below.",
+    "upload": "Upload a garment",
+    "archived": "Archived ({count})",
+    "archivedHelp": "Buyers can’t see these garments. Open one to restore it.",
     "views": "{count, plural, one {# story view} other {# story views}}",
     "status": {
       "pending": "Waiting for review",
-      "rejected": "Not approved"
+      "rejected": "Not approved",
+      "archived": "Archived"
     },
     "notices": {
       "uploaded": "Thank you! Your garment is waiting for review. Buyers will see it once AKIBA approves it.",
       "saved": "Changes saved. AKIBA reviews them before they go live.",
-      "deleted": "The garment and its photos were deleted."
+      "deleted": "The garment and its photos were deleted.",
+      "archived": "The garment is archived. Buyers can’t see it until you restore it.",
+      "restored": "The garment is restored and back in your shop."
     }
   },
   "Upload": {
@@ -562,6 +569,11 @@
     "rejectedNoReason": "Not approved yet.",
     "rejectedHelp": "Fix it and save to send it for review again.",
     "approved": "Buyers can see this garment. If you save changes, it is hidden until AKIBA has reviewed them.",
+    "archivedNotice": "This garment is archived. Buyers can’t see it, but its photos, story and requests are kept. Restore it to show it again.",
+    "archive": "Archive garment",
+    "archiving": "Archiving…",
+    "restore": "Restore garment",
+    "restoring": "Restoring…",
     "delete": "Delete garment",
     "deleteTitle": "Delete this garment?",
     "deleteBody": "Buyers will no longer see it, and its photos will be deleted. This can’t be undone.",

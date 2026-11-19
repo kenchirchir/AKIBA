@@ -43,7 +43,7 @@ function savePhotos(supabase: Supabase, garmentId: string, photos: Photo[]) {
 }
 
 function backToShop(
-  notice: "uploaded" | "saved" | "deleted",
+  notice: "uploaded" | "saved" | "deleted" | "archived" | "restored",
   changed?: { garmentId: string; tailorId: string },
 ): never {
   revalidatePath("/shop", "layout");
@@ -193,4 +193,41 @@ export async function deleteGarment(
   const removed = garment.garment_photos.map((photo) => photo.public_id);
   after(() => destroyPhotos(removed));
   backToShop("deleted", { garmentId: id, tailorId: tailor.id });
+}
+
+async function setArchived(
+  formData: FormData,
+  archived: boolean,
+): Promise<GarmentFormState> {
+  const tailor = await getCurrentTailor();
+  if (!tailor) redirect("/login");
+
+  const id = text(formData, "id");
+  if (!isId(id)) return missing;
+
+  const supabase = await createServerSupabase();
+  const { error } = await supabase.rpc("set_garment_archived", {
+    garment: id,
+    archived,
+  });
+  if (error) return error.code === "P0002" ? missing : failed;
+
+  backToShop(archived ? "archived" : "restored", {
+    garmentId: id,
+    tailorId: tailor.id,
+  });
+}
+
+export async function archiveGarment(
+  _state: GarmentFormState,
+  formData: FormData,
+): Promise<GarmentFormState> {
+  return setArchived(formData, true);
+}
+
+export async function restoreGarment(
+  _state: GarmentFormState,
+  formData: FormData,
+): Promise<GarmentFormState> {
+  return setArchived(formData, false);
 }

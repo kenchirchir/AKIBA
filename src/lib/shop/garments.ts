@@ -8,7 +8,9 @@ export async function getMyGarments(tailorId: string) {
   const [garments, views] = await Promise.all([
     supabase
       .from("garments")
-      .select("id, name, price_rwf, status, garment_photos(public_id)")
+      .select(
+        "id, name, price_rwf, status, archived_at, garment_photos(public_id)",
+      )
       .eq("tailor_id", tailorId)
       .order("created_at", { ascending: false })
       .order("position", { referencedTable: "garment_photos" })
@@ -40,7 +42,7 @@ export async function getMyGarment(tailorId: string, id: string) {
   const { data } = await supabase
     .from("garments")
     .select(
-      "id, name, category, subcategory, audience, material, description, story, price_rwf, making_days, status, rejection_reason, garment_photos(public_id, width, height)",
+      "id, name, category, subcategory, audience, material, description, story, price_rwf, making_days, status, rejection_reason, archived_at, garment_photos(public_id, width, height)",
     )
     .eq("id", id)
     .eq("tailor_id", tailorId)

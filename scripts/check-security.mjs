@@ -503,6 +503,81 @@ function tailorChecks({ admin, a, b, researcher, shopB, garmentB }) {
       },
     ],
     [
+      "Tailors can archive their own garment and it stays approved",
+      async () => {
+        const { error } = await a.client.rpc("set_garment_archived", {
+          garment: own.garment.id,
+          archived: true,
+        });
+        if (error) return false;
+
+        const { data } = await admin
+          .from("garments")
+          .select("status, archived_at")
+          .eq("id", own.garment.id)
+          .single();
+        return data?.status === "approved" && data.archived_at !== null;
+      },
+    ],
+    [
+      "Visitors cannot see archived garments",
+      async () =>
+        blocked(
+          await visitor.from("garments").select("id").eq("id", own.garment.id),
+        ),
+    ],
+    [
+      "Tailors can still see their own archived garments",
+      async () => {
+        const { data, error } = await a.client
+          .from("garments")
+          .select("id")
+          .eq("id", own.garment.id);
+        return !error && data.length === 1;
+      },
+    ],
+    [
+      "Tailors cannot archive another tailor's garment",
+      async () => {
+        const { error } = await a.client.rpc("set_garment_archived", {
+          garment: garmentB,
+          archived: true,
+        });
+        const { data } = await admin
+          .from("garments")
+          .select("archived_at")
+          .eq("id", garmentB)
+          .single();
+        return Boolean(error) && data?.archived_at === null;
+      },
+    ],
+    [
+      "Visitors cannot archive garments",
+      async () => {
+        const { error } = await visitor.rpc("set_garment_archived", {
+          garment: own.garment.id,
+          archived: false,
+        });
+        return Boolean(error);
+      },
+    ],
+    [
+      "Restoring an archived garment shows it to visitors again",
+      async () => {
+        const { error } = await a.client.rpc("set_garment_archived", {
+          garment: own.garment.id,
+          archived: false,
+        });
+        if (error) return false;
+
+        const { data } = await visitor
+          .from("garments")
+          .select("id")
+          .eq("id", own.garment.id);
+        return data?.length === 1;
+      },
+    ],
+    [
       "Visitors cannot see a suspended tailor or their garments",
       async () => {
         const { error } = await admin
