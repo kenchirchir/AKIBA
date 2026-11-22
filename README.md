@@ -120,19 +120,21 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 
 Open `.env.local` in any text editor (for example `open -e .env.local` on macOS, `nano .env.local` on Linux, `notepad .env.local` on Windows) and fill it in:
 
-| Variable                               | Where it comes from                                                                                                                      |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SUPABASE_URL`             | Supabase: **Connect**, then **Next.js**                                                                                                  |
-| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase: **Connect**, then **Next.js**                                                                                                  |
-| `SUPABASE_SECRET_KEY`                  | Supabase: **Project Settings**, **API Keys**, **Secret keys**. Server only: never share it or put it in code                             |
-| `AUTH_PIN_PEPPER`                      | A long random secret, made with `openssl rand -base64 32`. Use the same value everywhere and never change it once tailors have signed up |
-| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`    | Cloudinary: **Settings**, **API Keys**, the cloud name at the top                                                                        |
-| `CLOUDINARY_API_KEY`                   | Cloudinary: **Settings**, **API Keys**                                                                                                   |
-| `CLOUDINARY_API_SECRET`                | Cloudinary: **Settings**, **API Keys**, next to the API key. Server only: never share it or put it in code                               |
-| `AFRICASTALKING_USERNAME`              | Africa's Talking: `sandbox` while testing, then your app's username for real SMS. Leave empty to keep SMS in test mode                   |
-| `AFRICASTALKING_API_KEY`               | Africa's Talking: **Settings**, **API Key** (sandbox and live keys differ). Server only: never share it or put it in code                |
-| `AFRICASTALKING_SENDER_ID`             | Optional. An approved sender name such as `AKIBA`. Leave empty in the sandbox                                                            |
-| `SUPABASE_SMS_HOOK_SECRET`             | Supabase: **Authentication**, **Hooks**, the secret of the Send SMS hook. Only needed for real sign-up codes                             |
+| Variable                               | Where it comes from                                                                                                                              |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `NEXT_PUBLIC_SUPABASE_URL`             | Supabase: **Connect**, then **Next.js**                                                                                                          |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase: **Connect**, then **Next.js**                                                                                                          |
+| `SUPABASE_SECRET_KEY`                  | Supabase: **Project Settings**, **API Keys**, **Secret keys**. Server only: never share it or put it in code                                     |
+| `AUTH_PIN_PEPPER`                      | A long random secret, made with `openssl rand -base64 32`. Use the same value everywhere and never change it once tailors have signed up         |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`    | Cloudinary: **Settings**, **API Keys**, the cloud name at the top                                                                                |
+| `CLOUDINARY_API_KEY`                   | Cloudinary: **Settings**, **API Keys**                                                                                                           |
+| `CLOUDINARY_API_SECRET`                | Cloudinary: **Settings**, **API Keys**, next to the API key. Server only: never share it or put it in code                                       |
+| `PINDO_API_TOKEN`                      | Pindo: profile icon, **Security**. When set, all SMS go through Pindo instead of Africa's Talking. Server only: never share it or put it in code |
+| `PINDO_SENDER_ID`                      | Optional. The sender name approved by Pindo, such as `AKIBA`. Empty uses `PindoTest`                                                             |
+| `AFRICASTALKING_USERNAME`              | Africa's Talking: `sandbox` while testing, then your app's username for real SMS. Leave empty to keep SMS in test mode                           |
+| `AFRICASTALKING_API_KEY`               | Africa's Talking: **Settings**, **API Key** (sandbox and live keys differ). Server only: never share it or put it in code                        |
+| `AFRICASTALKING_SENDER_ID`             | Optional. An approved sender name such as `AKIBA`. Leave empty in the sandbox                                                                    |
+| `SUPABASE_SMS_HOOK_SECRET`             | Supabase: **Authentication**, **Hooks**, the secret of the Send SMS hook. Only needed for real sign-up codes                                     |
 
 Never commit `.env.local`, and never change `AUTH_PIN_PEPPER` once tailors have signed up: their PINs would stop working.
 

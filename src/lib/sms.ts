@@ -1,12 +1,26 @@
 import "server-only";
 
-type SendResult = {
+type AfricasTalkingResult = {
   SMSMessageData?: {
     Recipients?: { status?: string; statusCode?: number }[];
   };
 };
 
-function provider() {
+type PindoResult = {
+  status?: string;
+};
+
+function pindo() {
+  const token = process.env.PINDO_API_TOKEN;
+  if (!token) return null;
+
+  return {
+    token,
+    sender: process.env.PINDO_SENDER_ID || "PindoTest",
+  };
+}
+
+function africasTalking() {
   const username = process.env.AFRICASTALKING_USERNAME;
   const apiKey = process.env.AFRICASTALKING_API_KEY;
   if (!username || !apiKey) return null;
@@ -34,13 +48,50 @@ function logTestMode(to: string, text: string) {
   }
 }
 
-export async function sendSms(to: string, text: string) {
-  const sms = provider();
-  if (!sms) {
-    logTestMode(to, text);
+async function sendWithPindo(
+  sms: NonNullable<ReturnType<typeof pindo>>,
+  to: string,
+  text: string,
+) {
+  try {
+    const response = await fetch("https://api.pindo.io/v1/sms/", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${sms.token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ to, text, sender: sms.sender }),
+    });
+
+    if (!response.ok) {
+      const reason = await response.text().catch(() => "");
+      console.error(
+        `Pindo answered ${response.status}: ${reason.slice(0, 200)}`,
+      );
+      return false;
+    }
+
+    const result = (await response.json()) as PindoResult;
+    if (result.status !== "sent") {
+      console.error(
+        `The SMS was not accepted by Pindo: ${result.status ?? "no status"}`,
+      );
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Could not reach Pindo", error);
     return false;
   }
+}
 
+async function sendWithAfricasTalking(
+  sms: NonNullable<ReturnType<typeof africasTalking>>,
+  to: string,
+  text: string,
+) {
   const body = new URLSearchParams({
     username: sms.username,
     to,
@@ -64,7 +115,7 @@ export async function sendSms(to: string, text: string) {
       return false;
     }
 
-    const result = (await response.json()) as SendResult;
+    const result = (await response.json()) as AfricasTalkingResult;
     const recipient = result.SMSMessageData?.Recipients?.[0];
     if (recipient?.status !== "Success") {
       console.error(
@@ -78,4 +129,16 @@ export async function sendSms(to: string, text: string) {
     console.error("Could not reach Africa's Talking", error);
     return false;
   }
+}
+
+export async function sendSms(to: string, text: string) {
+  const viaPindo = pindo();
+  if (viaPindo) return sendWithPindo(viaPindo, to, text);
+
+  const viaAfricasTalking = africasTalking();
+  if (viaAfricasTalking)
+    return sendWithAfricasTalking(viaAfricasTalking, to, text);
+
+  logTestMode(to, text);
+  return false;
 }
