@@ -15,6 +15,9 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: {
+    agentUpgrade: "security",
+  },
   async redirects() {
     return [{ source: "/admin/login", destination: "/login", permanent: true }];
   },
