@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 import heroImage from "@/assets/welcome-hero.webp";
 import { DecorativeCircles } from "@/components/layout/decorative-circles";
-import { LanguageSwitch } from "@/components/layout/language-switch";
+import { LanguageSelect } from "@/components/layout/language-select";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   const t = useTranslations("Common");
@@ -31,7 +31,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           <ArrowLeft strokeWidth={2.25} className="size-5" />
           {t("backHome")}
         </Link>
-        <LanguageSwitch className="absolute top-6 right-6 md:top-8 md:right-10" />
+        <LanguageSelect className="absolute top-6 right-6 md:top-8 md:right-10" />
         <div className="relative w-full md:max-w-md">{children}</div>
       </div>
     </main>

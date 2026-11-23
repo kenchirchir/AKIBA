@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { buttonClasses } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
-import { LanguageSwitch } from "./language-switch";
+import { LanguageSelect } from "./language-select";
 import { SiteTabs } from "./site-tabs";
 
 export function SiteHeader() {
@@ -40,7 +40,7 @@ export function SiteHeader() {
         </Form>
         <div className="flex items-center gap-4 justify-self-end xl:gap-6">
           <SiteTabs />
-          <LanguageSwitch />
+          <LanguageSelect />
           <Link
             href="/login"
             className={buttonClasses({ variant: "outline", size: "md" })}

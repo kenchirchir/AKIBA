@@ -5,7 +5,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { Logo } from "@/components/ui/logo";
 import { areaNames } from "@/lib/kigali";
 import { publicPageHref, type CurrentTailor } from "@/lib/tailor";
-import { LanguageSwitch } from "./language-switch";
+import { LanguageSelect } from "./language-select";
 import { TailorNav } from "./tailor-nav";
 
 export function TailorSidebar({ tailor }: { tailor: CurrentTailor }) {
@@ -20,6 +20,7 @@ export function TailorSidebar({ tailor }: { tailor: CurrentTailor }) {
       >
         <Logo variant="bold" />
       </Link>
+      <LanguageSelect className="mt-4 px-2" />
       <div className="mt-6 flex items-center gap-2.5 rounded-[14px] bg-haze p-2.5">
         <Avatar
           name={tailor.shop_name}
@@ -34,8 +35,7 @@ export function TailorSidebar({ tailor }: { tailor: CurrentTailor }) {
         </div>
       </div>
       <TailorNav newRequests={tailor.newRequests} />
-      <LanguageSwitch className="mt-auto mb-4 self-start" />
-      <div className="flex flex-col px-3 text-sm font-semibold">
+      <div className="mt-auto flex flex-col px-3 text-sm font-semibold">
         <Link
           href={publicPageHref(tailor)}
           className="py-2 text-teal hover:underline"

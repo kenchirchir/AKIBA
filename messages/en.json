@@ -13,8 +13,7 @@
     "showPin": "Show PIN"
   },
   "Language": {
-    "label": "Language",
-    "choose": "Choose language"
+    "label": "Language"
   },
   "Nav": {
     "label": "Main",
@@ -685,7 +684,6 @@
     "viewAsBuyer": "View my shop as a buyer",
     "smsAlerts": "SMS alerts for new requests",
     "changePin": "Change PIN",
-    "language": "Language",
     "helpTerms": "Help & terms",
     "logout": "Log out",
     "deleteAccount": "Delete account",

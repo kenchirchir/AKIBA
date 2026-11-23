@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "./container";
-import { LanguageSwitch } from "./language-switch";
 
 const linkClasses =
   "w-fit text-sm text-secondary transition-colors hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal";
@@ -90,11 +89,10 @@ export function SiteFooter() {
           </div>
         </div>
       </Container>
-      <Container className="flex flex-wrap items-center justify-between gap-4 border-t border-line-soft py-5">
+      <Container className="border-t border-line-soft py-5">
         <p className="text-caption text-secondary">
           {t("copyright", { year: new Date().getFullYear() })}
         </p>
-        <LanguageSwitch full />
       </Container>
     </footer>
   );

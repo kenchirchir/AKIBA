@@ -13,7 +13,7 @@ import { Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { iconButtonClasses } from "@/components/ui/icon-button";
 import { Logo } from "@/components/ui/logo";
-import { LanguageSwitch } from "./language-switch";
+import { LanguageSelect } from "./language-select";
 
 type MobileHeaderProps = {
   homeHref: string;
@@ -30,7 +30,6 @@ export function MobileHeader({
 }: MobileHeaderProps) {
   const t = useTranslations("Menu");
   const common = useTranslations("Common");
-  const language = useTranslations("Language");
   const menuId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
@@ -84,7 +83,10 @@ export function MobileHeader({
         >
           <Logo variant="bold" />
         </Link>
-        <div className="ml-auto flex items-center gap-1">{end}</div>
+        <div className="ml-auto flex items-center gap-1">
+          <LanguageSelect />
+          {end}
+        </div>
       </div>
       {children}
       {open && (
@@ -102,10 +104,6 @@ export function MobileHeader({
         className="absolute inset-x-0 top-16 max-h-[calc(100dvh-4rem)] animate-dropdown overflow-y-auto border-t border-line-soft bg-white px-5 pt-3 pb-6 shadow-dropdown md:px-8"
       >
         {menu}
-        <div className="mt-4 flex items-center justify-between gap-3 border-t border-line-soft pt-4">
-          <p className="text-sm font-semibold text-ink">{language("label")}</p>
-          <LanguageSwitch full />
-        </div>
       </nav>
     </header>
   );

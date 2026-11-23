@@ -7,14 +7,13 @@
   "Common": {
     "home": "Ahabanza ha AKIBA",
     "back": "Garuka",
-    "backHome": "Gusubira mu rugo",
+    "backHome": "Subira ahabanza",
     "saved": "Imyenda n’abadozi wabitse",
     "kigali": "Kigali",
     "showPin": "Erekana PIN"
   },
   "Language": {
-    "label": "Ururimi",
-    "choose": "Hitamo ururimi"
+    "label": "Ururimi"
   },
   "Nav": {
     "label": "Igikuru",
@@ -685,7 +684,6 @@
     "viewAsBuyer": "Reba iduka ryanjye nk’umuguzi",
     "smsAlerts": "SMS imenyesha ku busabe bushya",
     "changePin": "Impinduka PIN",
-    "language": "Ururimi",
     "helpTerms": "Ubufasha n’amategeko",
     "logout": "Sohoka",
     "deleteAccount": "Siba konti",

@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { AdminNav } from "@/components/admin/admin-nav";
 import { LogoutButton } from "@/components/auth/logout-button";
 import { Container } from "@/components/layout/container";
+import { LanguageSelect } from "@/components/layout/language-select";
 import { Badge } from "@/components/ui/badge";
 import { Logo } from "@/components/ui/logo";
 import { getOverview } from "@/lib/admin/data";
@@ -29,7 +30,8 @@ export default async function AdminLayout({
             <Logo variant="bold" />
             <Badge variant="neutral">{t("admin")}</Badge>
           </Link>
-          <LogoutButton className="ml-auto cursor-pointer text-label font-semibold text-danger hover:underline md:order-last">
+          <LanguageSelect className="ml-auto md:order-last" />
+          <LogoutButton className="cursor-pointer text-label font-semibold text-danger hover:underline md:order-last">
             {t("logout")}
           </LogoutButton>
           <div className="w-full md:w-auto">

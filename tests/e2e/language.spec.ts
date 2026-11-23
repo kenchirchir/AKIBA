@@ -8,9 +8,9 @@ test("visitors can switch between English and Kinyarwanda", async ({
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
 
   await page
-    .getByRole("button", { name: /^(RW|Ikinyarwanda)$/ })
-    .first()
-    .click();
+    .getByLabel("Language")
+    .filter({ visible: true })
+    .selectOption("rw");
   await expect(page.locator("html")).toHaveAttribute("lang", "rw");
   const cookies = await context.cookies();
   expect(cookies.find((cookie) => cookie.name === "NEXT_LOCALE")?.value).toBe(
@@ -19,10 +19,10 @@ test("visitors can switch between English and Kinyarwanda", async ({
 
   await page.goto("/terms");
   await expect(page.locator("html")).toHaveAttribute("lang", "rw");
+  await expect(
+    page.getByLabel("Ururimi").filter({ visible: true }),
+  ).toHaveValue("rw");
 
-  await page
-    .getByRole("button", { name: /^(EN|English)$/ })
-    .last()
-    .click();
+  await page.getByLabel("Ururimi").filter({ visible: true }).selectOption("en");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
 });

@@ -5,7 +5,6 @@ import {
   CircleCheck,
   CircleHelp,
   Eye,
-  Globe,
   Hourglass,
   KeyRound,
   LogOut,
@@ -14,7 +13,6 @@ import {
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { LogoutButton } from "@/components/auth/logout-button";
-import { LanguageSwitch } from "@/components/layout/language-switch";
 import { PageHeader } from "@/components/layout/page-header";
 import { HelpSheet } from "@/components/profile/help-sheet";
 import { SmsAlertsSwitch } from "@/components/profile/sms-alerts-switch";
@@ -136,11 +134,6 @@ export default async function ProfilePage({
                 <span className="flex-1">{t("changePin")}</span>
                 <ChevronRight className={iconClasses} />
               </Link>
-            </li>
-            <li className={rowClasses}>
-              <Globe className={iconClasses} />
-              <span className="flex-1">{t("language")}</span>
-              <LanguageSwitch full />
             </li>
             <li>
               <HelpSheet className={rowClasses}>

@@ -12,5 +12,5 @@ export function isLocale(value: unknown): value is Locale {
 
 export const localeNames: Record<Locale, string> = {
   en: "English",
-  rw: "Ikinyarwanda",
+  rw: "Kinyarwanda",
 };

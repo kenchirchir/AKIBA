@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Logo } from "@/components/ui/logo";
+import { LanguageSelect } from "./language-select";
 
 export function LogoBar() {
   const t = useTranslations("Common");
@@ -14,6 +15,7 @@ export function LogoBar() {
       >
         <Logo variant="bold" />
       </Link>
+      <LanguageSelect className="ml-auto" />
     </header>
   );
 }
