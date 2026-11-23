@@ -151,30 +151,29 @@ export function BuyerHeader() {
   );
 
   return (
-    <>
-      <MobileHeader
-        homeHref="/"
-        menu={menu}
-        end={
-          <Link
-            href="/saved"
-            aria-label={common("saved")}
-            className={iconButtonClasses({
-              variant: "white",
-              size: "lg",
-              className: "[&_svg]:size-6",
-            })}
-          >
-            <Heart strokeWidth={1.75} />
-          </Link>
-        }
-      />
+    <MobileHeader
+      homeHref="/"
+      menu={menu}
+      end={
+        <Link
+          href="/saved"
+          aria-label={common("saved")}
+          className={iconButtonClasses({
+            variant: "white",
+            size: "lg",
+            className: "[&_svg]:size-6",
+          })}
+        >
+          <Heart strokeWidth={1.75} />
+        </Link>
+      }
+    >
       {showSearch && (
         <Form
           action="/garments"
           role="search"
           onSubmit={() => setFiltersOpen(false)}
-          className="border-b border-line-soft bg-white px-4 py-3 md:px-6 lg:hidden"
+          className="bg-white px-3 pb-3 md:px-6 lg:hidden"
         >
           <div className="flex items-center gap-2">
             <div className="relative min-w-0 flex-1">
@@ -267,6 +266,6 @@ export function BuyerHeader() {
           </div>
         </Form>
       )}
-    </>
+    </MobileHeader>
   );
 }

@@ -64,9 +64,12 @@ async function tooManyRequests(
 }
 
 async function smsText(request: RequestDetails, garmentName: string) {
-  const t = await getTranslations("Sms");
-  const options = await getTranslations("RequestOptions");
-  const format = await getFormatter();
+  const t = await getTranslations({ locale: "en", namespace: "Sms" });
+  const options = await getTranslations({
+    locale: "en",
+    namespace: "RequestOptions",
+  });
+  const format = await getFormatter({ locale: "en" });
   const { day, month } = dateParts(format, request.neededBy);
 
   return t("request", {

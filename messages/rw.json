@@ -1,0 +1,927 @@
+{
+  "Metadata": {
+    "title": "AKIBA — Imyenda ikozwe muri Kigali",
+    "titleTemplate": "%s · AKIBA",
+    "description": "Shaka imyenda y’abadozi bemewe bo mu gace utuyemo muri Kigali, soma inkuru iri inyuma ya buri gishushanyo, hanyuma uyisabe."
+  },
+  "Common": {
+    "home": "Ahabanza ha AKIBA",
+    "back": "Garuka",
+    "backHome": "Gusubira mu rugo",
+    "saved": "Imyenda n’abadozi wabitse",
+    "kigali": "Kigali",
+    "showPin": "Erekana PIN"
+  },
+  "Language": {
+    "label": "Ururimi",
+    "choose": "Hitamo ururimi"
+  },
+  "Nav": {
+    "label": "Igikuru",
+    "searchLabel": "Shaka imyenda cyangwa abadozi",
+    "searchPlaceholder": "Shakisha imyenda, abadozi, ibitambaro",
+    "discover": "Vumbura",
+    "tailors": "Abadozi",
+    "saved": "Byabitswe",
+    "tailorLogin": "Kwinjira ku badozi",
+    "browse": "Shakisha",
+    "moreGarments": "Imyenda myinshi",
+    "browseByArea": "Reba ukurikije agace:",
+    "offersTitle": "Ibitangwa n’abadozi",
+    "offersBody": "Imyenda mishya yavuye ku badozi bemewe",
+    "womenTitle": "Byakorewe abagore",
+    "womenBody": "Amakanzu, amakanzu, ikitenge n’ibindi",
+    "menTitle": "Byakorewe abagabo",
+    "menBody": "Amashati, amakoti, amapantalo n’ibindi byinshi"
+  },
+  "Footer": {
+    "tagline": "Imyenda ikorwa n’abadozi bemewe muri Kigali Soma inkuru iri inyuma ya buri gice hanyuma uhure n’uwagikoze.",
+    "discover": "Vumbura",
+    "garments": "Ibitangwa n’abadozi",
+    "tailors": "Abadozi",
+    "saved": "Byabitswe",
+    "forTailors": "Ku badozi",
+    "join": "Iyandikishe kuri AKIBA",
+    "login": "Injira",
+    "help": "Ubufasha",
+    "terms": "Amategeko n’ubuzima bwite",
+    "email": "kenchirchir2004@gmail.com",
+    "phone": "+250 794 096 359",
+    "copyright": "© {year} AKIBA · Kigali, Rwanda"
+  },
+  "Placeholder": {
+    "comingIn": "Yubatswe mu gice cya {milestone}"
+  },
+  "Menu": {
+    "label": "Ibikubiyemo",
+    "open": "Fungura ibikubiyemo",
+    "close": "Funga ibikubiyemo"
+  },
+  "BuyerMenu": {
+    "searchLabel": "Shaka imyenda cyangwa abadozi",
+    "search": "Gushakisha",
+    "filters": "Akayunguruzo",
+    "district": "Akarere",
+    "allOfKigali": "Kigali yose",
+    "sector": "Umurenge",
+    "anySector": "Umurenge uwo ari wo wose",
+    "categories": "Ibyiciro by’imyenda",
+    "shopAll": "Reba byose",
+    "allIn": "Byose {category}",
+    "meetTailors": "Hurira n’abadozi",
+    "areYouTailor": "Uri umudozi?",
+    "showcase": "Erekana imyenda yawe",
+    "join": "Iyandikishe kuri AKIBA",
+    "login": "Injira"
+  },
+  "TailorMenu": {
+    "signedInAs": "Yinjiye nka {shop}",
+    "pages": "Iduka ryawe",
+    "myShop": "Iduka ryanjye",
+    "garmentCount": "{count,plural,one{Umwambaro #} other{Imyenda #}}",
+    "upload": "Kohereza",
+    "requests": "Ubusabe",
+    "newRequests": "{count} bishya",
+    "profile": "Umwirondoro",
+    "publicPage": "Urupapuro rwanjye rusange",
+    "logout": "Sohoka"
+  },
+  "TailorNav": {
+    "label": "Impapuro z’umudozi",
+    "myShop": "Iduka ryanjye",
+    "upload": "Shyiraho imyenda",
+    "requests": "Ubusabe",
+    "profile": "Umwirondoro n’aho iduka riherereye",
+    "publicPage": "Urupapuro rwanjye rusange",
+    "logout": "Sohoka"
+  },
+  "Catalogue": {
+    "collections": {
+      "men": "Abagabo",
+      "women": "Abagore"
+    },
+    "categories": {
+      "tops": "Imyenda yo hejuru",
+      "bottoms": "Imyenda yo hasi",
+      "dresses": "Amakanzu",
+      "suits": "Amakoti",
+      "traditional-wear": "Imyambarire gakondo",
+      "bridal-occasion": "Ubukwe n’umunsi mukuru"
+    },
+    "subcategories": {
+      "shirts": "Amashati",
+      "blouses": "Amabuluze",
+      "kaftans-tunics": "Kaftans n’amakanzu",
+      "crop-tops": "Udupira tugufi",
+      "trousers": "Ipantalo",
+      "skirts": "Amajipo",
+      "shorts": "Amakabutura magufi"
+    },
+    "audiences": {
+      "women": "Abagore",
+      "men": "Abagabo",
+      "unisex": "Buri wese",
+      "kids": "Abana"
+    },
+    "materials": {
+      "kitenge-cotton": "Kitenge y’ipamba",
+      "cotton": "Ipamba",
+      "linen": "Lineni",
+      "wool": "Ubwoya",
+      "lace": "Leshi",
+      "silk-blend": "Hariri ivanze",
+      "denim": "Denimu"
+    },
+    "tailoringTypes": {
+      "dressmaking": "Kudoda amakanzu",
+      "suit-tailoring": "Kudoda amakoti",
+      "traditional": "Gakondo (Mushanana)",
+      "kitenge-ankara": "Kitenge / Ankara",
+      "bridal-occasion": "Ubukwe n’umunsi mukuru",
+      "shirts": "Amashati",
+      "kids": "Imyambaro y’abana"
+    }
+  },
+  "Feed": {
+    "title": "Ibitangwa n’abadozi",
+    "allGarments": "Imyenda yose",
+    "resultsFor": "Ibisubizo bya “{query}”",
+    "showcase": "Saba umwenda, wemeranye n’uwo kudoda, hanyuma wishyure umudozi ako kanya.",
+    "price": "{price, number} RF",
+    "empty": "Nta myenda ihuye na yo. Gerageza ikindi cyiciro cyangwa agace.",
+    "detailsLabel": "Erekana igiciro n’umudozi",
+    "showDetails": "Erekana igiciro n’umudozi",
+    "hideDetails": "Hisha amakuru arambuye",
+    "showMore": "Erekana imyenda myinshi",
+    "seeAll": "Reba imyenda yose",
+    "showAll": "Erekana imyenda yose",
+    "filters": "Akayunguruzo",
+    "updating": "Irimo kuvugurura…",
+    "tailoringType": "Ubwoko bw’ubudozi",
+    "allTypes": "Ubwoko bwose",
+    "experience": "Ubunararibonye mu kudoda imyenda",
+    "anyExperience": "Ubunararibonye ubwo aribwo bwose",
+    "material": "Ibikoresho",
+    "anyMaterial": "Ibikoresho ibyo ari byo byose",
+    "clearFilters": "Siba ibyo wahisemo byose"
+  },
+  "Errors": {
+    "title": "Hari ikintu kitagenze neza",
+    "body": "Ntitwashoboye gufungura uru rupapuro. Reba umurongo wawe wo kuri interineti hanyuma wongere ugerageze.",
+    "retry": "Ongera ugerageze"
+  },
+  "Welcome": {
+    "title": "<line>Ambara inkuru.</line> <line>Hurira n’uwakoze.</line>",
+    "intro": "Shaka imyenda y’abadozi bemewe bo mu gace utuyemo, soma inkuru iri inyuma ya buri gishushanyo, hanyuma uyisabe.",
+    "imageAlt": "Abadozi babiri bashyira ikanzu itukura ifite imitako ya lace ku ikoti",
+    "join": "Ndi umudozi — iyandikishe kuri AKIBA",
+    "discover": "Vumbura imyenda",
+    "alreadyTailor": "Wamaze kuba umudozi hano?",
+    "login": "Injira",
+    "pill": "Byakozwe muri Kigali · abadozi bo mu gace bemewe",
+    "values": {
+      "verified": {
+        "title": "Abakora bemewe",
+        "body": "Yagenzuwe n’amashyirahamwe y’abadozi"
+      },
+      "stories": {
+        "title": "Inkuru nyazo",
+        "body": "Ni nde wabikoze kandi kuki?"
+      },
+      "calls": {
+        "title": "Guhamagara mu buryo butaziguye",
+        "body": "Umudozi araguhamagara, nta muntu wo hagati"
+      }
+    }
+  },
+  "Tailors": {
+    "eyebrow": "Yemejwe n’amashyirahamwe y’abadozi",
+    "title": "Abadozi",
+    "filters": "Akayunguruzo",
+    "searchLabel": "Shakisha ukurikije izina cyangwa iduka",
+    "district": "Akarere",
+    "allDistricts": "Uturere twose",
+    "sector": "Umurenge",
+    "anySector": "Umurenge uwo ari wo wose",
+    "type": "Ubwoko bw’ubudozi",
+    "allTypes": "Ubwoko bwose",
+    "experience": "Ubunararibonye",
+    "anyExperience": "Uburambe ubwo ari bwo bwose",
+    "clearFilters": "Siba ibyo wahisemo byose",
+    "updating": "Irimo kuvugurura…",
+    "results": "Abadozi babonetse",
+    "showing": "Igaragaza {count,plural,one{# umudozi} other{# abadozi}} · inararibonye kurusha abandi mbere",
+    "empty": "Nta badozi bahuye. Gerageza ubundi bwoko bw’ubudozi.",
+    "showAll": "Erekana abadozi bose",
+    "save": "Bika {shop}",
+    "garments": "{count,plural,one{Umwambaro #} other{Imyenda #} =0{Nta myenda irahari}}",
+    "more": "+{count}"
+  },
+  "Saved": {
+    "title": "Byabitswe",
+    "subtitle": "Byabitswe kuri iyi terefone · nta konti ikenewe",
+    "tabs": "Ibintu byabitswe",
+    "garments": "Imyenda",
+    "tailors": "Abadozi",
+    "loading": "Turimo gufungura imyenda wabitse",
+    "loadingTailors": "Turimo gufungura abadozi wabitse",
+    "emptyTitle": "Nta kintu cyabitswe kugeza ubu",
+    "emptyBody": "Kanda umutima ku mwenda kugira ngo uwugumane hano. Imyenda yabitswe iguma kuri iyi telefoni, nta konti ikenewe.",
+    "discover": "Vumbura imyenda",
+    "emptyTailorsTitle": "Nta badozi urabika",
+    "emptyTailorsBody": "Kanda ku mutima ku mudozi kugira ngo umugumane hano. Abadozi barokowe baguma kuri iyi telefoni, nta konti ikenewe.",
+    "meetTailors": "Hurira n’abadozi",
+    "note": "Ibyo wabitse biguma muri iyi mushakisha. Witeguye gutumiza? Fungura umwenda hanyuma ukande kuri <strong>Saba uyu mwenda</strong>."
+  },
+  "GarmentStory": {
+    "title": "Inkuru y’umwenda",
+    "save": "Bika umwenda",
+    "price": "RWF {price, number}",
+    "guidePrice": "Igiciro cy’ubuyobozi · Igiciro cya nyuma cyumvikanyweho n’umudozi wo ku gikoresho cyawe",
+    "material": "Ibikoresho",
+    "category": "Icyiciro",
+    "madeFor": "Byakorewe",
+    "madeIn": "Igihe cyo kuwudoda",
+    "days": "{count,plural,one{Umunsi #} other{Iminsi #}}",
+    "story": "Inkuru",
+    "readMore": "Soma inkuru yose",
+    "readLess": "Erekana bike",
+    "description": "Ibisobanuro",
+    "photoAlt": "{name}, ifoto {number} kuri {total}",
+    "showPhoto": "Erekana ifoto {number}",
+    "noPhoto": "Nta foto iraboneka",
+    "translate": "Hindura mu rurimi: {language}",
+    "translating": "Guhindura…",
+    "translatedBy": "Byahinduwe na Google Translate",
+    "showOriginal": "Erekana umwimerere",
+    "sameLanguage": "Iyi nkuru iri muri {language}.",
+    "translateFailed": "Ubuhinduzi ntibwafunguye. Reba aho uhuriye hanyuma wongere ugerageze."
+  },
+  "RequestOptions": {
+    "sizes": {
+      "xs": "XS",
+      "s": "S",
+      "m": "M",
+      "l": "L",
+      "xl": "XL",
+      "xxl": "XXL",
+      "measure": "Mfatira ibipimo igihe cyo gupima"
+    },
+    "times": {
+      "anytime": "Igihe icyo ari cyo cyose",
+      "morning": "Mu gitondo",
+      "afternoon": "Nyuma ya saa sita",
+      "evening": "Nimugoroba"
+    }
+  },
+  "RequestForm": {
+    "open": "Saba uyu mwenda",
+    "title": "Saba uyu mwenda",
+    "name": "Izina ryawe",
+    "namePlaceholder": "urugero: Keza Mutoni",
+    "phone": "Nomero yawe ya terefone",
+    "size": "Ingano",
+    "choose": "Hitamo",
+    "quantity": "Umubare",
+    "pieces": "{count,plural,one{Igice #} other{Ibice #}}",
+    "neededBy": "Bikenewe bitarenze",
+    "bestTime": "Igihe cyiza cyo guhamagara",
+    "note": "{name} ibona icyifuzo cyawe na nimero yawe ya terefone, kandi izaguhamagara kugira ngo yumvikane ko ikwiriye.",
+    "send": "Ohereza ubusabe",
+    "sending": "Kohereza…",
+    "cancel": "Hagarika",
+    "errors": {
+      "nameRequired": "Andika izina ryawe.",
+      "phoneInvalid": "Andika nimero ya telefoni igendanwa yo mu Rwanda, urugero 078 123 4567.",
+      "sizeRequired": "Hitamo ingano.",
+      "quantityInvalid": "Hitamo umubare w’ibice, kuva kuri 1 kugeza kuri 20.",
+      "neededByInvalid": "Hitamo itariki yo kuva uyu munsi kugeza ku mwaka umwe uhereye ubu.",
+      "unavailable": "Uyu mwenda ntushobora gusabwa ubu. Ushobora kuba warahinduwe cyangwa warakuweho.",
+      "tooMany": "Wamaze kohereza ubusabe bwinshi. Nyamuneka tegereza igihe gito mbere yo kohereza ubundi.",
+      "generic": "Hari ikintu kitagenze neza. Reba aho uhurira hanyuma wongere ugerageze."
+    }
+  },
+  "RequestSent": {
+    "title": "Ubusabe bwoherejwe",
+    "body": "Twoherereje {name} icyifuzo cyawe na nimero yawe (<strong>{phone}</strong>). {time, select, morning {{name} azaguhamagara mu gitondo, nk’uko wabisabye.} afternoon {{name} azaguhamagara nyuma ya saa sita, nk’uko wabisabye.} evening {{name} azaguhamagara nimugoroba, nk’uko wabisabye.} other {{name} azaguhamagara vuba.}}",
+    "summary": "{quantity} × {garment} · {size,select,measure{byapimwe ku gipimo} other{Ingano {sizeName}}}",
+    "garment": "Umwenda wakuweho",
+    "neededBy": "Bikenewe na {weekday}, {day} {month}",
+    "shop": "{shop} · {sector}, {district}",
+    "nextTitle": "Ibikurikiraho ni iki",
+    "steps": {
+      "call": "{name} araguhamagara ngo muganire ku mwenda kandi mwemeranye igiciro",
+      "fitting": "Ujya mu iduka rya {name} kugira ngo ubone icyuma gishyirwamo",
+      "pay": "Wishyura {name} mu buryo butaziguye — MoMo cyangwa amafaranga"
+    },
+    "cantWait": "Ntushobora gutegereza guhamagara?",
+    "callNow": "Hamagara {name} nonaha",
+    "keepDiscovering": "Komeza kuvumbura"
+  },
+  "TailorProfile": {
+    "title": "Umwirondoro w’umudozi",
+    "description": "{shop}, iyobowe na {owner} muri {sector}, {district}, Kigali Umudozi wemejwe na AKIBA.",
+    "byline": "{owner} · Amaze {time} adoda",
+    "pending": "Gutegereza kwemeza",
+    "previewTitle": "Urupapuro rwanjye rusange",
+    "previewNote": "Ni wowe wenyine ushobora kubona uru rupapuro kugeza igihe AKIBA yemejwe n’iduka ryawe. Imyenda yawe igaragara hano iyo AKIBA abyemeye.",
+    "specialities": "Ibyo akora neza",
+    "location": "Aho iduka riherereye",
+    "area": "{sector} · {district}, Kigali",
+    "directions": "Erekana inzira",
+    "opensMaps": "(ifungura Google Maps)",
+    "request": "Saba umwenda kuri {name}",
+    "garments": "Imyenda",
+    "pieces": "{count,plural,one{Igice #} other{Ibice #}}",
+    "noGarments": "{name} ntarashyira ahagaragara imyenda iyo ari yo yose."
+  },
+  "Join": {
+    "title": "Iyandikishe",
+    "fullName": "Izina ryuzuye",
+    "fullNamePlaceholder": "urugero: Aline Uwase",
+    "phone": "Nimero ya terefone",
+    "phoneHint": "Tuzakoherereza kode kugira ngo tuyigenzure. Iyo umuguzi agusabye umwenda wawe, SMS izina rye n’inomero ye.",
+    "pin": "Kora PIN y’imibare 5",
+    "district": "Akarere muri Kigali",
+    "sector": "Umurenge",
+    "sectorHint": "Imirenge ivugururwa kugira ngo ihuze n’akarere wahisemo.",
+    "types": "Ubwoko bw’ubudozi",
+    "selected": "{count,plural,one{# yatoranijwe} other{# yatoranijwe} =0{Hitamo ubwoko}}",
+    "remove": "Kuraho {item}",
+    "experience": "Ubunararibonye mu kudoda",
+    "years": "Imyaka",
+    "months": "Amezi",
+    "yearsOption": "{count,plural,one{Umwaka #} other{Imyaka #}}",
+    "monthsOption": "{count,plural,one{Ukwezi #} other{Amezi #}}",
+    "buyersSee": "Abaguzi bazabona: {level} · {time}",
+    "shopAddress": "Aho iduka riherereye",
+    "shopAddressPlaceholder": "Urugero: Isoko rya Kimironko, ikibanza 42",
+    "choose": "Hitamo",
+    "chooseDistrictFirst": "Banza uhitemo akarere",
+    "terms": "Nasomye kandi nemeye",
+    "termsLink": "amategeko n’amabwiriza",
+    "submit": "Iyandikishe",
+    "submitting": "Kwiyandikisha…",
+    "haveAccount": "Ufite konti?",
+    "login": "Injira ahubwo"
+  },
+  "Verify": {
+    "title": "Genzura terefone",
+    "sent": "Twohereje kode y’imibare 6 kuri SMS kuri <strong>{phone}</strong> Andika hano hepfo kugira ngo urangize gufungura konti yawe.",
+    "code": "Kode yo kugenzura",
+    "submit": "Emeza hanyuma ukomeze",
+    "submitting": "Irimo kugenzura…",
+    "noCode": "Ntabwo wabonye kode?",
+    "resend": "Ongera wohereze",
+    "resendIn": "Ongera wohereze mu {time}",
+    "resent": "Twohereje kode nshya.",
+    "wrongNumber": "Nimero itari yo?",
+    "changeIt": "Subira inyuma uhindure"
+  },
+  "Login": {
+    "title": "Injira",
+    "verified": "Terefone yemejwe — konti yawe yiteguye.",
+    "phone": "Nimero ya terefone",
+    "pin": "PIN",
+    "remember": "Unyibuke",
+    "forgotPin": "Wibagiwe PIN?",
+    "reset": "Subizamo hano",
+    "submit": "Injira",
+    "submitting": "Injira…",
+    "noAccount": "Ntabwo ufite konti?",
+    "signUp": "Iyandikishe ahubwo"
+  },
+  "ResetPin": {
+    "title": "Gusubizaho PIN",
+    "intro": "Andika nimero ya terefone wiyandikishije. Tuzakoherereza kode y’imibare 6 kuri SMS.",
+    "phone": "Nimero ya terefone",
+    "send": "Ohereza kode",
+    "sending": "Kohereza…",
+    "sent": "Twohereje kode y’imibare 6 kuri SMS kuri <strong>{phone}</strong> Andikamo hanyuma uhitemo PIN nshya.",
+    "code": "Kode yo kugenzura",
+    "pin": "Imibare 5 mishya PIN",
+    "confirm": "Emeza PIN nshya",
+    "save": "Bika PIN nshya",
+    "saving": "Kubika…",
+    "remembered": "Wibuka PIN yawe?",
+    "login": "Injira"
+  },
+  "Auth": {
+    "errors": {
+      "nameRequired": "Andika izina ryawe ryuzuye.",
+      "phoneInvalid": "Andika nimero ya telefoni igendanwa yo mu Rwanda, urugero 078 123 4567.",
+      "pinInvalid": "PIN yawe igomba kuba ifite imibare 5 neza.",
+      "pinWeak": "Hitamo PIN igoye kwiyumvisha, ntabwo ari 12345 cyangwa 11111.",
+      "pinMismatch": "PIN ebyiri ntizihura.",
+      "districtRequired": "Hitamo akarere kawe.",
+      "sectorRequired": "Hitamo urwego rwawe.",
+      "typesRequired": "Hitamo nibura ubwoko bumwe bwo kudoda.",
+      "experienceRequired": "Hitamo igihe umaze udoda.",
+      "locationRequired": "Injira aho abaguzi bashobora kubona iduka ryawe.",
+      "termsRequired": "Nyamuneka wemera amasezerano kugira ngo ukomeze.",
+      "codeInvalid": "Andika kode y’imibare 6 uhereye kuri SMS.",
+      "codeWrong": "Iyo kode ntabwo ari yo cyangwa yarangiye. Gerageza ongera usabe indi nshya.",
+      "phoneTaken": "Iyi nomero isanzwe ifite konti. Injira ahubwo.",
+      "wrongPin": "Iyo nomero ya terefone na PIN ntabwo bihuye.",
+      "locked": "PIN nyinshi zitari zo. Gerageza nyuma y’iminota {minutes}, cyangwa usubize PIN yawe.",
+      "tooManyCodes": "Tegereza umunota umwe mbere yo gusaba indi kode.",
+      "smsFailed": "Ntitwashoboye kohereza SMS Reba nimero hanyuma wongere ugerageze.",
+      "noAccount": "Nta konti AKIBA iri kuri iyi nomero. Iyandikishe ahubwo.",
+      "setupFailed": "Ntitwashoboye kurangiza gushyiraho iduka ryawe. Nyamuneka ongera ugerageze.",
+      "generic": "Hari ikintu kitagenze neza. Nyamuneka ongera ugerageze."
+    }
+  },
+  "Experience": {
+    "title": "Ubunararibonye mu kudoda",
+    "levels": {
+      "new": "Gishya",
+      "skilled": "Ubuhanga",
+      "experienced": "Ubunararibonye",
+      "master": "Umudozi w’umuhanga"
+    },
+    "scale": {
+      "new": {
+        "name": "Gishya",
+        "years": "<1 umwaka"
+      },
+      "skilled": {
+        "name": "Ubuhanga",
+        "years": "1–4"
+      },
+      "experienced": {
+        "name": "Ubunararibonye",
+        "years": "5–9"
+      },
+      "master": {
+        "name": "Umwigisha",
+        "years": "10+"
+      }
+    },
+    "short": "{years,plural,one{Umwaka #} other{Imyaka #} =0{}} {months,plural,one{ukwezi #} other{amezi #} =0{}}",
+    "long": "{years,plural,one{# umwaka {months,plural,one{, Ukwezi #} other{, amezi #} =0{}}} other{Imyaka # {months,plural,one{, Ukwezi #} other{, amezi #} =0{}}} =0{{months,plural,one{Ukwezi #} other{Amezi #} =0{Abari munsi y’ukwezi kumwe}}}}",
+    "underMonth": "munsi y’ukwezi 1"
+  },
+  "Terms": {
+    "title": "Amategeko agenga ikoreshwa n’ubuzima bwite",
+    "updated": "Iheruka kuvugururwa ku ya 3 Ugushyingo 2026",
+    "intro": "Uru rupapuro rusobanura, mu magambo yumvikana, uburyo AKIBA ikora, icyo yanditse n’icyo ushobora gusaba.",
+    "contents": "Kuri uru rupapuro",
+    "sections": {
+      "about": {
+        "title": "Hafi AKIBA",
+        "points": [
+          "AKIBA yerekana imyenda yakozwe n’abadozi bemewe muri Kigali, hamwe n’inkuru iri inyuma ya buri imwe.",
+          "Ni umushinga w’ubushakashatsi wa Mission Capstone wakozwe na Kenneth Chirchir.",
+          "AKIBA ni imurikagurisha, si iduka. Nta kwishyura cyangwa komisiyo bisaba. Abaguzi n’abadozi bemeranya ku giciro cyabigenewe, kandi abaguzi bishyura umudozi mu buryo butaziguye, bakoresheje MoMo cyangwa amafaranga."
+        ]
+      },
+      "buyers": {
+        "title": "Gukoresha AKIBA nk’umuguzi",
+        "points": [
+          "Ntabwo ukeneye konti.",
+          "Imyenda n’abadozi ubitse muri iyi porogaramu yo gushakisha kuri telefoni yawe gusa. Gukuraho porogaramu yo gushakisha bikuraho.",
+          "AKIBA ibarura uburyo amapaji yayo akoreshwa: inkuru zifungurwa n’igihe zimara, kubika, gukanda kuri Shaka amabwiriza cyangwa Hamagara, no gusaba. Izi nyandiko zikoresha nimero isanzwe ibitswe muri cookie, ntabwo ari izina ryawe cyangwa nimero ya terefone."
+        ]
+      },
+      "tailors": {
+        "title": "Gukoresha AKIBA nk’umudozi",
+        "points": [
+          "Iyandikishe ukoresheje nimero yawe ya telefoni igendanwa yo mu Rwanda hamwe n’imibare 5 ya PIN Bika ibanga ryawe PIN. Nta muntu n’umwe kuri AKIBA uzigera arisaba.",
+          "Iduka ryawe ritangira gukoreshwa ku mugaragaro gusa nyuma yuko AKIBA imaze gusuzuma amakuru yawe n’ishyirahamwe ry’abadozi, kandi buri mwenda wose ubanza gusuzumwa mbere yuko abaguzi bawubona.",
+          "Amafoto n’inkuru usohora ni ibyawe bwite. Iyo ubishyize ahagaragara, uba wemereye AKIBA kubyerekana ku rubuga mu gihe cy’ubushakashatsi.",
+          "Shyira gusa imyenda wikoreye ubwawe, ifite ibisobanuro nyabyo n’ibiciro. AKIBA ishobora guhisha imyenda cyangwa guhagarika iduka rirenze kuri aya mategeko.",
+          "Aderesi y’iduka ryawe yerekwa abaguzi kugira ngo bashobore kukubona. Ntukigere winjiza aderesi yawe yo mu rugo.",
+          "Ushobora guhindura cyangwa gusiba umwenda uwo ari wo wose, no gusiba konti yawe yose, igihe icyo ari cyo cyose muri Profile."
+        ]
+      },
+      "requests": {
+        "title": "Ibyifuzo na nimero za terefone",
+        "points": [
+          "Iyo usabye umwenda, izina ryawe, nimero ya terefone n’ibisobanuro birambuye bijya kuri uwo muntu udoda imyenda gusa, mu gasanduku ke AKIBA no kuri SMS.",
+          "Umaze kohereza ubusabe, ubona nimero ya terefone y’umudozi kugira ngo ubashe kumuhamagara.",
+          "Nta wundi muntu ushobora gusoma ibyifuzo, harimo n’umushakashatsi AKIBA Ubushakashatsi bubara gusa umubare w’ibyifuzo byoherejwe.",
+          "Ubutumwa SMS bwoherejwe binyuze muri Africa’s Talking."
+        ]
+      },
+      "research": {
+        "title": "Ubushakashatsi",
+        "points": [
+          "AKIBA ni igice cy’inyigo y’uburyo inkuru zifasha abakiri bato guha agaciro abadozi bo mu gace batuyemo. Kwitabira iyi nyigo ni ubushake kandi bisaba ko ubyemera.",
+          "Iyo witabiriye, ubona umurongo wihariye uri kumwe n’umubare w’abayitabiriye. Iyo kode ihuza ikoreshwa ryawe rya AKIBA n’ibibazo byawe, nta zina ryawe.",
+          "Mu bisubizo, amazina y’abantu asimbuzwa kode. Amakuru y’ubushakashatsi arasiba iyo ubushakashatsi burangiye.",
+          "Ushobora guhagarika kwitabira igihe icyo ari cyo cyose, nta mpamvu utanze."
+        ]
+      },
+      "cookies": {
+        "title": "Kuki",
+        "points": [
+          "akiba_visitor: nimero idasanzwe y’inyandiko z’ikoreshwa, ibikwa mu gihe cy’umwaka.",
+          "akiba_participant: kode yawe y’umufatanyabikorwa, gusa iyo wafunguye umurongo wo kwiga ku giti cyawe, ikabikwa mu gihe cy’umwaka.",
+          "Injira kuri cookies z’abadozi n’abashakashatsi, zibikwa kugeza usohotse, cyangwa kugeza ku mwaka umwe niba ushyize akamenyetso kuri Remember me.",
+          "Kuki ngufi, zibikwa iminota 30, zibuka kwiyandikisha, gusubiza PIN cyangwa ubusabe wamaze kohereza.",
+          "AKIBA nta kwamamaza cyangwa gukurikirana cookies ziturutse ku zindi sosiyete."
+        ]
+      },
+      "storage": {
+        "title": "Aho amakuru abikwa",
+        "points": [
+          "Ububiko bw’amakuru n’iyandikwa biyoborwa na Supabase, amafoto abikwa na Cloudinary, naho urubuga rukorera kuri Vercel. Babika amakuru kuri AKIBA kandi ntibayakoresha mu kindi kintu icyo ari cyo cyose.",
+          "Amakuru yawe asangizwa gusa umudozi wakira icyifuzo cyawe."
+        ]
+      },
+      "rights": {
+        "title": "Uburenganzira bwawe",
+        "points": [
+          "Abadozi: jya kuri Profile, hanyuma usibe konti. Iduka ryawe, imyenda, amafoto, inkuru, ubusabe bwawe n’inyandiko z’imikoreshereze bihita bisibangana.",
+          "Abaguzi n’abitabiriye ubushakashatsi: hamagara AKIBA kugira ngo ibyifuzo byawe cyangwa amakuru yawe y’ubushakashatsi asibwe, cyangwa uhagarike kwitabira.",
+          "Umuntu wese ashobora kubaza amakuru AKIBA amufiteho, maze agakosorwa."
+        ]
+      }
+    },
+    "contactTitle": "Twandikire",
+    "contactLine": "Ibibazo kuri AKIBA cyangwa amakuru yawe: Kenneth Chirchir, <email>kenchirchir2004@gmail.com</email>, <phone>+250 794 096 359</phone>."
+  },
+  "Shop": {
+    "title": "Iduka ryanjye",
+    "greeting": "Muraho, {name} · {shop}",
+    "pendingTitle": "Gutegereza kwemeza",
+    "pendingBody": "AKIBA ni ukureba amakuru yawe n’ishyirahamwe ry’abadozi. Imyenda yawe iba rusange iyo iduka ryawe rimaze kwemezwa.",
+    "garments": "Imyenda",
+    "storyViews": "Ibitekerezo by’inkuru",
+    "myGarments": "Imyambaro yanjye",
+    "empty": "Nta myenda urashyiraho. Ongeraho iya mbere hamwe n’amafoto yayo n’inkuru yayo.",
+    "uploadFirst": "Shyiraho umwenda wawe wa mbere",
+    "noLive": "Nta myenda yawe iriho ubu. Shyiraho indi nshya, cyangwa uyisubize mu bubiko bwawe buri hepfo.",
+    "upload": "Shyiraho umwenda",
+    "archived": "Byabitswe ({count})",
+    "archivedHelp": "Abaguzi ntibashobora kubona iyi myenda. Fungura imwe kugira ngo uyisubize.",
+    "views": "{count,plural,one{Irebwa ry’inkuru #} other{Inkuru # zarebwe}}",
+    "status": {
+      "pending": "Gutegereza isuzuma",
+      "rejected": "Ntibyemewe",
+      "archived": "Byabitswe mu bubiko"
+    },
+    "notices": {
+      "uploaded": "Urakoze! Imyenda yawe itegereje gusuzumwa. Abaguzi bazayibona AKIBA kubyemera.",
+      "saved": "Impinduka zarabitswe. AKIBA wabisuzuma mbere yuko bitangira gukoreshwa.",
+      "deleted": "Ikanzu n’amafoto yayo byarasibwe.",
+      "archived": "Iyo myenda irabikwa. Abaguzi ntibashobora kuyireba kugeza igihe uyisubije.",
+      "restored": "Ikanzu irasubijwe kandi isubizwa mu iduka ryawe."
+    }
+  },
+  "Upload": {
+    "title": "Shyiraho umwenda"
+  },
+  "EditGarment": {
+    "title": "Hindura imyenda",
+    "pending": "Gutegereza isuzuma. AKIBA igenzura buri mwenda mbere yuko abaguzi bawubona.",
+    "rejected": "Ntibyemewe: {reason}",
+    "rejectedNoReason": "Ntabwo byemejwe kugeza ubu.",
+    "rejectedHelp": "Kosora hanyuma ubibike kugira ngo wongere ubisubiremo.",
+    "approved": "Abaguzi bashobora kubona iyi myenda. Iyo ubitse impinduka, irahisha kugeza igihe AKIBA izaba imaze kuyisuzuma.",
+    "archivedNotice": "Iyi myenda irabikwa. Abaguzi ntibashobora kuyibona, ariko amafoto yayo, inkuru yayo n’ibyo isaba birabikwa. Yisubize kugira ngo wongere uyigaragaze.",
+    "archive": "Imyenda yo kubika",
+    "archiving": "Irimo kubika…",
+    "restore": "Garura umwenda",
+    "restoring": "Kugarura…",
+    "delete": "Siba umwenda",
+    "deleteTitle": "Siba uyu mwenda?",
+    "deleteBody": "Abaguzi ntibazongera kuyibona, kandi amafoto yayo azasibwa. Ibi ntibishobora guhindurwa.",
+    "deleteConfirm": "Yego, bisibe",
+    "deleting": "Irimo gusiba…",
+    "keep": "Bigumane"
+  },
+  "GarmentForm": {
+    "photos": "Amafoto",
+    "photosLimit": "(kugeza kuri 5)",
+    "photosHint": "Amafoto agera kuri 5. Ahita agabanuka bityo amapaji ahita yinjira iyo habayeho guhuza buhoro.",
+    "addPhoto": "Ongeraho ifoto",
+    "cover": "Igipfukisho",
+    "photoAlt": "Ifoto ya {number} y’imyenda",
+    "removePhoto": "Kuraho ifoto {number}",
+    "uploading": "Kohereza {percent}%",
+    "failed": "Ntabwo nashyize kuri interineti",
+    "retry": "Ongera ugerageze",
+    "details": "Ibisobanuro birambuye",
+    "name": "Izina ry’imyenda",
+    "namePlaceholder": "urugero: Kitenge ipfunyitse nta",
+    "category": "Icyiciro",
+    "choose": "Hitamo",
+    "other": {
+      "tops": "Izindi top",
+      "bottoms": "Ibindi bice byo hasi"
+    },
+    "material": "Ibikoresho",
+    "audience": "Byakorewe",
+    "description": "Ibisobanuro",
+    "descriptionPlaceholder": "Ikwiranye, ingano zirahari, uburyo bwo kuyitaho…",
+    "story": "Inkuru iri inyuma yabyo",
+    "storyPlaceholder": "Ni iki cyabiteye imbaraga? Igitambaro cyangwa imiterere bisobanura iki? Wabikoze ute?",
+    "price": "Igiciro",
+    "makingDays": "Byakozwe mu minsi (iminsi)",
+    "makingDaysHint": "Ubishatse. Bigutwara iminsi ingahe kugira ngo ubikore.",
+    "makingDaysPlaceholder": "e.g. 5",
+    "publish": "Shyira ahagaragara kugira ngo yerekanwe",
+    "publishing": "Gusohora…",
+    "save": "Bika impinduka",
+    "saving": "Kubika…",
+    "uploadingPhotos": "Irimo gushyira amafoto…",
+    "waitForPhotos": "Tegereza ko amafoto yawe arangiza kohereza, hanyuma wongere ugerageze.",
+    "fixPhotos": "Ifoto ntiyashyizwe kuri interineti. Kanda ahanditse Gerageza, cyangwa uyikureho.",
+    "reviewNote": "AKIBA isuzuma buri mwenda mbere yuko utangira gukoreshwa.",
+    "errors": {
+      "photosRequired": "Ongeraho nibura ifoto imwe y’umwenda.",
+      "photosTooMany": "Ushobora kongeramo amafoto agera kuri 5.",
+      "nameRequired": "Ha izina iyo myambaro.",
+      "nameTooLong": "Izina rigomba kuba munsi y’inyuguti 80.",
+      "categoryRequired": "Hitamo icyiciro.",
+      "audienceRequired": "Hitamo uwo imyenda ikorewe.",
+      "descriptionTooLong": "Ibisobanuro bigumane munsi y’inyuguti 1.000.",
+      "storyRequired": "Bwira abaguzi inkuru iri inyuma y’iyo myenda, nibura mu nteruro imwe.",
+      "storyTooLong": "Komeza inkuru munsi y’amabaruwa 3.000.",
+      "priceInvalid": "Andika igiciro kiri hagati ya 500 na 10,000,000 RWF.",
+      "makingDaysInvalid": "Andika iminsi kuva kuri 1 kugeza kuri 180, cyangwa usige ubusa.",
+      "notFound": "Ntitwashoboye kubona uyu mwenda. Ushobora kuba warahanaguwe.",
+      "generic": "Hari ikintu kitagenze neza. Reba aho uhurira hanyuma wongere ugerageze."
+    }
+  },
+  "Requests": {
+    "title": "Ubusabe",
+    "tabs": "Ni ibihe bisabwa kwerekana",
+    "all": "Byose",
+    "unread": "Ntibisomwa",
+    "markAllRead": "Shyira akamenyetso kuri byose nk’ibyasomwe",
+    "new": "Gishya",
+    "summary": "{quantity} x {garment} · {size,select,measure{gupima aho bishyirwa} other{Ingano {sizeName}}}",
+    "neededBy": "bikenewe kuri {day} {month}",
+    "bestTime": "{time,select,afternoon{Hamagara nyuma ya saa sita} evening{Hamagara nimugoroba} morning{Hamagara mu gitondo} other{Hamagara igihe icyo ari cyo cyose}}",
+    "call": "Hamagara {phone}",
+    "markOrdered": "Shyira akamenyetso nk’uko byategetswe",
+    "ordered": "Byategetswe",
+    "undo": "Gukuraho",
+    "deletedGarment": "Imyenda wakuyeho",
+    "empty": "Nta busabe burahari. Iyo umuguzi asabye imwe mu myenda yawe, igaragara hano.",
+    "emptyUnread": "Wasomye buri busabe bwose.",
+    "showAll": "Erekana ibyifuzo byose"
+  },
+  "Sms": {
+    "request": "AKIBA: {name} yasabye {quantity} x {garment} ({size,select,measure{gupimwa aho bishyirwa} other{Ingano {sizeName}}}), ikenewe na {day} {month} Hamagara {phone}, {time,select,afternoon{byiza cyane nyuma ya saa sita} evening{byiza cyane nimugoroba} morning{byiza mu gitondo} other{igihe icyo ari cyo cyose}}.",
+    "code": "AKIBA: kode yawe ni {code} Ntukayisangize umuntu uwo ari we wese."
+  },
+  "Profile": {
+    "title": "Umwirondoro",
+    "editTitle": "Hindura umwirondoro",
+    "verified": "Yemejwe",
+    "pending": "Gutegereza kwemeza",
+    "edit": "Hindura umwirondoro",
+    "complete": "Umwirondoro wawe wuzuye {percent}%",
+    "missing": {
+      "avatar": "Ongeraho ifoto yawe",
+      "cover": "Ongeraho ifoto y’igipfukisho ku rupapuro rwawe",
+      "about": "Ongeraho inkuru yawe muri \"About me\"",
+      "shopAddress": "Ongeraho aho abaguzi bashobora gusanga iduka ryawe",
+      "tailoringTypes": "Hitamo ubwoko bw’ubudozi bwawe"
+    },
+    "viewAsBuyer": "Reba iduka ryanjye nk’umuguzi",
+    "smsAlerts": "SMS imenyesha ku busabe bushya",
+    "changePin": "Impinduka PIN",
+    "language": "Ururimi",
+    "helpTerms": "Ubufasha n’amategeko",
+    "logout": "Sohoka",
+    "deleteAccount": "Siba konti",
+    "notices": {
+      "saved": "Umwirondoro wawe warabitswe. Abaguzi babona impinduka ku rubuga rwawe.",
+      "pin": "PIN yawe yarahindutse. Koresha PIN nshya ubutaha winjira."
+    },
+    "photos": "Amafoto",
+    "avatar": "Ifoto yawe",
+    "cover": "Ifoto y’igipfukisho cy’urupapuro rwawe",
+    "addPhoto": "Ongeraho ifoto",
+    "changePhoto": "Hindura ifoto",
+    "removePhoto": "Kuraho",
+    "uploading": "Kohereza {percent}%",
+    "uploadFailed": "Ifoto ntiyashyizwe kuri interineti. Reba umurongo wa interineti hanyuma wongere uyihitemo.",
+    "shopDetails": "Ibisobanuro by’iduka",
+    "shopName": "Izina ry’iduka",
+    "phoneVerified": "Nimero yemejwe",
+    "phoneHint": "Nomero yawe yemejwe na SMS Ubusabe bw’abaguzi bugera kuri iyi nomero.",
+    "shopLocation": "Aho iduka riherereye",
+    "yourWork": "Akazi kawe",
+    "about": "Ku byerekeye njyewe",
+    "aboutHint": "Ntabwo ari ngombwa. Bigaragara ku rubuga rwawe rwa bose.",
+    "aboutPlaceholder": "Wamenye gute kudoda? Ni iki ukunda gukora? Ni iki gituma akazi kawe gatandukanye?",
+    "save": "Bika impinduka",
+    "saving": "Kubika…",
+    "publicNote": "Impinduka zigaragara ku rubuga rwawe rwa bose ako kanya.",
+    "help": {
+      "title": "Ubufasha n’amategeko",
+      "requests": {
+        "question": "Ese ubusabe bw’abaguzi bukora bute?",
+        "answer": "Iyo umuguzi asabye imwe mu myenda yawe, igaragara mu nyandiko zisaba kandi ubona SMS iriho amazina ye na nimero ye ya terefone. Muhamagare kugira ngo mwemeranye ingano, igiciro n’uburyo ikoreshwa."
+      },
+      "payments": {
+        "question": "Ese AKIBA ikora uburyo bwo kwishyura?",
+        "answer": "Nomero AKIBA nta mafaranga yishyurwa kandi nta komisiyo. Umuguzi akwishyura ako kanya, akoresheje MoMo cyangwa amafaranga."
+      },
+      "ordered": {
+        "question": "Nigute nashyira ikimenyetso ku busabe nk’uko byategetswe?",
+        "answer": "Fungura Ibyifuzo hanyuma ukande ahanditse ngo Shyira akamenyetso nk’uko byategetswe ku busabe igihe umuguzi amaze gutumiza. Kanda ahanditse ngo Gukuraho niba wakoze ikosa."
+      },
+      "terms": "Amategeko agenga ikoreshwa n’ubuzima bwite"
+    },
+    "pin": {
+      "title": "Impinduka PIN",
+      "intro": "Koresha imibare 5 gusa uzi. Uzakoresha PIN nshya ubutaha winjira.",
+      "current": "PIN y’ubu",
+      "new": "Imibare 5 mishya PIN",
+      "confirm": "Emeza PIN nshya",
+      "save": "Ivugurura PIN",
+      "saving": "Irimo kuvugurura…",
+      "forgot": "Wibagiwe PIN yawe?",
+      "reset": "Subizamo kuri SMS"
+    },
+    "delete": {
+      "title": "Siba konti",
+      "warning": "Ibi bikuraho byose bijyanye n’iduka ryawe",
+      "removed": {
+        "shop": "Iduka ryawe, umwirondoro wawe n’amafoto yawe",
+        "garments": "Imyenda yawe yose, amafoto yabo n’inkuru zabo",
+        "requests": "Ubusabe bwose bw’abaguzi bwoherejwe kuri wewe",
+        "usage": "Inyandiko z’ikoreshwa ry’iduka ryawe"
+      },
+      "final": "Ibi ntibishobora guhindurwa. Ushobora kongera kwiyandikisha nyuma ukoresheje inomero imwe.",
+      "pin": "Andika PIN yawe kugira ngo wemeze",
+      "confirm": "Siba konti yanjye",
+      "deleting": "Irimo gusiba…",
+      "keep": "Bika konti yanjye"
+    },
+    "errors": {
+      "shopNameRequired": "Andika izina ry’iduka ryawe.",
+      "fullNameRequired": "Andika izina ryawe ryuzuye.",
+      "experienceRequired": "Hitamo igihe umaze udoda.",
+      "districtRequired": "Hitamo akarere kawe.",
+      "sectorRequired": "Hitamo urwego rwawe.",
+      "locationRequired": "Injira aho abaguzi bashobora kubona iduka ryawe.",
+      "typesRequired": "Hitamo nibura ubwoko bumwe bwo kudoda.",
+      "aboutTooLong": "Komeza Ku byerekeye ibyanjye munsi y’amabaruwa 2.000.",
+      "photoInvalid": "Imwe muri izo foto ntiyashoboraga gukoreshwa. Ongera uyihitemo.",
+      "waitForPhotos": "Tegereza ko amafoto yawe arangiza kohereza, hanyuma wongere ugerageze.",
+      "pinInvalid": "PIN yawe igomba kuba ifite imibare 5 neza.",
+      "pinWeak": "Hitamo PIN igoye kwiyumvisha, ntabwo ari 12345 cyangwa 11111.",
+      "pinMismatch": "PIN ebyiri ntizihura.",
+      "wrongPin": "PIN ari byo.",
+      "locked": "PIN nyinshi zitari zo. Gerageza nyuma y’iminota {minutes}, cyangwa usubize PIN yawe.",
+      "generic": "Hari ikintu kitagenze neza. Reba aho uhurira hanyuma wongere ugerageze."
+    }
+  },
+  "NotFound": {
+    "title": "Urupapuro ntirwabonetse",
+    "body": "Uru rupapuro ntirubaho cyangwa rwimuwe.",
+    "home": "Subira kuri AKIBA"
+  },
+  "AccountDeleted": {
+    "title": "Konti yawe yasibwe",
+    "body": "Iduka ryawe, imyenda, amafoto, inkuru n’ibyo wasabye abaguzi byakuwe kuri AKIBA Urakoze ku bw’uruhare rwawe.",
+    "home": "Subira kuri AKIBA"
+  },
+  "Admin": {
+    "nav": {
+      "label": "Paji z’ubuyobozi",
+      "admin": "Ubuyobozi",
+      "overview": "Incamake",
+      "tailors": "Abadozi",
+      "garments": "Imyenda yo gusuzuma",
+      "report": "Raporo y’ubushakashatsi",
+      "logout": "Sohoka"
+    },
+    "overview": {
+      "title": "Incamake",
+      "intro": "Genzura abadozi, suzuma imyenda kandi ukurikize amakuru y’ubushakashatsi.",
+      "pendingTailors": "Abadozi bategereje kwemeza",
+      "pendingGarments": "Imyenda itegereje gusuzumwa",
+      "verifiedTailors": "Abadozi bemewe",
+      "suspendedTailors": "Abadozi bahagaritswe"
+    },
+    "tailors": {
+      "title": "Abadozi",
+      "tabs": "Abadozi hakurikijwe imiterere",
+      "status": {
+        "pending": "Gutegereza",
+        "verified": "Yemejwe",
+        "suspended": "Yahagaritswe"
+      },
+      "empty": {
+        "pending": "Nta badozi bategereje kwemeza.",
+        "verified": "Nta badozi bemewe kugeza ubu.",
+        "suspended": "Nta badozi bahagaritswe."
+      },
+      "sample": "Urugero",
+      "joined": "Yinjiye muri {date} · {count,plural,one{Umwambaro #} other{Imyenda #}}"
+    },
+    "tailor": {
+      "title": "Umudozi",
+      "back": "Abadozi bose",
+      "owner": "Nyiri",
+      "area": "Akarere",
+      "address": "Aderesi y’iduka",
+      "types": "Ubwoko bw’ubudozi",
+      "experience": "Ubunararibonye",
+      "joined": "Yinjiye",
+      "garments": "{count,plural,one{Umwambaro #} other{Imyenda #}}",
+      "garmentStatus": {
+        "pending": "Gutegereza isuzuma",
+        "approved": "Byemejwe",
+        "rejected": "Ntibyemewe"
+      },
+      "verifyTitle": "Igenzura",
+      "verifyIntro": "Andika uwagaragaje ko ari umudozi n’igihe wasuye aho wakoreraga. Iduka rihita rimenyekana iyo rimaze kwemezwa.",
+      "suspendIntro": "Guhagarika imodoka bihisha iduka n’imyenda yaryo yose abaguzi bahita batabona.",
+      "suspend": "Hagarika iri duka",
+      "reopenIntro": "Kwimura iduka kugira ngo ritegereze bigumana ihishwe kugeza igihe uzarigenzura bundi bushya.",
+      "reopen": "Subira ku gutegereza",
+      "notices": {
+        "verified": "Umudozi yaremejwe kandi iduka rye ubu ni rusange.",
+        "suspended": "Iduka ryahagaritswe kandi rihishe abaguzi.",
+        "pending": "Iduka ryasubiye ku rutonde rw’abategereje."
+      }
+    },
+    "verify": {
+      "association": "Ishyirahamwe ry’abadozi",
+      "associationPlaceholder": "urugero: Koperative y’abadozi ba Kimironko",
+      "official": "Umukozi wabihamije",
+      "visitDate": "Itariki yo gusura amahugurwa",
+      "notes": "Inyandiko",
+      "consent": "Umudozi yemeye kwitabira ubushakashatsi",
+      "submit": "Emeza ko ari umudozi",
+      "update": "Vugurura igenzura",
+      "saving": "Kubika…"
+    },
+    "garments": {
+      "title": "Imyenda yo gusuzuma",
+      "intro": "{count,plural,one{Umwambaro # utegereje gusuzumwa.} other{Imyenda # itegereje gusuzumwa.} =0{Ntacyo na kimwe cyo gusuzuma.}}",
+      "empty": "Buri mwenda wose wasuzumwe.",
+      "by": "{shop} · {owner}",
+      "photoAlt": "{name}, ifoto {number}",
+      "shopNotVerified": "Iri duka ntiriragenzurwa kugeza ubu. Imyenda yemewe igaragara gusa iyo iduka rimaze kwemezwa.",
+      "approve": "Kwemeza",
+      "reject": "Ntibyemewe…",
+      "reason": "Impamvu",
+      "chooseReason": "Hitamo impamvu",
+      "note": "Icyitonderwa ku mudozi",
+      "noteHint": "Ubishatse, keretse uhisemo Ibindi. Umudozi abibona ku ipaji yo guhindura imyenda.",
+      "confirmReject": "Ohereza umudozi ku mudozi",
+      "rejecting": "Kohereza…",
+      "cancel": "Hagarika",
+      "notices": {
+        "approved": "Iyo myenda yemejwe kandi irashyirwa ahagaragara.",
+        "rejected": "Ikanzu yoherejwe ku mudozi ufite impamvu yawe."
+      }
+    },
+    "reasons": {
+      "photos": "Amafoto ntabwo agaragara neza bihagije. Nyamuneka uyafate mu buryo bwiza.",
+      "story": "Ndagusabye ubabwire byinshi ku nkuru iri inyuma y’iyi myenda.",
+      "notMadeByTailor": "AKIBA igaragaza gusa imyenda wikoreye ubwawe.",
+      "details": "Reba izina, icyiciro cyangwa igiciro.",
+      "other": "Indi mpamvu"
+    },
+    "report": {
+      "title": "Raporo y’ubushakashatsi",
+      "intro": "Imikoreshereze y’urubuga, ibarwa uhereye ku nyandiko z’imikoreshereze zitazwi. Amazina y’abaguzi, nimero za terefone n’ibisobanuro by’ubusabe ntibigaragara hano.",
+      "downloadGarments": "Imyenda (CSV)",
+      "downloadParticipants": "Abitabiriye (CSV)",
+      "minutes": "Iminota {count, number}",
+      "measures": {
+        "story_views": "Ibitekerezo by’inkuru",
+        "visitors": "Abashyitsi",
+        "participants": "Abitabiriye",
+        "reading_seconds": "Igihe cyo gusoma (iminota)",
+        "saves": "Kubika",
+        "unsaves": "Bikuraho kubika",
+        "tailor_views": "Inshuro imyirondoro y’abadozi yarebwe",
+        "directions_clicks": "Amakofi y’amabwiriza",
+        "call_clicks": "Guhamagara abadozi",
+        "requests": "Ubusabe",
+        "requests_after_reading": "Ubusabe nyuma yo gusoma",
+        "median_minutes_to_request": "Iminota yo hagati yo gusaba"
+      },
+      "columns": {
+        "participant": "Uwitabiriye",
+        "stories": "Inkuru zasomwe",
+        "garment": "Imyenda"
+      },
+      "participantsTitle": "Biturutse ku mwitabiriye",
+      "noParticipants": "Nta kode z’abitabiriye zihari.",
+      "garmentsTitle": "Ku myenda",
+      "sample": "Urugero",
+      "privacy": "Ibisaba nyuma yo gusoma bibara ubusabe bwoherejwe n’umushyitsi wabanje gufungura inkuru y’iyo myenda. Igihe cyo hagati gitangira kuva aho barebye inkuru ya mbere kugeza aho bayisabiye."
+    },
+    "errors": {
+      "associationRequired": "Injira mu ishyirahamwe ry’abadozi.",
+      "officialRequired": "Andika izina ry’umukozi wabihamije.",
+      "visitInvalid": "Hitamo itariki yo gusura, uyu munsi cyangwa mbere yaho.",
+      "consentRequired": "Umudozi agomba gutanga uruhushya mbere yo kubigenzura.",
+      "reasonRequired": "Hitamo impamvu, cyangwa wandike inyandiko niba uhisemo Indi.",
+      "generic": "Hari ikintu kitagenze neza. Nyamuneka ongera ugerageze."
+    }
+  }
+}

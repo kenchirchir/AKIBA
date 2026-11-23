@@ -15,7 +15,8 @@
     "make-admin": "node --env-file=.env.local scripts/make-admin.mjs",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "test:live": "E2E_BASE_URL=https://akiba-seven.vercel.app playwright test"
+    "test:live": "E2E_BASE_URL=https://akiba-seven.vercel.app playwright test",
+    "translate": "node --env-file=.env.local scripts/translate-messages.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
+    "@formatjs/icu-messageformat-parser": "^3.5.22",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^24.19.2",

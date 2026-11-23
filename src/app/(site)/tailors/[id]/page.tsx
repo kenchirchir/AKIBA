@@ -6,13 +6,7 @@ import { areaNames } from "@/lib/kigali";
 import { photoUrl } from "@/lib/photos";
 import { getTailorProfile } from "@/lib/tailors";
 
-export const revalidate = 60;
-
 const shareWidth = 1200;
-
-export async function generateStaticParams() {
-  return [];
-}
 
 export async function generateMetadata({
   params,

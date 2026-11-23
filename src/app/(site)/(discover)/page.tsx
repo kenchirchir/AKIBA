@@ -96,7 +96,7 @@ export default async function WelcomePage() {
           </div>
         </div>
       </section>
-      <section id="tailor-offers" className="scroll-mt-16 lg:scroll-mt-20">
+      <section id="tailor-offers" className="scroll-mt-36 lg:scroll-mt-20">
         <Container>
           <FeedHeader
             as="h2"

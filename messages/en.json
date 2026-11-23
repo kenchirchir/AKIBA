@@ -12,6 +12,10 @@
     "kigali": "Kigali",
     "showPin": "Show PIN"
   },
+  "Language": {
+    "label": "Language",
+    "choose": "Choose language"
+  },
   "Nav": {
     "label": "Main",
     "searchLabel": "Search garments or tailors",
@@ -245,7 +249,13 @@
     "description": "Description",
     "photoAlt": "{name}, photo {number} of {total}",
     "showPhoto": "Show photo {number}",
-    "noPhoto": "No photo yet"
+    "noPhoto": "No photo yet",
+    "translate": "Translate to {language}",
+    "translating": "Translating…",
+    "translatedBy": "Translated by Google Translate",
+    "showOriginal": "Show original",
+    "sameLanguage": "This story is already in {language}.",
+    "translateFailed": "The translation didn’t load. Check your connection and try again."
   },
   "RequestOptions": {
     "sizes": {
@@ -676,8 +686,6 @@
     "smsAlerts": "SMS alerts for new requests",
     "changePin": "Change PIN",
     "language": "Language",
-    "english": "English",
-    "kinyarwanda": "Kinyarwanda (coming soon)",
     "helpTerms": "Help & terms",
     "logout": "Log out",
     "deleteAccount": "Delete account",

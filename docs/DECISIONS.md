@@ -148,7 +148,7 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **Photos.** The tailor's photo and cover photo are shrunk in the browser and uploaded to `akiba/tailors/<tailor id>/` on Cloudinary, the same way as garment photos. A replaced or removed photo is deleted from Cloudinary when the profile is saved. The photo shows on the public page, the tailors list, the sidebar and the menu.
 - **About me** now shows on the public tailor page under the name.
 - **The phone number cannot be changed yet** (decided with Kenneth), because a new number would need its own SMS check.
-- **Language** shows English, with Kinyarwanda listed as "coming soon" (decided with Kenneth) until the translation sheet arrives.
+- **Language** shows English, with Kinyarwanda listed as "coming soon" (decided with Kenneth) until the translation sheet arrives. Replaced on 23 November by a working English / Ikinyarwanda switch (see below).
 - **Change PIN** asks for the current PIN, a new one and the new one again, with the same rules as sign-up. Wrong current PINs count towards the same 5-try lockout as logging in. "Forgot your PIN? Reset it by SMS" opens the reset page.
 - **Delete account (NFR6, right to withdraw).** The tailor types their PIN to confirm (decided with Kenneth). The server then deletes the usage records about the shop (decided with Kenneth), the sign-in account, the shop, every garment and story, all photos on Cloudinary and all buyer requests, then signs the tailor out and shows a goodbye page. It can't be undone; the same number can sign up again.
 - **Sign-up details** that were kept as a copy in the sign-in account are cleared the first time a tailor saves their profile.
@@ -240,7 +240,18 @@ This follows the stack in section 3.9 of the research proposal and fills in the 
 - **My Shop shows archived garments in their own section**, with an "Archived" badge, and the garment count only counts live garments. Archived garments that were still waiting for review are left out of the admin's review queue.
 - Six new security checks and one browser test cover archiving and restoring.
 
+## 2026-11-23: Kinyarwanda through Google Translate
+
+- **The whole app can be used in English or Kinyarwanda** (the supervisor's request). The language is connected to the Google Cloud Translation API, chosen over Microsoft Translator for its Kinyarwanda quality; AKIBA uses far less than the 500,000 free characters a month.
+- **Screen text is translated once, not on every visit.** `npm run translate` sends every message in `messages/en.json` to Google and writes `messages/rw.json`. Placeholders such as `{name}`, plural rules and tags such as `<strong>` are protected from translation, and a message whose placeholders come back changed stays in English and is listed for a person to translate. Names like AKIBA, Kigali, Kitenge, SMS and PIN, the contact name and email addresses stay as they are.
+- **People can correct the Kinyarwanda by hand.** `messages/rw.source.json` remembers which English text each translation came from. Running the script again only translates new or changed English text, so hand corrections in `rw.json` are kept (`npm run translate -- --force` redoes everything). Any message missing from `rw.json` falls back to English.
+- **Choosing a language.** An English / Ikinyarwanda switch sits in the laptop header, at the bottom of the phone menu, in the footer, on the sign-in pages, in the tailor sidebar and on the tailor's Profile page. The choice is kept for a year in a `NEXT_LOCALE` cookie. A first-time visitor whose phone is set to Kinyarwanda sees Kinyarwanda. Web addresses stay the same in both languages.
+- **Garment stories are translated live.** Tailors write stories in either language, so the story page has a "Translate to …" link that translates the story and description into the language the visitor chose, marked "Translated by Google Translate" with "Show original". The server reads the story from the database itself (the browser cannot send its own text), and each translation is cached until the story changes, so Google is asked once per story and language. If the story is already in that language, the page says so. Without a `GOOGLE_TRANSLATE_API_KEY` the link is hidden.
+- **SMS to tailors stay in English**, whatever language the buyer chose, until tailors can choose their own SMS language.
+- **Story and tailor pages are no longer cached for 60 seconds** (M7). They now depend on the visitor's language cookie, so they are built for each visit like the rest of the site.
+
 ## Open questions
 
 - SMS budget, the approved sender name, and whether to add the two-way "Reply 1 or 2" follow-up.
 - Date the pilot starts.
+- Who reviews the machine-translated Kinyarwanda in `messages/rw.json` before the pilot.

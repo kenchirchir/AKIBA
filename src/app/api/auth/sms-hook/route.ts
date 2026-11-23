@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     return failure(400, "The request has no Rwandan phone number or code.");
   }
 
-  const t = await getTranslations("Sms");
+  const t = await getTranslations({ locale: "en", namespace: "Sms" });
   const sent = await sendSms(phone, t("code", { code: parsed.data.sms.otp }));
 
   return sent ? Response.json({}) : failure(502, "The SMS could not be sent.");

@@ -6,8 +6,8 @@ import { BackButton } from "@/components/story/back-button";
 import { MakerCard } from "@/components/story/maker-card";
 import { PhotoCarousel } from "@/components/story/photo-carousel";
 import { SaveButton } from "@/components/story/save-button";
-import { StoryText } from "@/components/story/story-text";
 import { StoryTracker } from "@/components/story/story-tracker";
+import { TranslatedStory } from "@/components/story/translated-story";
 import {
   audienceSlugs,
   findCategory,
@@ -17,14 +17,9 @@ import {
 import { getGarmentStory } from "@/lib/garments";
 import { areaNames } from "@/lib/kigali";
 import { photoUrl } from "@/lib/photos";
-
-export const revalidate = 60;
+import { translationEnabled } from "@/lib/translate/google";
 
 const shareWidth = 1200;
-
-export async function generateStaticParams() {
-  return [];
-}
 
 function excerpt(text: string, length = 160) {
   const flat = text.replace(/\s+/g, " ").trim();
@@ -129,18 +124,12 @@ export default async function GarmentStoryPage({
             <p className="text-caption text-secondary">{t("guidePrice")}</p>
           </header>
           <MakerCard tailor={garment.tailors} />
-          <section className="flex flex-col gap-2">
-            <h2 className="text-section">{t("story")}</h2>
-            <StoryText text={garment.story} />
-          </section>
-          {garment.description && (
-            <section className="flex flex-col gap-2">
-              <h2 className="text-section">{t("description")}</h2>
-              <p className="text-body whitespace-pre-line text-ink-soft">
-                {garment.description}
-              </p>
-            </section>
-          )}
+          <TranslatedStory
+            garmentId={garment.id}
+            story={garment.story}
+            description={garment.description}
+            canTranslate={translationEnabled()}
+          />
           <RequestSheet
             garment={{
               id: garment.id,

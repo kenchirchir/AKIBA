@@ -14,13 +14,13 @@ import {
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { LogoutButton } from "@/components/auth/logout-button";
+import { LanguageSwitch } from "@/components/layout/language-switch";
 import { PageHeader } from "@/components/layout/page-header";
 import { HelpSheet } from "@/components/profile/help-sheet";
 import { SmsAlertsSwitch } from "@/components/profile/sms-alerts-switch";
 import { Avatar } from "@/components/ui/avatar";
 import { buttonClasses } from "@/components/ui/button";
 import { ProgressBar } from "@/components/ui/progress-bar";
-import { Select } from "@/components/ui/select";
 import { VerifiedIcon } from "@/components/ui/verified";
 import { getMyProfile } from "@/lib/profile/data";
 import { publicPageHref, requireTailor } from "@/lib/tailor";
@@ -139,17 +139,8 @@ export default async function ProfilePage({
             </li>
             <li className={rowClasses}>
               <Globe className={iconClasses} />
-              <label htmlFor="language" className="flex-1">
-                {t("language")}
-              </label>
-              <div className="w-40">
-                <Select id="language" defaultValue="en">
-                  <option value="en">{t("english")}</option>
-                  <option value="rw" disabled>
-                    {t("kinyarwanda")}
-                  </option>
-                </Select>
-              </div>
+              <span className="flex-1">{t("language")}</span>
+              <LanguageSwitch full />
             </li>
             <li>
               <HelpSheet className={rowClasses}>

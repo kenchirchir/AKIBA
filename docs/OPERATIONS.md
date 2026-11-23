@@ -23,7 +23,8 @@ A practical guide for the researcher. The live site is <https://akiba-seven.verc
       The hook needs Africa's Talking to be set up first; without it, codes cannot be sent.
 3. **Turn on SMS alerts for tailors.** They are on by default; tailors can switch them off in Profile.
 4. **Read the terms page** (`/terms`) with your supervisor, and adjust it if the ethics approval asks for different wording. The text lives in `messages/en.json` under `Terms`.
-5. **Participant codes.** Decide a code for each buyer in the study (for example B01 to B30) and send each buyer their personal link: `https://akiba-seven.vercel.app/?p=B01`.
+5. **Kinyarwanda through Google Translate.** In the Google Cloud console create a project, turn on billing, enable the **Cloud Translation API**, then under **APIs & Services, Credentials** create an API key and restrict it to the Cloud Translation API. Put it in `.env.local` and in Vercel (Production and Preview, Sensitive) as `GOOGLE_TRANSLATE_API_KEY`, then redeploy. Run `npm run translate` to write `messages/rw.json`, have a Kinyarwanda speaker read it, fix any wording by hand in that file, and commit both `rw.json` and `rw.source.json`. After changing English text in `messages/en.json`, run `npm run translate` again; only the changed messages are sent to Google.
+6. **Participant codes.** Decide a code for each buyer in the study (for example B01 to B30) and send each buyer their personal link: `https://akiba-seven.vercel.app/?p=B01`.
 
 ## During the pilot
 
